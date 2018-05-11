@@ -1,0 +1,99 @@
+/* pages/superBenefit/superBenefit.wxss */
+
+.superBenefit {
+  font-size: 0;
+}
+
+.nav {
+  width: 100%;
+  height: 358rpx;
+}
+
+.sanjiao {
+  width: 30rpx;
+  height: 22rpx;
+  position: absolute;
+  top: -20rpx;
+  left: calc((100% - 30rpx)/2);
+}
+
+.main {
+  position: relative;
+  background: white;
+  margin-bottom: 16rpx;
+}
+
+.main_top {
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 28rpx 0 20rpx;
+}
+
+.title_img {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 10rpx;
+  margin-bottom: -3rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.right {
+  font-size: 24rpx;
+  color: #999;
+  float: right;
+  margin-top: 5rpx;
+}
+
+.right image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 10rpx;
+}
+
+.scroll_box {
+  width: 100%;
+  height: 300rpx;
+  overflow: hidden;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.item_list {
+  width: 200rpx;
+  height: auto;
+  margin-left: 18rpx;
+  display: inline-block;
+  text-align: center;
+}
+.item_list:last-child{
+  margin-right: 18rpx;
+}
+
+.item_list_img {
+  width: 100%;
+  height: 200rpx;
+  border-radius: 8rpx;
+}
+.item_list_text{
+  font-size: 26rpx;
+  padding: 10rpx 0;
+}
+.item_list_name {
+   /* width: 182rpx;    */
+  color: #333;
+  padding: 0 0rpx 10rpx;
+  white-space: pre-wrap;
+  height: 28rpx;
+}
+.item_list_newPrice{
+  color: #ff425f;
+  /* margin-right: 10rpx; */
+}
+.item_list_oldPrice{
+  text-decoration: line-through;
+  color: #999;
+}

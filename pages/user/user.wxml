@@ -1,0 +1,79 @@
+<view class='header'>
+
+  <image class='head_image' src='{{userInfo.avatarUrl}}'></image>
+  <!-- <text class='nickname'>昵称</text> -->
+  <text class='nickname'>{{userInfo.nickName}}</text>
+  <image class='acer' src='../../images/acer.png'></image>
+  <text class='acer_number'>{{userAcer}}</text>
+</view>
+<view class='my_order' catchtap='toOrderList' data-type='0'>
+  <view class='my_order_child'>我的订单</view>
+  <view class='total_order'>
+    查看全部
+    <image src='../../images/user/corner.png'></image>
+  </view>
+</view>
+<view class='order_type'>
+  <view class='order_type_child_first' data-type='0' catchtap='toOrderList'>
+    <image src='../../images/user/addOrder.png'></image>
+    <text>添加</text>
+  </view>
+  <view class='order_type_child' catchtap='toOrderList' data-type='1'>
+    <image src='../../images/user/allOrder.png'></image>
+    <text>全部</text>
+  </view>
+  <view class='order_type_child' catchtap='toOrderList' data-type='2'>
+    <image src='../../images/user/waitOrder.png'></image>
+    <text>待返</text>
+  </view>
+  <view class='order_type_child_last' style='float:right' catchtap='toOrderList' data-type='3'>
+    <image src='../../images/user/overOrder.png'></image>
+    <text>已返</text>
+  </view>
+</view>
+
+<view class='manager'>
+  <view class='manager_child' catchtap='toAddressList'>
+    <image src='../../images/user/address.png'></image>
+    <text>收货管理</text>
+  </view>
+  <view class='manager_child' catchtap='toMyTracks'>
+    <image src='../../images/user/footPrint.png'></image>
+    <text>我的足迹</text>
+  </view>
+  <view class='manager_child' catchtap='toExchangeList'>
+    <image src='../../images/user/myExchange.png'></image>
+    <text>我的兑换</text>
+  </view>
+  <view class='manager_child' catchtap='toSign'>
+    <image src='../../images/user/sign.png'></image>
+    <text>每日签到</text>
+  </view>
+</view>
+
+<view class='bottom'>
+  <view class='bottom_child' catchtap='toShareList'>
+    <image class='bottom_left' src='../../images/user/shareOrder.png'></image>
+    <view class='bottom_right'>
+      <text class='right_one'>晒单赚元宝</text>
+      <text class='right_two'>评价晒单赚元宝</text>
+      <image src='../../images/user/corner.png'></image>
+    </view>
+  </view>
+  <view class='bottom_child' catchtap='toFeedback'>
+    <image class='bottom_left' src='../../images/user/idea.png'></image>
+    <view class='bottom_right'>
+      <text class='right_one'>意见反馈</text>
+      <text class='right_two'></text>
+      <image src='../../images/user/corner.png'></image>
+    </view>
+  </view>
+  <view class='bottom_child' catchtap='toInfoCenter'>
+    <image class='bottom_left' src='../../images/user/message.png'></image>
+    <view class='bottom_right' style='border:none;'>
+      <text class='right_one'>消息中心</text>
+      <text class='right_two'></text>
+      <image src='../../images/user/corner.png'></image>
+    </view>
+  </view>
+</view>

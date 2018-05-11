@@ -1,0 +1,121 @@
+/* pages/acerstore/acerstore.wxss */
+
+.header {
+  /* position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99; */
+  width: 100%;
+  background: #f4f4f4;
+}
+
+.tab-h {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: white;
+  font-size: 16px;
+  white-space: nowrap;
+  margin-bottom: 20rpx;
+  border-top:1rpx solid #f4f4f4;
+}
+
+.tab-item {
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  margin: 25rpx 0;
+}
+
+.tab-item:nth-child(odd) {
+  border-right: 2rpx solid #f4f4f4;
+}
+
+.tab-item:nth-child(even) {
+  border-left: 2rpx solid #f4f4f4;
+}
+
+.tab-item image {
+  width: 42rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-bottom: 4rpx;
+  margin-right: 10rpx;
+}
+
+.acerstore-num {
+  color: #ff425f;
+  margin-left: 10rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  background: white;
+  color: #333;
+  padding: 30rpx 40rpx 30rpx 0;
+  font-weight: 500;
+  border-bottom: 10rpx solid #f4f4f4;
+}
+
+.list {
+  /* margin-top: 218rpx; */
+  
+}
+
+.list .goods_list {
+  margin-top: 5rpx;
+  width: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+   background: white;
+   font-size: 0;
+   border-bottom: 10rpx solid #f4f4f4;
+}
+.goods_list:nth-child(even){
+  border-left: 5rpx solid #f4f4f4;
+}
+.goods_list:nth-child(odd){
+  border-right: 5rpx solid #f4f4f4;
+}
+
+.list .img {
+  width: calc(100% - 40rpx);
+  height: 200rpx;
+  padding: 14rpx 20rpx;
+}
+
+.list .text {
+  padding: 0 20rpx 20rpx 10px;
+}
+.list .text image{
+  width: 26rpx;
+  height: 20rpx;
+  margin: 0 5rpx;
+}
+.goods_title {
+  width: 100%;
+    font-size: 28rpx;
+    color: #333;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.list .acer {
+  font-size: 28rpx;
+  color: #ff425f;
+}
+.list .price{
+  font-size: 20rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+.store_num{
+  font-size: 20rpx;
+  color: #999;
+  position: absolute;
+  right: 0;
+  top: 5rpx;
+}

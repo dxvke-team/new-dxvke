@@ -1,0 +1,143 @@
+<!--pages/subject/subject.wxml-->
+<view class='subject'>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view wx:for='{{sortList}}' wx:key='index' class="tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bindtap="swichNav">{{item.sort_name}}</view>
+  </scroll-view>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx;">
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
+       <block> 
+        <view style='background:white;'>
+          <view class="item-ans" wx:for="{{goodsList1}}" wx:key="*this">
+            <view class="avatar">
+              <image class="img" src="http:{{item.pict_url}}"></image>
+            </view>
+            <view class="expertInfo">
+              <view class="name break">{{item.title}}</view>
+              <view class='des'>
+                <view style='width:280rpx;font-size:24rpx;'>
+                  <view style='margin-bottom:20rpx;'>
+                    <text style='color:rgb(153, 153, 153);'>已售<text style='color:#ff425f;'>{{item.volume}}</text>件</text>
+                  </view>
+                  <view style='color:#ff425f;'>
+                    <text style='font-size:28rpx;'>￥</text>
+                    <text style='font-size:40rpx;'>{{item.zk_final_price.rmb}}</text>
+                    <text style='font-size:20rpx;' wx:if="{{item.zk_final_price.corner!=='00'}}">.{{item.zk_final_price.corner}}</text>
+                    <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner!='00'}}">.{{item.reserve_price.corner}}</text></text>
+                  </view>
+                </view>
+                <view style='flex-grow:2;text-align:center;'>
+                  <text style='font-size:24rpx;color:#ff425f;'>领券立减{{item.coupon_number}}元</text>
+                  <view class='btn' catchtap='toGoodsDetail' data-id='{{item.id}}'>立刻抢</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
+      <block>
+        <view style='background:white;'>
+          <view class="item-ans" wx:for="{{goodsList2}}" wx:key="*this">
+            <view class="avatar">
+              <image class="img" src="http:{{item.pict_url}}"></image>
+            </view>
+            <view class="expertInfo">
+              <view class="name break">{{item.title}}</view>
+              <view class='des'>
+                <view style='width:280rpx;font-size:24rpx;'>
+                  <view style='margin-bottom:20rpx;'>
+                    <text style='color:rgb(153, 153, 153);'>已售<text style='color:#ff425f;'>{{item.volume}}</text>件</text>
+                  </view>
+                  <view style='color:#ff425f;'>
+                    <text style='font-size:28rpx;'>￥</text>
+                    <text style='font-size:40rpx;'>{{item.zk_final_price.rmb}}</text>
+                    <text style='font-size:20rpx;' wx:if="{{item.zk_final_price.corner!=='00'}}">.{{item.zk_final_price.corner}}</text>
+                    <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner!='00'}}">.{{item.reserve_price.corner}}</text></text>
+                  </view>
+                </view>
+                <view style='flex-grow:2;text-align:center;'>
+                  <text style='font-size:24rpx;color:#ff425f;'>领券立减{{item.coupon_number}}元</text>
+                  <view class='btn' catchtap='toGoodsDetail' data-id='{{item.id}}'>立刻抢</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
+      <block>
+        <view style='background:white;'>
+          <view class="item-ans" wx:for="{{goodsList3}}" wx:key="*this">
+            <view class="avatar">
+              <image class="img" src="http:{{item.pict_url}}"></image>
+            </view>
+            <view class="expertInfo">
+              <view class="name break">{{item.title}}</view>
+              <view class='des'>
+                <view style='width:280rpx;font-size:24rpx;'>
+                  <view style='margin-bottom:20rpx;'>
+                    <text style='color:rgb(153, 153, 153);'>已售<text style='color:#ff425f;'>{{item.volume}}</text>件</text>
+                  </view>
+                  <view style='color:#ff425f;'>
+                    <text style='font-size:28rpx;'>￥</text>
+                    <text style='font-size:40rpx;'>{{item.zk_final_price.rmb}}</text>
+                    <text style='font-size:20rpx;' wx:if="{{item.zk_final_price.corner!=='00'}}">.{{item.zk_final_price.corner}}</text>
+                    <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner!='00'}}">.{{item.reserve_price.corner}}</text></text>
+                  </view>
+                </view>
+                <view style='flex-grow:2;text-align:center;'>
+                  <text style='font-size:24rpx;color:#ff425f;'>领券立减{{item.coupon_number}}元</text>
+                  <view class='btn' catchtap='toGoodsDetail' data-id='{{item.id}}'>立刻抢</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+<swiper-item>
+  <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
+  <block>
+    <view style='background:white;'>
+      <view class="item-ans" wx:for="{{goodsList4}}" wx:key="*this">
+        <view class="avatar">
+          <image class="img" src="http:{{item.pict_url}}"></image>
+        </view>
+        <view class="expertInfo">
+          <view class="name break">{{item.title}}</view>
+          <view class='des'>
+            <view style='width:280rpx;font-size:24rpx;'>
+              <view style='margin-bottom:20rpx;'>
+                <text style='color:rgb(153, 153, 153);'>已售<text style='color:#ff425f;'>{{item.volume}}</text>件</text>
+              </view>
+              <view style='color:#ff425f;'>
+                <text style='font-size:28rpx;'>￥</text>
+                <text style='font-size:40rpx;'>{{item.zk_final_price.rmb}}</text>
+                <text style='font-size:20rpx;' wx:if="{{item.zk_final_price.corner!=='00'}}">.{{item.zk_final_price.corner}}</text>
+                <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner!='00'}}">.{{item.reserve_price.corner}}</text></text>
+              </view>
+            </view>
+            <view style='flex-grow:2;text-align:center;'>
+              <text style='font-size:24rpx;color:#ff425f;'>领券立减{{item.coupon_number}}元</text>
+              <view class='btn' catchtap='toGoodsDetail' data-id='{{item.id}}'>立刻抢</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      </view>
+    </block>
+  </scroll-view>
+</swiper-item>
+</swiper>
+<view class='goTop' catchtap='toTop'>
+  <image src='../../images/goTop.png'></image>
+</view>
+</view>

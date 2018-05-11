@@ -1,0 +1,114 @@
+/* pages/subject/subject.wxss */
+.subject{
+  width: 100%;
+  font-size: 0;
+  height: 100%;
+   position: fixed;
+  top: 0; 
+}
+.tab-h {
+  height: 80rpx;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 80rpx;
+  background: white;
+  font-size: 14px;
+  white-space: nowrap;
+  border-bottom: 1rpx solid #e1e1e1;
+  border-top: 1rpx solid #e1e1e1;
+}
+
+.tab-item {
+   display: inline-block; 
+  color: #666;
+  width: calc(100%/4);
+  text-align: center
+
+}
+
+.tab-item.active {
+  color: #ff425f;
+  position: relative;
+}
+
+.tab-item.active:after {
+  content: "";
+  display: block;
+  height: 8rpx;
+  width: 120rpx;
+  background: #ff425f;
+  position: absolute;
+  bottom: 0;
+  left: calc((100% - 120rpx)/2);
+  border-radius: 16rpx;
+}
+
+.item-ans {
+  width: 100%;
+  display: flex;
+  flex-grow: row no-wrap;
+  justify-content: space-between;
+  padding: 30rpx;
+  box-sizing: border-box;
+  align-items: flex-start;
+  border-bottom: 2rpx solid #f4f4f4;
+
+}
+
+.avatar {
+  width: 240rpx;
+  height: 224rpx;
+  position: relative;
+  padding-right: 30rpx;
+}
+
+.avatar .img {
+   width: 240rpx;
+  height: 224rpx;
+}
+
+.avatar .doyen {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  bottom: -2px;
+  right: 20rpx;
+}
+
+.expertInfo {
+  flex-grow: 2;
+  margin-left: 10rpx;
+  height: 224rpx;
+  position: relative;
+}
+
+.expertInfo .name {
+  font-size: 32rpx;
+  color: #333;
+  overflow: hidden;
+}
+.old_price{
+  font-size: 20rpx;
+    color: #999;
+    margin-left: 10rpx;
+    text-decoration: line-through;
+}
+.des{
+  display:flex;align-items:flex-end;position:absolute;bottom:0;
+}
+.btn{
+  border-radius: 50rpx;
+    margin-top: 5rpx;
+    width: 116rpx;
+    font-size: 24rpx;
+    color: #fff;
+    background-color: #ff425f;
+    line-height: 46rpx;
+    display: inline-block;
+    margin:10rpx 0;
+}
+.scoll-h{
+  overflow: scroll;
+  height: 100%;
+}

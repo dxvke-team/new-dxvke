@@ -1,0 +1,127 @@
+<!--pages/superBenefit/superBenefit.wxml-->
+<view class='superBenefit'>
+<view>
+    <view>
+      <image src='{{season_banner.image}}' class="nav"></image>
+    </view>
+    <view class='main'>
+      <view class='main_top'>
+        <image src='../../images/superBenefit/sanjiao.png' class='sanjiao'></image>
+        <view catchtap="toEssential">
+          <image src='../../images/superBenefit/youhui_bd4_img.png' class='title_img'></image>
+          <text class='title'>{{season_banner.store_name}}</text>
+          <view class='right'>
+            <text>进入专场</text>
+            <image src='../../images/superBenefit/gt_white.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='scroll_box'>
+        <scroll-view scroll-x="true" style="width: auto;overflow:hidden;">
+          <view class="item_list" wx:for="{{season_goods}}" wx:key="{{item}}"  catchtap='toGoodsDetail' data-id='{{item.id}}' data-type=''>
+             <image src="http:{{item.pict_url}}" class="item_list_img" mode="aspectFill"></image>
+            <view class="item_list_text">
+              <view class='item_list_name break'>{{item.title}}</view>
+              <text class='item_list_newPrice'>￥{{item.zk_final_price.rmb}}<text wx:if="{{item.zk_final_price.corner!='00'}}">.{{item.zk_final_price.corner}}</text></text>
+              <!-- <text class='item_list_oldPrice'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner!=='00'}}">.{{item.reserve_price.corner}}</text></text> -->
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <view>
+      <image src='{{nine_banner.image}}' class="nav"></image>
+    </view>
+    <view class='main'>
+      <view class='main_top'>
+        <image src='../../images/superBenefit/sanjiao.png' class='sanjiao'></image>
+        <view data-type='{{nine_banner.type_id}}' catchtap="toSubject" >
+          <image src='../../images/superBenefit/youhui_bd_img.png' class='title_img'></image>
+          <text class='title'>{{nine_banner.store_name}}</text>
+          <view class='right'>
+            <text>进入专场</text>
+            <image src='../../images/superBenefit/gt_white.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='scroll_box'>
+        <scroll-view scroll-x="true" style="width: auto;overflow:hidden;">
+          <view class="item_list" wx:for="{{nine_goods}}" wx:key="{{item}}" catchtap='toGoodsDetail' data-id='{{item.id}}' data-type=''>
+            <image src="http:{{item.pict_url}}" class="item_list_img" mode="aspectFill"></image>
+            <view class="item_list_text">
+              <view class='item_list_name break'>{{item.title}}</view>
+              <text class='item_list_newPrice'>￥{{item.zk_final_price.rmb}}<text wx:if="{{item.zk_final_price.corner!='00'}}">.{{item.zk_final_price.corner}}</text></text>
+              <!-- <text class='item_list_oldPrice'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner!=='00'}}">.{{item.reserve_price.corner}}</text></text> -->
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <view>
+      <image src='{{nineteen_banner.image}}' class="nav"></image>
+    </view>
+    <view class='main'>
+      <view class='main_top'>
+        <image src='../../images/superBenefit/sanjiao.png' class='sanjiao'></image>
+        <view data-type='{{nineteen_banner.type_id}}' catchtap="toSubject">
+          <image src='../../images/superBenefit/youhui_bd2_img.png' class='title_img'></image>
+          <text class='title'>{{nineteen_banner.store_name}}</text>
+          <view class='right'>
+            <text>进入专场</text>
+            <image src='../../images/superBenefit/gt_white.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='scroll_box'>
+        <scroll-view scroll-x="true" style="width: auto;overflow:hidden;">
+          <view class="item_list" wx:for="{{nineteen_goods}}" wx:key="{{item}}" catchtap='toGoodsDetail' data-id='{{item.id}}' data-type=''>
+            <image src="http:{{item.pict_url}}" class="item_list_img" mode="aspectFill"></image>
+            <view class="item_list_text">
+              <text class='item_list_name break'>{{item.title}}</text>
+              <text class='item_list_newPrice'>￥{{item.zk_final_price.rmb}}<text wx:if="{{item.zk_final_price.corner!='00'}}">.{{item.zk_final_price.corner}}</text></text>
+              <!-- <text class='item_list_oldPrice'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner!=='00'}}">.{{item.reserve_price.corner}}</text></text> -->
+            </view>
+
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <view>
+      <image src='{{discount_banner.image}}' class="nav"></image>
+    </view>
+    <view class='main'>
+      <view class='main_top'>
+        <image src='../../images/superBenefit/sanjiao.png' class='sanjiao'></image>
+        <view catchtap="toDiscount">
+          <image src='../../images/superBenefit/youhui_bd3_img.png' class='title_img'></image>
+          <text class='title'>{{discount_banner.store_name}}</text>
+          <view class='right'>
+            <text>进入专场</text>
+            <image src='../../images/superBenefit/gt_white.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='scroll_box'>
+        <scroll-view scroll-x="true" style="width: auto;overflow:hidden;">
+          <view class="item_list" wx:for="{{discount_goods}}" wx:key="{{item}}"  catchtap='toGoodsDetail' data-id='{{item.id}}' data-type='3'>
+             <image src="http:{{item.pict_url}}" class="item_list_img" mode="aspectFill"></image>
+            <view class="item_list_text">
+              <text class='item_list_name break'>{{item.title}}</text>
+              <text class='item_list_newPrice'>￥{{item.zk_final_price.rmb}}<text wx:if="{{item.zk_final_price.corner!='00'}}">.{{item.zk_final_price.corner}}</text></text>
+              <!-- <text class='item_list_oldPrice'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner!=='00'}}">.{{item.reserve_price.corner}}</text></text> -->
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <view class='goTop' catchtap='toTop'>
+      <image src='../../images/goTop.png'></image>
+    </view>
+</view>
