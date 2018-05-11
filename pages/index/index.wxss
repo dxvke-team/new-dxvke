@@ -86,7 +86,83 @@ page{
   border-bottom: 6rpx solid #d13089;
   box-sizing: border-box;
 }
+.item-ans {
+  font-size: 0;
+  width: 100%;
+  display: flex;
+  flex-grow: row no-wrap;
+  justify-content: space-between;
+  padding: 20rpx 26rpx 40rpx 30rpx;
+  box-sizing: border-box;
+  align-items: flex-start;
+  border-bottom: 2rpx solid #f4f4f4;
 
+}
 
+.avatar {
+  width: 230rpx;
+  height: 230rpx;
+  padding-right: 24rpx;
+}
+
+.avatar .img {
+   width: 230rpx;
+  height: 230rpx;
+  border-radius: 8rpx;
+}
+.expertInfo {
+  flex-grow: 2;
+  height: 230rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.expertInfo .name {
+  font-size: 28rpx;
+  color: #333;
+  height: 50rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+}
+.tab-content {
+  background: white;
+}
+.old_price{
+  font-size: 24rpx;
+    color: #999;
+    margin-left: 10rpx;
+    text-decoration: line-through;
+}
+.des{
+  display:flex;align-items:flex-end;
+  justify-content: space-between;
+}
+.btn{
+  border-radius: 8rpx;
+    width: 130rpx;
+    font-size: 24rpx;
+    color: #fff;
+    background-color: #f51d46;
+    line-height: 56rpx;
+    text-align: center;
+}
+.share-income{
+   font-size: 20rpx;
+   color: white;
+   display: inline-block;
+   padding: 0 16rpx;
+   border-radius: 16rpx;
+   height: 32rpx;
+   line-height: 32rpx;
+   background: -webkit-linear-gradient(left, #f51d46, #fe6d13);
+		/* Safari 5.1 - 6.0 */
+		background: -o-linear-gradient(left, #8721b5, #db3283);
+		/* Opera 11.1 - 12.0 */
+		background: -moz-linear-gradient(left, #8721b5, #db3283);
+		/* Firefox 3.6 - 15 */
+		background: linear-gradient(left, #8721b5, #db3283);
+		/* 标准的语法 */
+}
 
 

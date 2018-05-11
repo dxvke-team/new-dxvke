@@ -1,16 +1,14 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/acerstore/acerstore",
     "pages/user/user",
+    "pages/index/index",
+    
     "pages/search/search",
     "pages/product/product",
     "pages/classify/classify",
     "pages/exchangeList/exchangeList",
     "pages/overflow/overflow",
     "pages/fanswefare/fanswefare",
-    "pages/superBenefit/superBenefit",
-    "pages/subject/subject",
     "pages/searchPage/searchPage",
     "pages/discount/discount",
     "pages/essential/essential",
