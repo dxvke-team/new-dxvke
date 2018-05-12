@@ -1,28 +1,21 @@
 {
   "pages": [
-    "pages/user/user",
+    "pages/find/find",
     "pages/index/index",
-    
     "pages/search/search",
-    "pages/product/product",
+    "pages/user/user",
+    "pages/allIncome/allIncome",
+    "pages/estimate/estimate",
+    "pages/myfans/myfans",
     "pages/classify/classify",
     "pages/exchangeList/exchangeList",
     "pages/overflow/overflow",
     "pages/fanswefare/fanswefare",
     "pages/searchPage/searchPage",
-    "pages/discount/discount",
     "pages/essential/essential",
     "pages/goodsDetail/goodsDetail",
-    "pages/orderList/orderList",
-    "pages/addressList/addressList",
-    "pages/editAddress/editAddress",
-    "pages/myTracks/myTracks",
-    "pages/sign/sign",
-    "pages/infoCenter/infoCenter",
-    "pages/feedback/feedback",
-    "pages/shareList/shareList",
-    "pages/share/share",
-    "pages/exchange/exchange"
+    "pages/orderList/orderList"
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -38,7 +31,7 @@
         "selectedIconPath": "images/index_selected.png"
       },
       {
-        "pagePath": "pages/search/search",
+        "pagePath": "pages/find/find",
         "text": "发现",
         "iconPath": "images/sousuo.png",
         "selectedIconPath": "images/sousuo_selected.png"

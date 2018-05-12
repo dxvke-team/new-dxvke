@@ -1,0 +1,12 @@
+<!--pages/find/find.wxml-->
+<view>
+   <view style="width:100%;height:358rpx;">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{margin}}" display-multiple-items="{{num}}" next-margin="{{margin}}" style='height:100%;' indicator-color='rgba(255,255,255,.5)' indicator-active-color="white" circular="true">
+      <block wx:for="{{imgUrls}}" wx:key="{{item}}">
+        <swiper-item>
+          <image src="{{item.banner_image}}" class="slide-image" style="width:100%;height:100%;" catchtap='clickBanner' data-url='{{item.mini_url}}' />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>

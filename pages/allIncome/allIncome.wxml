@@ -1,0 +1,25 @@
+<!--pages/allIncome/allIncome.wxml-->
+<view>
+   <view class='header'>
+      <view class='num'>1.00</view>
+      <view class='title'>可提现金额(元)</view>
+   </view>
+   <view class='withdraw'>
+       <view>
+          <image src='../../images/user/withdraw.png' class='item-icon'></image>
+          提现
+       </view>
+       <image src='../../images/user/right_icon.png' class='icon'></image>
+   </view>
+   <view class='main'>
+       <view class='list'>
+          <view>
+             <view class='list-title'>淘宝自购奖励</view>
+             <view class='list-time'>2013-12-11</view>
+          </view>
+          <view class='list-money'>+0.5元</view>
+       </view>
+   </view>
+   <view class='no-more'>只有这么多了</view>
+</view>
+ <!-- <web-view src="https://www.dxvke.com/mini/downloadApp"></web-view>  -->

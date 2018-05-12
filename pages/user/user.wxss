@@ -66,8 +66,31 @@
   width: 24rpx;
   height: 24rpx;
 }
-
-
-
+.main{
+  background:white;padding-left:30rpx;
+  font-size: 28rpx;
+  color: #333;
+  margin-top: 20rpx;
+}
+.main-item{
+  border-bottom: 1rpx solid #e5e5e5;
+  height: 104rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right:22rpx;
+}
+.main-item:nth-last-child(1){
+  border: none;
+}
+.main-item>view{
+   display: flex;
+  align-items: center;
+}
+.item-icon{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 17rpx;
+}
 
 

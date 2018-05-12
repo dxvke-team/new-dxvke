@@ -1,0 +1,45 @@
+/* pages/myfans/myfans.wxss */
+.tip{
+  height: 76rpx;
+  line-height: 76rpx;
+  font-size: 24rpx;
+  color: #999;
+  padding-left: 30rpx;
+}
+.list{
+  background: white;
+}
+.list-item{
+  height: 166rpx;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+.icon{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 18rpx;
+}
+.name{
+  font-size: 32rpx;
+  color: #333;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.level{
+  font-size: 26rpx;
+  color: #999;
+}
+.new{
+  font-size: 24rpx;
+  color:white;
+  background: #f51d46;
+  width: 128rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  border-radius: 19rpx;
+  text-align: center;
+  margin-left: 12rpx;
+}
