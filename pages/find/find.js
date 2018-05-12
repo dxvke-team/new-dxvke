@@ -11,8 +11,10 @@ Page({
     interval: 5000,
     duration: 1000,
     imgUrls: [], //banner图
-    margin:"18rpx",
+    marginRight:"30rpx",
+    marginLeft:"48rpx",
     num:3,
+    goods: [], //商品列表
   },
   getBanner: function () {
     var that = this
@@ -24,6 +26,19 @@ Page({
       wx.hideLoading();
     });
   },
+  getGoods: function () {
+    var that = this
+    //首页商品 - LQ
+    http.httpPost('index_goods', { page: that.data.page, limit: that.data.limit }, function (res) {
+      var goods = that.data.goods.concat(res.data.goods)
+      that.setData({
+        goods: goods,
+        loading: true,
+      });
+      wx.hideLoading();
+    })
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -34,6 +49,7 @@ Page({
     })
     var that = this;
     that.getBanner()
+    that.getGoods()
   },
 
   /**

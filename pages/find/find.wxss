@@ -1,1 +1,136 @@
 /* pages/find/find.wxss */
+.nav{
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 26rpx 24rpx 0;
+  margin-bottom: 20rpx;
+}
+.nav-item{
+  width: 25%;
+  font-size: 28rpx;
+  color: #333;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.icon{
+  width: 126rpx;
+  height: 126rpx;
+}
+.type{
+  line-height: 88rpx;
+  height: 88rpx;
+}
+.title{
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+.main{
+  background: white;
+  margin-bottom: 20rpx;
+}
+.main-icon{
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 12rpx; 
+}
+
+/*商品列表样式  */
+.item-ans {
+  font-size: 0;
+  width: 100%;
+  display: flex;
+  flex-grow: row no-wrap;
+  justify-content: space-between;
+  padding: 20rpx 26rpx 40rpx 30rpx;
+  box-sizing: border-box;
+  align-items: flex-start;
+  border-bottom: 2rpx solid #e5e5e5;
+
+}
+
+.avatar {
+  width: 230rpx;
+  height: 230rpx;
+  padding-right: 24rpx;
+}
+
+.avatar .img {
+   width: 230rpx;
+  height: 230rpx;
+  border-radius: 8rpx;
+}
+.expertInfo {
+  flex-grow: 2;
+  height: 230rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.expertInfo .name {
+  font-size: 28rpx;
+  color: #333;
+  height: 50rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+}
+.tab-content {
+  background: white;
+}
+.old_price{
+  font-size: 24rpx;
+    color: #999;
+    margin-left: 10rpx;
+    text-decoration: line-through;
+}
+.des{
+  display:flex;align-items:flex-end;
+  justify-content: space-between;
+}
+.btn{
+    border-radius: 8rpx; 
+    width: 130rpx;
+    font-size: 24rpx;
+    color: #fff;
+    background-color: #f51d46;
+    line-height: 56rpx;
+    text-align: center;
+}
+.share-income{
+   font-size: 20rpx;
+   color: white;
+   display: inline-block;
+   padding: 0 16rpx;
+   border-radius: 16rpx;
+   height: 32rpx;
+   line-height: 32rpx;
+   background: -webkit-linear-gradient(left, #f51d46, #fe6d13);
+		/* Safari 5.1 - 6.0 */
+		background: -o-linear-gradient(left, #8721b5, #db3283);
+		/* Opera 11.1 - 12.0 */
+		background: -moz-linear-gradient(left, #8721b5, #db3283);
+		/* Firefox 3.6 - 15 */
+		background: linear-gradient(left, #8721b5, #db3283);
+		/* 标准的语法 */
+}
+.seek-all{
+  height: 84rpx;
+  font-size:26rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+.right-icon{
+  width: 24rpx;
+  height: 24rpx;
+}

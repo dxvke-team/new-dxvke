@@ -95,7 +95,7 @@ page{
   padding: 20rpx 26rpx 40rpx 30rpx;
   box-sizing: border-box;
   align-items: flex-start;
-  border-bottom: 2rpx solid #f4f4f4;
+  border-bottom: 2rpx solid #e5e5e5;
 
 }
 
