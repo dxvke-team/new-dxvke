@@ -1,6 +1,7 @@
 //index.js
-var config = require('../../config.js')
-var http = require('../../utils/httpHelper.js')
+var config = require('../../config.js');
+var http = require('../../utils/httpHelper.js');
+var login = require('../../utils/login.js');
 //获取应用实例
 const app = getApp()
 wx.showShareMenu({
@@ -59,6 +60,9 @@ Page({
     that.getBanner()
     that.getGoodsType()
     that.getGoods()
+
+    // 调用登录接口
+    login.login();
   },
   onShareAppMessage: function (res) {
     return {
@@ -130,13 +134,6 @@ Page({
     });
   },
 
-  getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
   changeIndicatorDots: function (e) {
     this.setData({
       indicatorDots: !this.data.indicatorDots
@@ -232,8 +229,7 @@ Page({
     var id = e.currentTarget.dataset.id
     if (this.data.currentType == cur) {
       return false;
-    }
-    else {
+    }else {
       this.setData({
         currentType: cur,
         cate_type_id:id,

@@ -1,7 +1,6 @@
 
 const app = getApp();
 var http = require('../../utils/httpHelper.js');
-var login = require('../../utils/login.js');
 wx.showShareMenu({
   withShareTicket: true
 })
@@ -19,17 +18,11 @@ Page({
     })
 
     login.dologin(function(res){
+      console.log(res);
       that.setData({
         userInfo: res
       })
-      console.log(that.data.userInfo)
-      wx.hideLoading();
-      //获取元宝数
-      // http.httpPost('member_acer', { member_id: wx.getStorageSync('member_id') }, function (res) {
-      //   that.setData({
-      //     userAcer: res.data.member_acer
-      //   });
-      // });
+      wx.hideLoading()
     })
 },
 
@@ -47,29 +40,20 @@ onShareAppMessage: function (res) {
   }
 },
 
-onShow: function(){
-  var that = this;
-  //获取元宝数
-  http.httpPost('member_acer', { member_id: wx.getStorageSync('member_id') }, function (res) {
-    if (res.data.member_acer != null){
-      that.setData({
-        userAcer: res.data.member_acer
-      });
-    }
-  });
-},
 toOrderList:function(e){
   var type = e.currentTarget.dataset.type
   wx.navigateTo({
     url: '../orderList/orderList?type='+type,
   })
 },
-  toAll:function(e){
+
+toAll:function(e){
     wx.navigateTo({
       url: '../allIncome/allIncome',
     })
-  },
-  toEstimate:function(e){
+},
+
+toEstimate:function(e){
     wx.navigateTo({
       url: '../estimate/estimate',
     })

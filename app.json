@@ -1,7 +1,5 @@
 {
   "pages": [
-   
-    
     "pages/index/index",
     "pages/find/find",
     "pages/user/user",
@@ -17,10 +15,11 @@
     "pages/update/update",
     "pages/searchReasult/searchReasult",
     "pages/searchPage/searchPage",
-    
     "pages/goodsDetail/goodsDetail",
     "pages/pinDetail/pinDetail",
-    "pages/JDdetail/JDdetail"
+    "pages/JDdetail/JDdetail",
+    "pages/login/login"
+   
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
