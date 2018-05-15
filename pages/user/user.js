@@ -9,7 +9,6 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    userAcer:0, //用户元宝数
   },
 
   onLoad: function () {
@@ -23,13 +22,14 @@ Page({
       that.setData({
         userInfo: res
       })
+      console.log(that.data.userInfo)
       wx.hideLoading();
       //获取元宝数
-      http.httpPost('member_acer', { member_id: wx.getStorageSync('member_id') }, function (res) {
-        that.setData({
-          userAcer: res.data.member_acer
-        });
-      });
+      // http.httpPost('member_acer', { member_id: wx.getStorageSync('member_id') }, function (res) {
+      //   that.setData({
+      //     userAcer: res.data.member_acer
+      //   });
+      // });
     })
 },
 
@@ -77,6 +77,11 @@ toOrderList:function(e){
   toMyfans:function(e){
     wx.navigateTo({
       url: '../myfans/myfans',
+    })
+  },
+  toUpdate: function (e) {
+    wx.navigateTo({
+      url: '../update/update',
     })
   }
 })

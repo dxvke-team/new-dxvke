@@ -75,8 +75,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
-.expertInfo .name {
+.name {
   font-size: 28rpx;
   color: #333;
   height: 50rpx;
@@ -128,9 +127,17 @@
   color: #666;
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
+  background: white; 
 }
 .right-icon{
   width: 24rpx;
   height: 24rpx;
+}
+/*一行两个商品列表  */
+.goods-list{
+  background: white;
+  width: calc((100% - 10rpx)/2);
+  margin-top: 10rpx;
+  font-size: 0;
 }

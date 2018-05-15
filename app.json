@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/find/find",
+   
+    
     "pages/index/index",
-    "pages/search/search",
+    "pages/find/find",
     "pages/user/user",
     "pages/allIncome/allIncome",
     "pages/estimate/estimate",
@@ -11,11 +12,15 @@
     "pages/exchangeList/exchangeList",
     "pages/overflow/overflow",
     "pages/fanswefare/fanswefare",
-    "pages/searchPage/searchPage",
     "pages/essential/essential",
-    "pages/goodsDetail/goodsDetail",
-    "pages/orderList/orderList"
+    "pages/orderList/orderList",
+    "pages/update/update",
+    "pages/searchReasult/searchReasult",
+    "pages/searchPage/searchPage",
     
+    "pages/goodsDetail/goodsDetail",
+    "pages/pinDetail/pinDetail",
+    "pages/JDdetail/JDdetail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

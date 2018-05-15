@@ -1,7 +1,7 @@
 <!--pages/find/find.wxml-->
 <view>
-  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{marginLeft}}" next-margin="{{marginRight}}" display-multiple-items="{{1}}" style='width:100%;height:358rpx;background:white;' indicator-color='rgba(255,255,255,.5)'
-    indicator-active-color="white" circular="true">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" previous-margin="{{marginLeft}}" next-margin="{{marginRight}}" display-multiple-items="{{1}}" style='width:100%;height:358rpx;background:white;'
+    indicator-color='rgba(255,255,255,.5)' indicator-active-color="white" circular="true">
     <block wx:for="{{imgUrls}}" wx:key="{{item}}">
       <swiper-item style="width:calc(100% - 18rpx);">
         <image src="{{item.banner_image}}" class="slide-image" style="height:100%;width:calc(100% - 18rpx);border-radius: 8rpx;" catchtap='clickBanner' data-url='{{item.mini_url}}' />
@@ -61,10 +61,10 @@
           </view>
         </view>
       </block>
-      <view class='seek-all'>查看全部
-          <image src='../../images/user/right_icon.png' class='right-icon'></image>
-      </view>
     </view>
+     <view class='seek-all'>查看全部
+        <image src='../../images/user/right_icon.png' class='right-icon'></image>
+      </view>
   </view>
   <view class='main'>
     <view class='title' style='border:none;'>
@@ -105,89 +105,69 @@
           </view>
         </view>
       </block>
-      <view class='seek-all'>查看全部
-          <image src='../../images/user/right_icon.png' class='right-icon'></image>
-      </view>
     </view>
+     <view class='seek-all'>查看全部
+        <image src='../../images/user/right_icon.png' class='right-icon'></image>
+      </view>
   </view>
-  <view class='main'>
-    <view class='title'>
+  <view style='margin-bottom:20rpx;'>
+    <view class='title' style='background:white;border:none;'>
       <image src='../../images/find/icon3.png' class='main-icon'></image>超值购
     </view>
-    <view style='background:white;'>
+    <view style='flex-wrap: wrap;margin-bottom:10rpx;' class='flex'>
       <block wx:for="{{goods}}" wx:key="{{item}}">
-        <view class="item-ans">
-          <view class="avatar">
-            <image class="img" src="{{item.pict_url}}"></image>
-          </view>
-          <view class="expertInfo">
+        <view class="goods-list">
+          <image class="" src="{{item.pict_url}}" style='width:100%;height:370rpx;'></image>
+          <view style='padding:0 20rpx;height:172rpx;'>
+            <view class="name" style='height:58rpx;line-height:58rpx;'>{{item.title}}</view>
             <view>
-              <view class="name">{{item.title}}</view>
-              <view class="juan_style">
+              <view class="juan_style" style='margin-right:8rpx;'>
                 <view class="juan_style_left">券</view>
                 <view class="juan_style_right">{{item.coupon_number}}元</view>
               </view>
+              <view class='share-income'>分享赚: 3.22元</view>
             </view>
-            <view>
-              <view>
-                <view class='share-income'>分享赚: 3.22元</view>
-              </view>
-              <view class='des'>
-                <view style='color:#f51d46;'>
-                  <text style='font-size:24rpx;'>￥</text>
-                  <text style='font-size:36rpx;'>{{item.zk_final_price.rmb}}</text>
-                  <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
-                  <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
-                </view>
-                <view class='btn'>马上抢 ></view>
-              </view>
+            <view style='color:#f51d46;height:82rpx;line-height:82rpx;'>
+              <text style='font-size:24rpx;'>￥</text>
+              <text style='font-size:36rpx;'>{{item.zk_final_price.rmb}}</text>
+              <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
             </view>
           </view>
         </view>
       </block>
-      <view class='seek-all'>查看全部
-          <image src='../../images/user/right_icon.png' class='right-icon'></image>
-      </view>
+    </view>
+    <view class='seek-all'>查看全部
+        <image src='../../images/user/right_icon.png' class='right-icon'></image>
     </view>
   </view>
-  <view class='main'>
-    <view class='title'>
+  <view style='margin-bottom:20rpx;'>
+    <view class='title' style='background:white;border:none;'>
       <image src='../../images/find/icon4.png' class='main-icon'></image>为您推荐
     </view>
-    <view style='background:white;'>
+    <view style='flex-wrap: wrap;margin-bottom:10rpx;' class='flex'>
       <block wx:for="{{goods}}" wx:key="{{item}}">
-        <view class="item-ans">
-          <view class="avatar">
-            <image class="img" src="{{item.pict_url}}"></image>
-          </view>
-          <view class="expertInfo">
+        <view class="goods-list">
+          <image class="" src="{{item.pict_url}}" style='width:100%;height:370rpx;'></image>
+          <view style='padding:0 20rpx;height:172rpx;'>
+            <view class="name" style='height:58rpx;line-height:58rpx;'>{{item.title}}</view>
             <view>
-              <view class="name">{{item.title}}</view>
-              <view class="juan_style">
+              <view class="juan_style" style='margin-right:8rpx;'>
                 <view class="juan_style_left">券</view>
                 <view class="juan_style_right">{{item.coupon_number}}元</view>
               </view>
+              <view class='share-income'>分享赚: 3.22元</view>
             </view>
-            <view>
-              <view>
-                <view class='share-income'>分享赚: 3.22元</view>
-              </view>
-              <view class='des'>
-                <view style='color:#f51d46;'>
-                  <text style='font-size:24rpx;'>￥</text>
-                  <text style='font-size:36rpx;'>{{item.zk_final_price.rmb}}</text>
-                  <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
-                  <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
-                </view>
-                <view class='btn'>马上抢 ></view>
-              </view>
+            <view style='color:#f51d46;height:82rpx;line-height:82rpx;'>
+              <text style='font-size:24rpx;'>￥</text>
+              <text style='font-size:36rpx;'>{{item.zk_final_price.rmb}}</text>
+              <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
             </view>
           </view>
         </view>
       </block>
-      <view class='seek-all'>查看全部
-          <image src='../../images/user/right_icon.png' class='right-icon'></image>
-      </view>
+    </view>
+    <view class='seek-all'>查看全部
+        <image src='../../images/user/right_icon.png' class='right-icon'></image>
     </view>
   </view>
 </view>

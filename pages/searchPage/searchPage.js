@@ -6,65 +6,29 @@ Page({
    * 页面的初始数据
    */
   data: {
+    currentTab: 0,
     focus:true,
-    show:true,
     currentTab: 0, //预设当前项的值
+    type:0,
     scrollLeft: 0, //tab标题的滚动条位置
-    hotWords: [], //热门搜索词 - LQ
     historyWords: [], //历史搜索词 - LQ
-    sortList: [], //排序方式 - LQ
-    goodsList1: [], //搜索结果 - LQ
-    goodsList2: [],
-    goodsList3: [],
     keywords:'',
-    page1:1,
-    page2: 1,
-    page3: 1,
-    limit:20,
-    scrollTop:0,
   },
-  toClose:function(e){
-    wx.navigateBack();
-  },
-  // // 滚动切换标签样式
-  // switchTab: function (e) {
-  //   console.log(e)
-  //   this.setData({
-  //     currentTab: e.detail.current
-  //   });
-  //   this.checkCor();
-  // },
   // 点击标题切换当前页时改变样式
-  swichNav: function (e) {
-    var that = this
-    var cur = e.target.dataset.current;
-    if (this.data.currentTab == cur) { return false; }
+  swichTab: function (e) {
+    var that = this;
+    var cur = e.currentTarget.dataset.current;
+    if (this.data.type == cur) { return false; }
     else {
       that.setData({
-        currentTab: cur,
-      })
-    }
-    wx.pageScrollTo({
-      scrollTop: 0
-    })
-  },
-  //判断当前滚动超过一屏时，设置tab标题滚动条。
-  checkCor: function () {
-    if (this.data.currentTab > 3) {
-      this.setData({
-        scrollLeft: 300
-      })
-    } else {
-      this.setData({
-        scrollLeft: 0
-      })
+        type: cur
+      });
+      // that.getOrderList();
     }
   },
   onLoad: function () {
     var that = this;
-    that.getHotWords()
     that.getHistoryWords()
-    that.getSort()
   },
   // 清空搜索历史 - 20180109 - LQ
   clearHistory:function(){
@@ -83,17 +47,6 @@ Page({
       }
     });
   },
-  getHotWords:function(){
-    var that =this
-    // 热门搜索词 - 20180109 - LQ
-    http.httpPost('searchHot', {
-      member_id: wx.getStorageSync('member_id') 
-    }, function (res) {
-      that.setData({
-        hotWords: res.data.hot
-      });
-    });
-  },
   getHistoryWords:function(){
     var that = this
     // 历史搜索词 - 20180109 - LQ
@@ -102,18 +55,6 @@ Page({
     }, function (res) {
       that.setData({
         historyWords: res.data.history
-      });
-    });
-  },
-  getSort:function(){
-    var that = this
-    //搜索结果排序方式 - 20180109 - LQ
-    http.httpPost('serrchSort', {
-      member_id: wx.getStorageSync('member_id') 
-    }, function (res) {
-      that.setData({
-        sortList: res.data.sorts_type,
-        currentTab: res.data.sorts_type[0]['id']
       });
     });
   },
@@ -266,6 +207,11 @@ Page({
     var goods_id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../goodsDetail/goodsDetail?id=' + goods_id+'&type=2',
+    })
+  },
+  toSearch:function(){
+    wx.navigateTo({
+      url: '../searchReasult/searchReasult',
     })
   }
 })

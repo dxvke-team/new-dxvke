@@ -33,7 +33,7 @@
   </view>
 </view>
 <view class='main'>
-    <view class='main-item'>
+    <view class='main-item' catchtap="toUpdate">
        <view>
           <image src='../../images/user/king.png' class='item-icon'></image>
           我要升级

@@ -9,14 +9,14 @@ wx.showShareMenu({
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imgUrls: [], //banner图
     goods:[], //商品列表
-    goods_type: ['箱包', '家居', '服饰', '文体办公', '数码产品', '美妆', '母婴', '运动户外', '美食', '车品周边'],//商品分类   
+    goods_type: [],//商品分类   
     currentType:0,
+    cate_type_id:'',
     tabList:[
       {
         img:'../../images/index/taobao.png',
@@ -57,8 +57,8 @@ Page({
     })
     var that = this;
     that.getBanner()
-    that.getGoods()
     that.getGoodsType()
+    that.getGoods()
   },
   onShareAppMessage: function (res) {
     return {
@@ -80,37 +80,55 @@ Page({
       }
     }
   },
+  //首页banner
   getBanner:function(){
     var that = this
-    //首页banner - LQ
-    http.httpPost("index_banner", {}, function (res) {
+    http.httpGet("indexBanner", {type:10}, function (res) {
       that.setData({
-        imgUrls: res.data.index_banner
+        imgUrls: res.data
       });
     });
   },
-  getGoods:function(){
+   //首页商品 
+  getGoods:function(cur){
     var that = this
-    //首页商品 - LQ
-    http.httpPost('index_goods', { page: that.data.page, limit: that.data.limit }, function (res) {
-      var goods = that.data.goods.concat(res.data.goods)
-      that.setData({
-        goods: goods,
-        loading:true,
-      });
+    var data={}
+    if(cur){
+      data = { page: that.data.page, limit: that.data.limit, product_type: cur, cate_type: that.data.cate_type_id }
+    }else{
+      data = { page: that.data.page, limit: that.data.limit, product_type: that.data.currentTab, cate_type: that.data.cate_type_id }
+    }
+    
+    http.httpGet('productList', data, function (res) {
+      if(res.data.list.length!==0){
+        var goods = that.data.goods.concat(res.data.list)
+        that.setData({
+          goods: goods,
+          loading: true,
+        });
+      }else{
+
+      }
       wx.hideLoading();
     })
 
   },
-  // getGoodsType:function(){
-  //   var that = this
-  //   //首页分类 - 20180108 - LQ
-  //   http.httpPost('index_type', {}, function (res) {
-  //     that.setData({
-  //       goods_type: res.data.goods_type_up
-  //     });
-  //   });
-  // },
+   //首页分类
+  getGoodsType:function(cur){
+    var that = this
+    var data={}
+    if(cur){
+      data = { type: cur }
+    }else{
+      data = { type: that.data.currentTab }
+    }
+    http.httpGet('productCateList', data, function (res) {
+      that.setData({
+        goods_type: res.data,
+        cate_type_id:res.data[0].id
+      });
+    });
+  },
 
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -139,27 +157,14 @@ Page({
       duration: e.detail.value
     })
   },
-  toClassify:function(e){
+  toSearch:function(e){
     wx.navigateTo({
-      url: "../classify/classify?id="+e.currentTarget.id
+      url: "../searchPage/searchPage",
     })
   },
-  toAcerstore:function(e){
-    wx.navigateTo({
-      url: "../acerstore/acerstore"
-    })
-  },
-  toOverflow: function (e) {
-    wx.navigateTo({
-      url: "../overflow/overflow"
-    })
-  },
-  toFanswefare:function(e){
-    wx.navigateTo({
-      url: "../fanswefare/fanswefare"
-    })
-  },
+  
   toGoodsDetail:function(e){
+    console.log('aaa')
     wx.navigateTo({
       url: "../goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id +  '&type=' + e.currentTarget.dataset.type
     })
@@ -174,7 +179,7 @@ Page({
     });
     this.getBanner()
     this.getGoods()
-    this.getGoodsType()
+    // this.getGoodsType()
     wx.stopPullDownRefresh()
   },
   onReachBottom: function () {
@@ -203,30 +208,39 @@ Page({
     })
   },
   swichNav: function (e) {
-    console.log('aaa')
     var that = this
     var cur = e.currentTarget.dataset.current;
-    console.log(e.target.dataset)
     if (this.data.currentTaB == cur) { 
-      console.log('bb')
       return false; 
       }
     else {
       this.setData({
         currentTab: cur,
+        currentType:0,
+        cate_type_id:'',
+        goods:[],
+        page:1,
       });
+      that.getGoodsType(cur)
+      that.getGoods(cur)
     }
+    
   },
   swichType: function (e) {
     var that = this
     var cur = e.currentTarget.dataset.current;
+    var id = e.currentTarget.dataset.id
     if (this.data.currentType == cur) {
       return false;
     }
     else {
       this.setData({
         currentType: cur,
+        cate_type_id:id,
+        goods: [],
+        page:1,
       });
+      that.getGoods()
     }
   },
 })

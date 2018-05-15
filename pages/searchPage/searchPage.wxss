@@ -1,4 +1,15 @@
 /* pages/searchPage/searchPage.wxss */
+.tab{
+  height: 80rpx;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 80rpx;
+  background: white;
+  font-size: 28rpx;
+  white-space: nowrap;
+  border-bottom: 1rpx solid #e5e5e5;
+}
 .searchPage{
   width: 100%;
   height: 100%;
@@ -6,47 +17,44 @@
 }
 .search{
   width: 100%;
-  background-color: #f4f4f4;
   display: flex;
   display: -webkit-flex;
   flex-wrap: nowrap;
-  position:fixed;
-  z-index: 999;
-  top: 0;
 }
-.search view{
+.search-main{
+  height: 64rpx;
+  line-height: 64rpx;
   flex-grow: 2;
   display: flex;
-  background-color: white;
-  padding: 10rpx;
-  border-radius: 10rpx;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 10rpx 16rpx;
+  border-radius: 50rpx;
   margin: 10rpx 0 10rpx 30rpx;
+  box-sizing: border-box;
 }
 .search image{
-  width: 40rpx;
-  height: 40rpx;
+  width:28rpx;
+  height: 28rpx;
 }
 .search input{
   flex-grow: 2;
-  height: 30rpx!important;
-  min-height: 30rpx!important;
   vertical-align: middle;
   margin-left: 10rpx;
-  margin-top: 5rpx;
   font-size: 24rpx;
   color: #333;
 }
-.search text{
-  width: 100rpx;
+.search-btn{
+  width: 112rpx;
+  height: 64rpx;
+  line-height: 64rpx;
   font-size: 28rpx;
   color: #333;
   text-align: center;
-  margin-top: 18rpx;
 }
 .search_history{
   font-size: 28rpx;
   padding: 36rpx;
-  margin-top: 80rpx;
 }
 .search_history .title{
   color: #666;
@@ -69,41 +77,25 @@
   right: 0;
   top: 5rpx;
 }
-.tab-h {
-  height: 80rpx;
-  width: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
-  line-height: 80rpx;
-  background: white;
-  font-size: 14px;
-  white-space: nowrap;
-   position: fixed;
-  top: 76rpx;
-  left: 0;
-  z-index: 99; 
-  border-bottom: 1rpx solid #e1e1e1;
-}
 
-.tab-item {
+
+.tab_item{
    display: inline-block; 
-  color: #666;
-  width: calc(100%/3);
-  text-align: center
-
-}
-
-.tab-item.active {
-  color: #ff425f;
+  color: #333;
+  width: 50%;
+  text-align: center;
   position: relative;
-}
 
-.tab-item.active:after {
-  content: "";
+}
+.tab_item.active{
+   color: #9a7bff;
+}
+.tab_item.active::after{
+content: "";
   display: block;
   height: 8rpx;
   width: 124rpx;
-  background: #ff425f;
+  background: #9a7bff;
   position: absolute;
   bottom: 0;
   left: calc((100% - 124rpx)/2);

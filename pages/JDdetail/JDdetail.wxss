@@ -1,4 +1,4 @@
-/* pages/goodsDeatail/goodsDetail.wxss */
+/* pages/JDdetail/JDdetail.wxss */
 .goodsDetail{
   font-size: 0;
 }
@@ -17,7 +17,7 @@
     padding: 20rpx 30rpx 20rpx;
 }
 .goods_price{
-  color: #ff5200;
+  color: #d51816;
   font-size: 32rpx;
   margin-right: 20rpx;
   display: flex;
@@ -28,12 +28,11 @@
   color: #333;
   background: white;
   margin-top: 10rpx;
+   padding: 0 30rpx;
 }
 .des_title{
   height: 88rpx;
   line-height: 88rpx;
-  padding: 0 30rpx;
-  border-bottom: 1rpx solid #f4f4f4;
 }
 .gt{
   width: 24rpx;
@@ -44,12 +43,12 @@
 }
 
 .juan_style_left{
-  background: #ff5200;
+  background: #d51816;
   
 }
 .juan_style_right{
-  color: #ff5200;
-  background: #ffe5d9;
+  color: #d51816;
+  background: #ffe4e4;
 }
 
 
@@ -89,23 +88,20 @@
   justify-content: centr;
   align-items: center;
   color: white;
+   /* background: -webkit-linear-gradient(left, #ff526d, #f8214f); 
+    background: -o-linear-gradient(left, #ff526d, #f8214f); 
+    background: -moz-linear-gradient(left, #ff526d, #f8214f); 
+    background: linear-gradient(left, #ff526d, #f8214f);  */
+    background:#d51816;
 }
 .tab4 view{
   width: 100%;
   text-align: center;
 }
-.tab4{ 
-    /* background: -webkit-linear-gradient(left, #ff526d, #f8214f); 
-    background: -o-linear-gradient(left, #ff526d, #f8214f); 
-    background: -moz-linear-gradient(left, #ff526d, #f8214f); 
-    background: linear-gradient(left, #ff526d, #f8214f);  */
-    background:#ff5200
-}
 .footer image{
   width: 40rpx;
   height: 38rpx;
 }
-
 
 
 
@@ -126,10 +122,11 @@
     top: 0;
     left: 0;
     width: 598rpx;
-    height: 364rpx;
+    height: 548rpx;
     margin: 250rpx calc((100% - 598rpx) / 2);
     background-color: white;
     border-radius: 15rpx;
+    box-sizing: border-box;
   }
 
   .model_main_des {
@@ -148,25 +145,21 @@
 
   .m_btn {
     display: inline-block;
-    font-size: 26rpx;
+    font-size: 28rpx;
     color: white;
     width: 464rpx;
     line-height: 68rpx;
     border-radius: 80rpx;
     border: none;
-    background: -webkit-linear-gradient(left, #ff526d, #f8214f); /* Safari 5.1 - 6.0 */
-    background: -o-linear-gradient(left, #ff526d, #f8214f); /* Opera 11.1 - 12.0 */
-    background: -moz-linear-gradient(left, #ff526d, #f8214f); /* Firefox 3.6 - 15 */
-    background: linear-gradient(left, #ff526d, #f8214f); /* 标准的语法 */
-    margin: 10rpx 0;
+    background:#d51816;
   }
 
   .model_main image {
-    width: 50rpx;
-    height: 50rpx;
+     width: 76rpx;
+    height: 76rpx;
     position: absolute;
-    top: -70rpx;
-    right: -60rpx;
+    bottom: -130rpx;
+    left: calc((100% - 76rpx)/2);
   }
 
   .model_title {
@@ -175,24 +168,23 @@
     text-align: center;
     line-height: 72rpx;
     border-radius: 15rpx 15rpx 0 0;
-    background: -webkit-linear-gradient(left, #ff526d, #f8214f); /* Safari 5.1 - 6.0 */
-    background: -o-linear-gradient(left, #ff526d, #f8214f); /* Opera 11.1 - 12.0 */
-    background: -moz-linear-gradient(left, #ff526d, #f8214f); /* Firefox 3.6 - 15 */
-    background: linear-gradient(left, #ff526d, #f8214f); /* 标准的语法 */
+    background: -webkit-linear-gradient(left, #ed5156, #d51816); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(left,#ed5156, #d51816); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(left, #ed5156, #d51816); /* Firefox 3.6 - 15 */
+    background: linear-gradient(left,#ed5156, #d51816); /* 标准的语法 */
   }
 
   .word {
     width: 450rpx;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
-    border: 1rpx dotted #ff425f;
     text-align: center;
-    background-color: #ffe7eb;
+    background-color: #ededed;
     font-size: 32rpx;
     color: #666666;
-    margin: 10rpx auto;
-    border-radius: 10rpx;
-    height: 90rpx;
+    margin: 0 auto 34rpx;
+    border-radius: 8rpx;
+    height: 70rpx;
   }
   .cancel {
     width: 50rpx;

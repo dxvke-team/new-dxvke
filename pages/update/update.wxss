@@ -1,0 +1,31 @@
+/* pages/update/update.wxss */
+.header{
+  margin: 20rpx 30rpx 0;
+  background: #f4f4f4;
+  padding: 28rpx 0 44rpx;
+  text-align: center;
+  border-radius: 8rpx;
+}
+.user-pic{
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+}
+.user-name{
+  height: 46rpx;
+  line-height: 46rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+.user-power{
+  width: 100%;
+}
+.btn{
+  margin:0 30rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #9a7bff;
+  font-size: 32rpx;
+  color: white;
+  border-radius: 8rpx;
+}

@@ -1,4 +1,4 @@
-// pages/goodsDeatail/goodsDetail.js
+// pages/JDdeatail/JDdetail.js
 var http = require('../../utils/httpHelper.js');
 var login = require('../../utils/login.js');
 const app = getApp();
@@ -11,22 +11,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-     list:4,
-     showAcer:true,
-     showService:true,
-     showJuan:true,
-     goodsDetail:{}, // 商品详情 - LQ
-     likeList:[], //猜你喜欢商品列表 - LQ
-     command:'', //淘口令
-     ewm:'', //客服二维码
-     goodsType:'', //商品类型
+    list: 4,
+    showAcer: true,
+    showService: true,
+    showJuan: true,
+    goodsDetail: {}, // 商品详情 - LQ
+    likeList: [], //猜你喜欢商品列表 - LQ
+    command: '', //淘口令
+    ewm: '', //客服二维码
+    goodsType: '', //商品类型
   },
 
   onShareAppMessage: function (res) {
     var that = this;
     return {
       title: that.data.goodsDetail.title,
-      path: 'pages/goodsDetail/goodsDetail?id=' + that.data.goodsDetail.id +'&type='+that.data.goodsType,
+      path: 'pages/goodsDetail/goodsDetail?id=' + that.data.goodsDetail.id + '&type=' + that.data.goodsType,
       success: function (res) {
         // 转发成功
         wx.showModal({
@@ -42,7 +42,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      show:false
+      show: false
     });
     that.getProductDetail(options);
   },
@@ -60,40 +60,40 @@ Page({
       app.globalData.userInfo = res;
     });
   },
-  toHome:function(e){
+  toHome: function (e) {
     wx.switchTab({
       url: '../index/index',
     })
   },
-  service:function(){
+  service: function () {
     var that = this;
-    http.httpPost('serviceEwm',{
-      member_id: wx.getStorageSync('member_id') 
-    },function(res){
+    http.httpPost('serviceEwm', {
+      member_id: wx.getStorageSync('member_id')
+    }, function (res) {
       that.setData({
-        ewm : res.data.ewm
+        ewm: res.data.ewm
       });
       that.setData({
         showService: false
       })
-      });
-    
+    });
+
   },
-  close:function(e){
+  close: function (e) {
     this.setData({
       showService: true
     })
   },
-  showJuan:function(e){
+  showJuan: function (e) {
     var that = this;
     var condition = {
       click_url: e.currentTarget.dataset.click_url,
       pict_url: e.currentTarget.dataset.pict_url,
       title: e.currentTarget.dataset.title,
-      member_id: wx.getStorageSync('member_id') 
+      member_id: wx.getStorageSync('member_id')
     };
 
-    http.httpPost('command', condition,function(res){
+    http.httpPost('command', condition, function (res) {
       that.setData({
         command: res.data.command
       });
@@ -102,7 +102,7 @@ Page({
       })
     });
   },
-  closeJuan:function(e){
+  closeJuan: function (e) {
     this.setData({
       showJuan: true
     })
@@ -111,26 +111,26 @@ Page({
   /**
    * 获取商品详情 - 20180112 - LQ
    */
-  getProductDetail: function(options){
+  getProductDetail: function (options) {
     var that = this;
-    if (options.type){
+    if (options.type) {
       that.setData({
         goodsType: options.type
       });
     }
-    http.httpPost('goodsDetail', { 
-        goods_id: options.id, 
-        type: options.type,
-        member_id: wx.getStorageSync('member_id') 
-      }, function (res) {
+    http.httpPost('goodsDetail', {
+      goods_id: options.id,
+      type: options.type,
+      member_id: wx.getStorageSync('member_id')
+    }, function (res) {
       that.setData({
         goodsDetail: res.data
       });
       //猜你喜欢商品列表 - 20180108 - LQ
-      http.httpPost('relevance', { 
-          id: that.data.goodsDetail.id,
-          member_id: wx.getStorageSync('member_id') 
-        }, function (res) {
+      http.httpPost('relevance', {
+        id: that.data.goodsDetail.id,
+        member_id: wx.getStorageSync('member_id')
+      }, function (res) {
         that.setData({
           likeList: res.data.goodsList
         });
@@ -138,7 +138,7 @@ Page({
     });
   },
 
-  toDetail:function(e){
+  toDetail: function (e) {
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: "../goodsDetail/goodsDetail?id=" + id
@@ -148,7 +148,7 @@ Page({
   /**
    * 一键复制淘口令 - 20180115 - LQ
    */
-  copyCommand: function(){
+  copyCommand: function () {
     var that = this;
     wx.setClipboardData({
       data: that.data.command,
@@ -156,10 +156,10 @@ Page({
         wx.showModal({
           content: '复制成功,请打开淘宝购买商品',
           showCancel: false,
-          success:function(result){
-            if(result.confirm){
+          success: function (result) {
+            if (result.confirm) {
               that.setData({
-                showJuan : true
+                showJuan: true
               });
             }
           }

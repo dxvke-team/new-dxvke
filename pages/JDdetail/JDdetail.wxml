@@ -1,4 +1,4 @@
-<!--pages/goodsDeatail/goodsDetail.wxml-->
+<!--pages/JDdetail/JDdetail.wxml-->
 <view class='goodsDetail'>
   <view class='detail'>
     <image src='http:{{goodsDetail.pict_url}}' class='picture'></image>
@@ -8,7 +8,7 @@
       <view class='flex' style='height:52rpx;'>
         <view class='display:flex;align-items: center;'>
           <view class='goods_price'>
-            <text style='font-size:28rpx;color:#ff5606;'>券后: </text>￥
+            <text style='font-size:28rpx;'>券后: </text>￥
             <text style='font-size:46rpx;'>{{goodsDetail.zk_final_price.rmb}}</text>
             <text wx:if='{{goodsDetail.zk_final_price.corner != 00}}'>.{{goodsDetail.zk_final_price.corner}}</text>
           </view>
@@ -19,7 +19,7 @@
             </text>
           </view>
         </view>
-        <view style='font-size:28rpx;color:#ff5606;'>分享预估赚: 23.33元</view>
+        <view style='font-size:28rpx;color:#d51816;'>分享预估赚: 23.33元</view>
       </view>
       <view style="font-size:28rpx; color:#999;height:56rpx;line-height:56rpx;">
         <text wx:if='{{goodsDetail.reserve_price.corner == 00}}'>价格<text style='text-decoration: line-through;margin-right:30rpx;'>￥{{goodsDetail.reserve_price.rmb}}</text></text>
@@ -29,7 +29,7 @@
     </view>
     <view class='des_title flex des'>
         <view>
-           最高分享赚: <text style='color:#ff5606;'>2.89元</text>
+           最高分享赚: <text style='color:#d51816;'>2.89元</text>
         </view>
         <view style='display:flex;align-items: center;color:#999;'>
            立即申请
@@ -37,10 +37,8 @@
         </view>
       </view>
     <view class='des'>
-      <view class='des_title'>商品图文详情 </view>
-      <view style='font-size:0;'>
-        <image src='{{item}}' wx:for="{{goodsDetail.small_images}}" class='des_picture' mode="widthFix" wx:key="{{list}}"></image>
-      </view>
+      <view class='des_title'>商品介绍 </view>
+      <view style='line-height:44rpx;color:#666;font-size:24rpx;padding-bottom:20rpx;' >哈哈睡抖擞的size藕丝到爱的风景搜爱的搜阿迪加搜爱打发时间</view>
     </view>
   </view>
   <view style='height:98rpx;'></view>
@@ -54,7 +52,7 @@
       <view>分享</view>
     </view>
     <view class='tab tab4' data-click_url='{{goodsDetail.click_url}}' data-pict_url='{{goodsDetail.pict_url}}' data-title='{{goodsDetail.title}}' catchtap='showJuan'>
-      <view>淘口令领券</view>
+      <view>京东领券</view>
     </view>
   </view>
   <view class="model" hidden='{{showJuan}}'>
@@ -62,13 +60,14 @@
     </view>
     <view class="model_main">
       <view class="model_main_des">
-        <view class="model_title">淘口令购买</view>
+        <view class="model_title">京东领券</view>
+        <view style='font-size:24rpx;color:#333;line-height:76rpx;'>第一步：复制商品ID</view>
         <input type="text" class="word" id="kouling" value='{{command}}' disabled='true'></input>
-        <view class="des">在点击复制后，打开淘宝APP购买</view>
-        <view class="des">若一键复制失败，请长按虚线内文字</view>
-        <button class="m_btn" bindtap='copyCommand'> 一键复制</button>
+        <button class="m_btn" bindtap='copyCommand'>复制ID</button>
+        <view style='font-size:24rpx;color:#333;line-height:76rpx;'>第二步: 联系客服，然后发送上一步复制的ID</view>
+         <button class="m_btn" bindtap='copyCommand'>联系客服领券</button>
       </view>
-      <image src="../../images/user/cancel_img.png" alt="" catchtap='closeJuan'></image>
+      <image src="../../images/close.png" alt="" catchtap='closeJuan'></image>
     </view>
   </view>
 </view>

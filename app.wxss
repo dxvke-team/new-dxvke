@@ -18,9 +18,6 @@ page{
 .juan_style_right{
     font-size: 20rpx;color: #f51d46;background-color: #ffeff2;height: 100%;display: inline-block;padding: 0 5rpx;
   }
-  .return_num_style{
-    padding: 0 5rpx;color: #ff8a1e;font-size: 20rpx;border-radius: 2rpx;border: 1rpx solid #ff8a1e;display: inline-block;margin-left: 10rpx;
-  }
   .product{
   width: 100%;
 }
