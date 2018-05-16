@@ -2,7 +2,7 @@ var config = require('../config.js')
 function Get (url, data, cb ){
 	wx.showNavigationBarLoading();
 	wx.request({
-        method:'GET',
+    method:'GET',
 		url: config.HTTP_BASE_URL + url,
 		data: data,
 		success: (res) => {

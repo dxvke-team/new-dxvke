@@ -18,7 +18,8 @@
     "pages/recommend/recommend",
     "pages/taobao/taobao",
     "pages/overflow/overflow",
-    "pages/seckill/seckill"
+    "pages/seckill/seckill",
+    "pages/login/login"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

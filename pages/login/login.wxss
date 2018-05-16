@@ -1,0 +1,71 @@
+/* pages/login/login.wxss */
+/*弹出层*/
+  .model_bd {
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+  }
+
+  .model_main {
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 598rpx;
+    height:414rpx;
+    margin: 250rpx calc((100% - 598rpx) / 2);
+    background-color: white;
+    border-radius: 15rpx;
+    box-sizing: border-box;
+  }
+
+  .model_main_des {
+    height: 100%;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .model-title{
+    font-size:36rpx;
+    color: #333;
+    height: 134rpx;
+    line-height: 134rpx;
+    font-weight: bold;
+    text-align: center;
+  }
+  .model-des{
+    font-size: 30rpx;
+    color: #888;
+    line-height: 44rpx;
+    text-align: center;
+     padding: 0 60rpx;
+  }
+  .footer{
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    position: absolute;
+    bottom: 0;
+    border-top: 1rpx solid #d2d3d5;
+  }
+  .model-close,.model-set{
+    width: 50%;
+    font-size: 36rpx;
+    color: #666;
+    background: white;
+    height: 100%;
+    line-height: 100rpx;
+    border: none;
+    padding: 0;
+    outline: none;
+  }
+  .model-set{
+    color: #9a7bff;
+     border-left: 1rpx solid #d2d3d5;
+  }

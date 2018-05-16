@@ -1,6 +1,5 @@
 // pages/pinDeatail/pinDetail.js
 var http = require('../../utils/httpHelper.js');
-var login = require('../../utils/login.js');
 const app = getApp();
 wx.showShareMenu({
   withShareTicket: true
