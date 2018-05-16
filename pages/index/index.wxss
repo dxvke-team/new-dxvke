@@ -166,3 +166,14 @@ page{
 }
 
 
+
+
+
+.barrage{
+  position: relative;
+}
+.barraging{
+  position: fixed;
+  top: 0;
+  width: 100%;
+}

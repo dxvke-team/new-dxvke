@@ -54,12 +54,13 @@ Page({
   getGoodsList1: function () {
     var that = this
     console.log(that.data.keywords)
-    http.httpPost('doSearch', {
+    http.httpPost('searchProduct', {
       keywords: that.data.keywords,
-      sort: 9,
+      product_type:'',
+      order:'',
+      sorts: '',
       page: that.data.page1,
       limit: that.data.limit,
-      member_id: wx.getStorageSync('member_id')
     }, function (res) {
       var goodsList1 = that.data.goodsList1.concat(res.data.product_list)
       that.setData({
@@ -70,7 +71,7 @@ Page({
   },
   getGoodsList2: function () {
     var that = this
-    http.httpPost('doSearch', {
+    http.httpPost('searchProduct', {
       keywords: that.data.keywords,
       sort: 10,
       page: that.data.page2,
@@ -86,7 +87,7 @@ Page({
   },
   getGoodsList3: function () {
     var that = this
-    http.httpPost('doSearch', {
+    http.httpPost('searchProduct', {
       keywords: that.data.keywords,
       sort: 11,
       page: that.data.page3,

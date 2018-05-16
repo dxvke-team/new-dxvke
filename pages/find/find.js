@@ -43,15 +43,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    //   mask: true
+    // })
     var that = this;
     that.getBanner()
     that.getGoods()
   },
-
+  toTaobao:function(){
+    wx.navigateTo({
+      url: '../taobao/taobao',
+    })
+  },
+  toSeckill: function () {
+    wx.navigateTo({
+      url: '../seckill/seckill',
+    })
+  },
+  toOverflow: function () {
+    wx.navigateTo({
+      url: '../overflow/overflow',
+    })
+  },
+  toRecommend:function(){
+    wx.navigateTo({
+      url: '../recommend/recommend',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -9,9 +9,6 @@ wx.showShareMenu({
 
 Page({
   data: {
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imgUrls: [], //banner图
     goods:[], //商品列表
     goods_type: [],//商品分类   
@@ -43,6 +40,8 @@ Page({
     limit:10,
     scrollTop:0,
     loadingShow:true,
+    scroll_height:'',
+    height:'',
   },
   //事件处理函数
   bindViewTap: function() {
@@ -51,6 +50,16 @@ Page({
     })
   },
   onLoad: function () {
+    var that=this
+    var query=wx.createSelectorQuery()
+    //选择id
+    query.select('#banner').boundingClientRect()
+    query.exec(function (res) {
+      //取高度
+      that.setData({
+        height: res[0].height
+      });
+    })
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -128,34 +137,6 @@ Page({
         cate_type_id:res.data[0].id
       });
     });
-  },
-
-  getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  changeIndicatorDots: function (e) {
-    this.setData({
-      indicatorDots: !this.data.indicatorDots
-    })
-  },
-  changeAutoplay: function (e) {
-    this.setData({
-      autoplay: !this.data.autoplay
-    })
-  },
-  intervalChange: function (e) {
-    this.setData({
-      interval: e.detail.value
-    })
-  },
-  durationChange: function (e) {
-    this.setData({
-      duration: e.detail.value
-    })
   },
   toSearch:function(e){
     wx.navigateTo({
@@ -243,5 +224,10 @@ Page({
       that.getGoods()
     }
   },
+  scroll:function(e){
+    this.setData({
+      scroll_height:e.detail.scrollTop
+    })
+  }
 })
 

@@ -1,4 +1,4 @@
-<!--pages/overflow/overflow.wxml-->
+<!--pages/recommend/recommend.wxml-->
 <view class="container" style='font-size:0;'>
    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
       <view class="tab-item {{currentTab==0?'active':''}}" data-current="0"  bindtap="swichNav">综合</view>
@@ -37,3 +37,4 @@
      <image src='../../images/goTop.png'></image>
   </view>
 </view>
+

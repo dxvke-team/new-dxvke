@@ -1,7 +1,5 @@
 {
   "pages": [
-   
-    
     "pages/index/index",
     "pages/find/find",
     "pages/user/user",
@@ -10,17 +8,17 @@
     "pages/myfans/myfans",
     "pages/classify/classify",
     "pages/exchangeList/exchangeList",
-    "pages/overflow/overflow",
-    "pages/fanswefare/fanswefare",
-    "pages/essential/essential",
     "pages/orderList/orderList",
     "pages/update/update",
     "pages/searchReasult/searchReasult",
     "pages/searchPage/searchPage",
-    
     "pages/goodsDetail/goodsDetail",
     "pages/pinDetail/pinDetail",
-    "pages/JDdetail/JDdetail"
+    "pages/JDdetail/JDdetail",
+    "pages/recommend/recommend",
+    "pages/taobao/taobao",
+    "pages/overflow/overflow",
+    "pages/seckill/seckill"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

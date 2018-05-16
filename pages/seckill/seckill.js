@@ -1,23 +1,29 @@
-// pages/exchangeList/exchangeList.js
+// pages/seckill/seckill.js
 var http = require('../../utils/httpHelper.js');
-// var app = getApp();
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
     winHeight: "",//窗口高度
     currentTab: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
-    page1:1,
-    page2:1,
-    page3:1,
-    page4:1,
-    limit:20,
-    banner:'', //粉丝福利banner
-    sortList:[], //排序方式
-    goodsList1:[], //商品列表
-    goodsList2: [],
-    goodsList3: [],
-    goodsList4: [],
-    scrollTop:0,
+    scorllTop: 0,
+    banner: "", //banner图
+    timeList: [{
+      start_time: '8:00',
+      status: 1,
+    }], //抢购时间列表
+    goodsList1: [], //抢购商品
+    goodsList2: [], //抢购商品
+    goodsList3: [], //抢购商品
+    goodsList4: [], //抢购商品
+    page1: 1, //页码
+    page2: 1,
+    page3: 1,
+    page4: 1,
+    limit: 10, //每页显示条数
   },
   // 滚动切换标签样式
   switchTab: function (e) {
@@ -28,7 +34,7 @@ Page({
   },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
-    var that = this;
+    var that = this
     var cur = e.target.dataset.current;
     if (this.data.currentTaB == cur) { return false; }
     else {
@@ -36,6 +42,21 @@ Page({
         currentTab: cur,
       });
     }
+
+    // switch (cur) {
+    //   case 1:
+    //     that.getPanicList1();
+    //     break;
+    //   case 2:
+    //     that.getPanicList2();
+    //     break;
+    //   case 3:
+    //     that.getPanicList3();
+    //     break;
+    //   case 4:
+    //     that.getPanicList4();
+    //     break;
+    // }
   },
   //判断当前滚动超过一屏时，设置tab标题滚动条。
   checkCor: function () {
@@ -50,10 +71,10 @@ Page({
     }
   },
   onLoad: function () {
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    //   mask: true,
+    // })
     var that = this;
     //  高度自适应
     wx.getSystemInfo({
@@ -67,95 +88,91 @@ Page({
         });
       }
     });
-
-    
-
-   
-    that.getSort()
-    that.getBanner()
-    //商品 - 20180108 - LQ
-    that.getGoodsList1();
-    that.getGoodsList2();
-    that.getGoodsList3();
-    that.getGoodsList4();
-
+    // that.getTime()
+    // //抢购商品 - 20180108 - LQ
+    // that.getPanicList1();
+    // that.getPanicList2();
+    // that.getPanicList3();
+    // that.getPanicList4();
   },
-  //banner - 20180108 - LQ
-  getBanner:function(){
+
+  //抢购时间 - 20180108 - LQ
+  getTime: function () {
     var that = this;
-    http.httpPost('fanswelfare_banner', {
+    http.httpPost('newspaper_time', {
       member_id: wx.getStorageSync('member_id')
     }, function (res) {
+      var timeList = res.data.time;
+      for (var index in timeList) {
+        if (timeList[index]['status'] == 2) {
+          var time = index;
+        }
+      }
       that.setData({
-        banner: res.data.banner[0]['banner_image']
+        timeList: timeList,
+        currentTab: time
       });
     });
+
   },
-   //排序方式 - 20180108 - LQ
-  getSort:function(){
+  getPanicList1: function () {
     var that = this;
-    http.httpPost('fanswelfare_type', {
+    var condition = {
+      panic_id: 1,
+      page: that.data.page1,
+      limit: that.data.limit,
       member_id: wx.getStorageSync('member_id')
-    }, function (res) {
+    };
+    http.httpGet('overflow', condition, function (res) {
+      const goodsList1 = that.data.goodsList1.concat(res.data.goods_list)
       that.setData({
-        sortList: res.data.sorts
-      });
-    });
-  },
-  getGoodsList1:function(){
-    var that = this;
-    http.httpPost('fanswelfare_product', { 
-      sorts_type: 5,
-       member_id: wx.getStorageSync('member_id') ,
-       page:that.data.page1,
-       limit:that.data.limit
-      },function(res){
-        var goodsList1 = that.data.goodsList1.concat(res.data.goods_list)
-      that.setData({
-        goodsList1: goodsList1 
+        goodsList1: goodsList1
       });
       wx.hideLoading();
     });
   },
-  getGoodsList2: function () {
+  getPanicList2: function () {
     var that = this;
-    http.httpPost('fanswelfare_product', {
-      sorts_type: 6,
-      member_id: wx.getStorageSync('member_id'),
+    var condition = {
+      panic_id: 2,
       page: that.data.page2,
-      limit: that.data.limit
-    }, function (res) {
-      var goodsList2 = that.data.goodsList2.concat(res.data.goods_list)
+      limit: that.data.limit,
+      member_id: wx.getStorageSync('member_id')
+    };
+    http.httpGet('overflow', condition, function (res) {
+      const goodsList2 = that.data.goodsList2.concat(res.data.goods_list)
       that.setData({
         goodsList2: goodsList2
       });
       wx.hideLoading();
     });
   },
-  getGoodsList3: function () {
+  getPanicList3: function () {
     var that = this;
-    http.httpPost('fanswelfare_product', {
-      sorts_type: 7,
-      member_id: wx.getStorageSync('member_id'),
+    var condition = {
+      panic_id: 3,
       page: that.data.page3,
-      limit: that.data.limit
-    }, function (res) {
-      var goodsList3 = that.data.goodsList3.concat(res.data.goods_list)
+      limit: that.data.limit,
+      member_id: wx.getStorageSync('member_id')
+    };
+    http.httpGet('overflow', condition, function (res) {
+      const goodsList3 = that.data.goodsList3.concat(res.data.goods_list)
       that.setData({
         goodsList3: goodsList3
       });
       wx.hideLoading();
     });
   },
-  getGoodsList4: function () {
+  getPanicList4: function () {
     var that = this;
-    http.httpPost('fanswelfare_product', {
-      sorts_type: 8,
-      member_id: wx.getStorageSync('member_id'),
+    var condition = {
+      panic_id: 4,
       page: that.data.page4,
-      limit: that.data.limit
-    }, function (res) {
-      var goodsList4 = that.data.goodsList4.concat(res.data.goods_list)
+      limit: that.data.limit,
+      member_id: wx.getStorageSync('member_id')
+    };
+    http.httpGet('overflow', condition, function (res) {
+      const goodsList4 = that.data.goodsList4.concat(res.data.goods_list)
       that.setData({
         goodsList4: goodsList4
       });
@@ -166,7 +183,7 @@ Page({
     var that = this
     this.setData({
       banner: "", //banner图
-      sortList: [], //抢购时间列表
+      timeList: [], //抢购时间列表
       goodsList1: [], //抢购商品
       goodsList2: [], //抢购商品
       goodsList3: [], //抢购商品
@@ -177,17 +194,21 @@ Page({
       page4: 1,
       limit: 10, //每页显示条数
     });
-    that.getSort()
-    that.getBanner()
+    that.getTime()
     //抢购商品 - 20180108 - LQ
-    that.getGoodsList1();
-    that.getGoodsList2();
-    that.getGoodsList3();
-    that.getGoodsList4();
-    setTimeout(wx.stopPullDownRefresh,5000)
+    that.getPanicList1();
+    that.getPanicList2();
+    that.getPanicList3();
+    that.getPanicList4();
+    wx.stopPullDownRefresh()
   },
   lower: function (e) {
+    // wx.showLoading({
+    //   title: '加载中',
+    //   mask: true,
+    // })
     var cur = this.data.currentTab
+    console.log(cur)
     switch (cur) {
       case 0:
         var page1 = this.data.page1 + 1
@@ -195,7 +216,7 @@ Page({
         this.setData({
           page1: page1
         })
-        that.getGoodsList1();
+        that.getPanicList1();
         break;
       case 1:
         var page2 = this.data.page2 + 1
@@ -203,7 +224,7 @@ Page({
         this.setData({
           page2: page2
         })
-        that.getGoodsList2();
+        that.getPanicList2();
         break;
       case 2:
         var page3 = this.data.page3 + 1
@@ -211,7 +232,7 @@ Page({
         this.setData({
           page3: page3
         })
-        that.getGoodsList3();
+        that.getPanicList3();
         break;
       case 3:
         var page4 = this.data.page4 + 1
@@ -219,7 +240,7 @@ Page({
         this.setData({
           page4: page4
         })
-        that.getGoodsList4();
+        that.getPanicList4();
         break;
     }
   },
@@ -228,10 +249,13 @@ Page({
       scrollTop: 0
     })
   },
-  toGoodsDetail: function(e){
+  /**
+   * 商品详情
+   */
+  toGoodsDetail: function (e) {
     var goods_id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?id=' + goods_id,
+      url: '../goodsDetail/goodsDetail?id=' + goods_id + '&type=1',
     })
   }
 })

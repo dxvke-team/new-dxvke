@@ -62,17 +62,13 @@
         </view>
       </block>
     </view>
-     <view class='seek-all'>查看全部
+     <view class='seek-all' catchtap='toTaobao'>查看全部
         <image src='../../images/user/right_icon.png' class='right-icon'></image>
       </view>
   </view>
   <view class='main'>
-    <view class='title' style='border:none;'>
+    <view class='title'>
       <image src='../../images/find/icon2.png' class='main-icon'></image>急速秒杀
-    </view>
-    <view style='height:86rpx;color:#333;border-bottom: 1rpx solid #e5e5e5;padding:0 30rpx;' class='flex'>
-      <view style='font-size:28rpx;'>限时限量 底价特卖</view>
-      <view style='font-size:26rpx;background:#eee;padding:0 20rpx;height:40rpx;line-height:40rpx;border-radius:20rpx;'>距本场结束12：00：33</view>
     </view>
     <view style='background:white;'>
       <block wx:for="{{goods}}" wx:key="{{item}}">
@@ -106,7 +102,7 @@
         </view>
       </block>
     </view>
-     <view class='seek-all'>查看全部
+     <view class='seek-all' catchtap='toSeckill'>查看全部
         <image src='../../images/user/right_icon.png' class='right-icon'></image>
       </view>
   </view>
@@ -136,7 +132,7 @@
         </view>
       </block>
     </view>
-    <view class='seek-all'>查看全部
+    <view class='seek-all' catchtap='toOverflow'>查看全部
         <image src='../../images/user/right_icon.png' class='right-icon'></image>
     </view>
   </view>
@@ -166,7 +162,7 @@
         </view>
       </block>
     </view>
-    <view class='seek-all'>查看全部
+    <view class='seek-all' catchtap='toRecommend'>查看全部
         <image src='../../images/user/right_icon.png' class='right-icon'></image>
     </view>
   </view>

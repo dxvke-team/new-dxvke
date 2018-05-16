@@ -6,7 +6,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods:[],
+    goods:[{
+      id:1,
+      pict_url:'../../images/empty_img.png',
+      title:'商品名称',
+      coupon_number:'100',
+      zk_final_price:{
+        rmb:'99',
+        corner:'99'
+      },
+
+    }, {
+      id: 1,
+      pict_url: '../../images/empty_img.png',
+      title: '商品名称',
+      coupon_number: '100',
+      zk_final_price: {
+        rmb: '99',
+        corner: '99'
+      },
+
+    }
+    ],
     limit:10,
     page:1
   },

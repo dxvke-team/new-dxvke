@@ -1,6 +1,5 @@
-<!--pages/overflow/overflow.wxml-->
-<view class="container" style='font-size:0;'>
-   <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+<!--pages/taobao/taobao.wxml-->
+<scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
       <view class="tab-item {{currentTab==0?'active':''}}" data-current="0"  bindtap="swichNav">综合</view>
       <view class="tab-item {{currentTab==1?'active':''}}" data-current="1"  bindtap="swichNav">券额</view>
       <view class="tab-item {{currentTab==2?'active':''}}" data-current="2"  bindtap="swichNav">新品</view>
@@ -11,29 +10,35 @@
       </view>
     </scroll-view>
     <view style='height:80rpx;'></view>
-   <view style='flex-wrap: wrap;margin-bottom:10rpx;' class='flex'>
+<view style='background:white;'>
       <block wx:for="{{goods}}" wx:key="{{item}}">
-        <view class="goods-list">
-          <image class="" src="{{item.pict_url}}" style='width:100%;height:370rpx;'></image>
-          <view style='padding:0 20rpx;height:172rpx;'>
-            <view class="name" style='height:58rpx;line-height:58rpx;'>{{item.title}}</view>
+        <view class="item-ans">
+          <view class="avatar">
+            <image class="img" src="{{item.pict_url}}"></image>
+          </view>
+          <view class="expertInfo">
             <view>
-              <view class="juan_style" style='margin-right:8rpx;'>
+              <view class="name">{{item.title}}</view>
+              <view class="juan_style">
                 <view class="juan_style_left">券</view>
                 <view class="juan_style_right">{{item.coupon_number}}元</view>
               </view>
-              <view class='share-income'>分享赚: 3.22元</view>
             </view>
-            <view style='color:#f51d46;height:82rpx;line-height:82rpx;'>
-              <text style='font-size:24rpx;'>￥</text>
-              <text style='font-size:36rpx;'>{{item.zk_final_price.rmb}}</text>
-              <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
+            <view>
+              <view>
+                <view class='share-income'>分享赚: 3.22元</view>
+              </view>
+              <view class='des'>
+                <view style='color:#f51d46;'>
+                  <text style='font-size:24rpx;'>￥</text>
+                  <text style='font-size:36rpx;'>{{item.zk_final_price.rmb}}</text>
+                  <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
+                  <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
+                </view>
+                <view class='btn'>马上抢 ></view>
+              </view>
             </view>
           </view>
         </view>
       </block>
     </view>
-   <view class='goTop' catchtap='toTop'>
-     <image src='../../images/goTop.png'></image>
-  </view>
-</view>
