@@ -12,10 +12,10 @@ Page({
 
   onLoad: function () {
     var that = this;
-    wx.showLoading({
-      title: '登录中...',
-      mask: true,
-    })
+    // wx.showLoading({
+    //   title: '登录中...',
+    //   mask: true,
+    // })
 
     login.dologin(function(res){
       console.log(res);

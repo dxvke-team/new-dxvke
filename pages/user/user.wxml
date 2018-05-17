@@ -49,22 +49,8 @@
     </view>
     <view class='main-item'>
        <view>
-          <image src='../../images/user/collect.png' class='item-icon'></image>
-          我的收藏
-       </view>
-       <image src='../../images/user/right_icon.png' class='icon'></image>
-    </view>
-    <view class='main-item'>
-       <view>
           <image src='../../images/user/server.png' class='item-icon'></image>
           联系客服
-       </view>
-       <image src='../../images/user/right_icon.png' class='icon'></image>
-    </view>
-    <view class='main-item'>
-       <view>
-          <image src='../../images/user/help.png' class='item-icon'></image>
-          帮助中心
        </view>
        <image src='../../images/user/right_icon.png' class='icon'></image>
     </view>
