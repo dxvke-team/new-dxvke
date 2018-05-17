@@ -9,7 +9,21 @@ Page({
     currentTab:0,
     keywords:'衣服',
     sort:0,
-    goodsList1: [], //搜索结果 - LQ
+    goodsList1: [{
+      id:'1',
+      pict_url:'../../images/find/JD.png',
+      title:'这个是商品名称',
+      coupon_number:2,
+      reserve_price:{
+        rmb:'2',
+        corner:'33'
+      },
+      zk_final_price:{
+        rmb: '1',
+        corner: '33'
+      },
+      share_commission:'22'
+    }], //搜索结果 - LQ
     goodsList2: [],
     goodsList3: [],
     page1: 1,

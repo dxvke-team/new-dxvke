@@ -11,9 +11,8 @@ Page({
   },
 
   onLoad: function () {
-    //获取用户信息
-  },
 
+  },
 onShareAppMessage: function (res) {
   return {
     title: '洞悉微客',

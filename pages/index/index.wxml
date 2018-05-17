@@ -32,7 +32,7 @@
   </view>
   <view style='background:white;'>
     <block wx:for="{{goods}}" wx:key="{{item}}">
-      <view class="item-ans" catchtap="toGoodsDetail">
+      <view class="item-ans" catchtap="toGoodsDetail" data-id='{{item.id}}'>
         <view class="avatar">
           <image class="img" src="{{item.pict_url}}"></image>
         </view>

@@ -15,9 +15,7 @@ Page({
      showService:true,
      showJuan:true,
      goodsDetail:{}, // 商品详情 - LQ
-     likeList:[], //猜你喜欢商品列表 - LQ
      command:'', //淘口令
-     ewm:'', //客服二维码
      goodsType:'', //商品类型
   },
 
@@ -50,14 +48,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //判断登录 - 20180108 - LQ
-    var that = this;
-    login.dologin(function (res) {
-      that.setData({
-        userInfo: res
-      });
-      app.globalData.userInfo = res;
-    });
+    
   },
   toHome:function(e){
     wx.switchTab({
@@ -65,18 +56,7 @@ Page({
     })
   },
   service:function(){
-    var that = this;
-    http.httpPost('serviceEwm',{
-      member_id: wx.getStorageSync('member_id') 
-    },function(res){
-      that.setData({
-        ewm : res.data.ewm
-      });
-      that.setData({
-        showService: false
-      })
-      });
-    
+   
   },
   close:function(e){
     this.setData({
@@ -117,31 +97,14 @@ Page({
         goodsType: options.type
       });
     }
-    http.httpPost('goodsDetail', { 
-        goods_id: options.id, 
-        type: options.type,
-        member_id: wx.getStorageSync('member_id') 
+    http.httpPost('productInfo', { 
+         id: options.id, 
+         product_type	: options.type,
       }, function (res) {
       that.setData({
         goodsDetail: res.data
       });
-      //猜你喜欢商品列表 - 20180108 - LQ
-      http.httpPost('relevance', { 
-          id: that.data.goodsDetail.id,
-          member_id: wx.getStorageSync('member_id') 
-        }, function (res) {
-        that.setData({
-          likeList: res.data.goodsList
-        });
-      });
     });
-  },
-
-  toDetail:function(e){
-    var id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: "../goodsDetail/goodsDetail?id=" + id
-    })
   },
 
   /**

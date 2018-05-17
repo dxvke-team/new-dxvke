@@ -149,10 +149,21 @@ Page({
   },
   
   toGoodsDetail:function(e){
-    console.log('aaa')
-    wx.navigateTo({
-      url: "../goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id +  '&type=' + e.currentTarget.dataset.type
-    })
+    var self = this
+    if(this.data.currentTab==0){
+      wx.navigateTo({
+        url: "../goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id + '&type=' + self.data.currentTab
+      })
+    } else if (this.data.currentTab == 1){
+      wx.navigateTo({
+        url: "../JDdetail/JDdetail?id=" + e.currentTarget.dataset.id + '&type=' + self.data.currentTab
+      })
+    }else{
+      wx.navigateTo({
+        url: "../pinDetail/pinDetail?id=" + e.currentTarget.dataset.id + '&type=' + self.data.currentTab
+      })
+    }
+    
   },
   onPullDownRefresh: function () {
     this.setData({
