@@ -80,7 +80,15 @@ Page({
           session_key: wx.getStorageSync('LoginSessionKey')
         },
         success:function(res){
-          console.log(res);
+          if(res.data.code == 200){ //成功
+            wx.navigateBack({
+              delta: 1
+            })
+          }else{
+            wx.switchTab({
+              url: '/index'
+            })
+          }
         }
       });
     } else {

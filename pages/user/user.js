@@ -11,20 +11,8 @@ Page({
   },
 
   onLoad: function () {
-    var that = this;
-    wx.showLoading({
-      title: '登录中...',
-      mask: true,
-    })
-
-    login.dologin(function(res){
-      console.log(res);
-      that.setData({
-        userInfo: res
-      })
-      wx.hideLoading()
-    })
-},
+    //获取用户信息
+  },
 
 onShareAppMessage: function (res) {
   return {
