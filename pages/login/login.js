@@ -81,6 +81,7 @@ Page({
         },
         success:function(res){
           if(res.data.code == 200){ //成功
+            wx.setStorageSync('token', info.data.token);
             wx.navigateBack({
               delta: 1
             })
