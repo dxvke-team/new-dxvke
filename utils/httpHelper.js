@@ -1,10 +1,14 @@
 var config = require('../config.js') 
-function Get (url, data, cb ){
+function Get (url, data, token='', cb ){
 	wx.showNavigationBarLoading();
 	wx.request({
     method:'GET',
 		url: config.HTTP_BASE_URL + url,
 		data: data,
+    header: {
+      'content-type': 'application/json', // 默认值
+      'token' : token
+    },
 		success: (res) => {
 			typeof cb == "function" && cb(res.data,"");
 			wx.hideNavigationBarLoading();
@@ -16,12 +20,16 @@ function Get (url, data, cb ){
 	});
 };
 
-function Post (url,data, cb ){
+function Post (url,data, token='', cb ){
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID  
 	wx.request({
     method:'POST',
 		url:  config.HTTP_BASE_URL + url,
 		data: data,
+    header: {
+      'content-type': 'application/json', // 默认值
+      'token': token
+    },
 		success: (res) => {
 			typeof cb == "function" && cb(res.data,"");
 		},
