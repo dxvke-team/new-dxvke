@@ -1,5 +1,6 @@
 // pages/goodsDeatail/goodsDetail.js
 var http = require('../../utils/httpHelper.js');
+var login = require('../../utils/login.js');
 const app = getApp();
 wx.showShareMenu({
   withShareTicket: true
@@ -16,14 +17,17 @@ Page({
      showJuan:true,
      goodsDetail:{}, // 商品详情 - LQ
      command:'', //淘口令
-     goodsType:'', //商品类型
+     goodsType:'', //商品类型,
+     isShare : false,
+     shareMember : ''
   },
 
-  onShareAppMessage: function (res) {
+  onShareAppMessage: function () {
     var that = this;
+    var member_id = wx.getStorageSync('member_id');
     return {
       title: that.data.goodsDetail.title,
-      path: 'pages/goodsDetail/goodsDetail?id=' + that.data.goodsDetail.id +'&type='+that.data.goodsType,
+      path: 'pages/goodsDetail/goodsDetail?id=' + that.data.goodsDetail.id +'&type='+that.data.goodsType + '&share_member=' + member_id + '&is_share=1',
       success: function (res) {
         // 转发成功
         wx.showModal({
@@ -41,6 +45,7 @@ Page({
     that.setData({
       show:false
     });
+    login.login(options);
     that.getProductDetail(options);
   },
 
@@ -72,7 +77,7 @@ Page({
       member_id: wx.getStorageSync('member_id') 
     };
 
-    http.httpPost('command', condition,function(res){
+    http.httpPost('command', condition, wx.getStorageSync('token'), function(res){
       that.setData({
         command: res.data.command
       });
@@ -92,15 +97,14 @@ Page({
    */
   getProductDetail: function(options){
     var that = this;
-    if (options.type){
-      that.setData({
-        goodsType: options.type
-      });
-    }
-    http.httpPost('productInfo', { 
+    that.setData({
+      goodsType: options.type
+    });
+    http.httpGet('productInfo', { 
          id: options.id, 
          product_type	: options.type,
-      }, function (res) {
+      }, wx.getStorageSync('token'),function (res) {
+        console.log(res.data);
       that.setData({
         goodsDetail: res.data
       });
@@ -112,6 +116,21 @@ Page({
    */
   copyCommand: function(){
     var that = this;
+    var goodsDetail = that.data.goodsDetail;
+    var condition = {
+      product_type: 1,
+      money: goodsDetail.zk_final_price.rmb + '.' + goodsDetail.zk_final_price.corner,
+      coupon_number: goodsDetail.coupon_number,
+      num_iid: goodsDetail.id,
+      title: goodsDetail.title,
+      shop_title: goodsDetail.shop_title,
+      click_url: goodsDetail.click_url
+    };
+    if(that.data.isShare){ //该商品为分享商品
+       //记录 用户领券信息
+      condition.share_member = that.data.shareMember;
+    }
+    http.httpPost('recordCouponNotes', condition, wx.getStorageSync('token'), function (res) {});
     wx.setClipboardData({
       data: that.data.command,
       success: function (res) {

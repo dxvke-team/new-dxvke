@@ -5,7 +5,6 @@ wx.showShareMenu({
   withShareTicket: true
 })
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -23,7 +22,7 @@ Page({
     var that = this;
     return {
       title: that.data.goodsDetail.title,
-      path: 'pages/goodsDetail/goodsDetail?id=' + that.data.goodsDetail.id + '&type=' + that.data.goodsType,
+      path: 'pages/goodsDetail/goodsDetail?id=' + that.data.goodsDetail.id + '&type=' + that.data.goodsType + 'is_share=1&share_member=' + wx.getStorageSync('member_id'),
       success: function (res) {
         // 转发成功
         wx.showModal({
@@ -41,6 +40,7 @@ Page({
     that.setData({
       show: false
     });
+    login.login(options);
     that.getProductDetail(options);
   },
 
@@ -50,6 +50,7 @@ Page({
   onShow: function () {
     
   },
+
   toHome: function (e) {
     wx.switchTab({
       url: '../index/index',
@@ -84,10 +85,10 @@ Page({
         goodsType: options.type
       });
     }
-    http.httpPost('productInfo', {
+    http.httpGet('productInfo', {
       id: options.id,
       product_type: options.type
-    }, function (res) {
+    }, wx.getStorageSync('token'), function (res) {
       that.setData({
         goodsDetail: res.data
       });
