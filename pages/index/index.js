@@ -43,6 +43,7 @@ Page({
     loadingShow:true,
     scroll_height:'',
     height:'',
+    token:''
   },
   //事件处理函数
   bindViewTap: function() {
@@ -66,12 +67,17 @@ Page({
       mask: true
     })
     var that = this;
+    login.login(function(res){
+        that.setData({
+          token:res
+        });
+    });
+    
     that.getBanner()
     that.getGoodsType()
     that.getGoods()
-
     // 调用登录接口
-    login.login();
+  
   },
   onShareAppMessage: function (res) {
     return {
@@ -96,7 +102,7 @@ Page({
   //首页banner
   getBanner:function(){
     var that = this
-    http.httpGet("indexBanner", {type:10}, function (res) {
+    http.httpGet("indexBanner", {type:10}, that.token,function (res) {
       that.setData({
         imgUrls: res.data
       });
@@ -112,7 +118,7 @@ Page({
       data = { page: that.data.page, limit: that.data.limit, product_type: that.data.currentTab, cate_type: that.data.cate_type_id }
     }
     
-    http.httpGet('productList', data, function (res) {
+    http.httpGet('productList', data, that.token, function (res) {
       if(res.data.list.length!==0){
         var goods = that.data.goods.concat(res.data.list)
         that.setData({
@@ -135,7 +141,7 @@ Page({
     }else{
       data = { type: that.data.currentTab }
     }
-    http.httpGet('productCateList', data, function (res) {
+    http.httpGet('productCateList', data, that.token,function (res) {
       that.setData({
         goods_type: res.data,
         cate_type_id:res.data[0].id

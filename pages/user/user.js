@@ -1,17 +1,32 @@
 
 const app = getApp();
 var http = require('../../utils/httpHelper.js');
+var login = require('../../utils/login.js');
 wx.showShareMenu({
   withShareTicket: true
 })
 Page({
   data: {
     userInfo: {},
+    userInfoApi: {},
     hasUserInfo: false,
   },
 
   onLoad: function () {
+    var that = this;
+    //获取用户信息
+    login.getInfo(function(res){
+      that.setData({
+        userInfo:res
+      });
+    });
 
+    //请求用户信息接口
+    http.httpGet('userInfo', {}, wx.getStorageSync('token'),function(res){
+      that.setData({
+        userInfoApi: res.data
+      });
+    });
   },
 onShareAppMessage: function (res) {
   return {

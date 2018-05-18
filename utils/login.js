@@ -1,36 +1,7 @@
 var http = require('httpHelper.js');
 var config = require('../config.js');
-/*
-function login (cb) {
-  var that = this;
-  //调用登录接口
-  wx.login({
-    success: function (result) {
-      if (result.code) {
-        var code = result.code;
-        wx.getUserInfo({
-          success: function (res) {
-            //发起网络请求
-            var userInfo = res.userInfo;
-            http.httpPost('login', { code: code, user_info: res.rawData, encryptedData: res.encryptedData, iv: res.iv}, function (res) {
-              //将session_key存档
-              wx.setStorageSync('LoginSessionKey', res.session_key);
-              wx.setStorageSync('token', res.token);
-              typeof cb == "function" && cb(userInfo);
-            });
-          },
-          fail: function () {
-            wx.navigateBack({});
-          }
-        });
-      } else {
-        console.log('获取用户登录态失败！' + res.errMsg)
-      }
-    },
-  });
-};
-*/
-function login(){
+
+function login(cb){
     wx.login({
       success:function(res){
         if (res.code) {
@@ -45,6 +16,8 @@ function login(){
               if(info.data.status){ //該用戶已註冊
                 wx.setStorageSync('LoginSessionKey', info.data.session_key);
                 wx.setStorageSync('token', info.data.token);
+                wx.setStorageSync('member_id', info.data.user_id);
+                typeof cb == "function" && cb(info.data.token);
               }else{ //該用戶未註冊,獲取用戶信息進行註冊
                 wx.setStorageSync('LoginSessionKey', info.data.session_key);
                 //判斷該用户是否已授权
@@ -56,10 +29,32 @@ function login(){
                       wx.navigateTo({
                         url: '../login/login',
                       })
-                      
                     } else {
                       wx.getUserInfo({
-                        
+                        success:function(newInfo){
+                          wx.request({
+                            method: 'POST',
+                            url: config.HTTP_BASE_URL + 'doRegister',
+                            data: {
+                              encryptedData: newInfo.encryptedData,
+                              iv: newInfo.iv,
+                              session_key: wx.getStorageSync('LoginSessionKey')
+                            },
+                            success: function (requestData) {
+                              if (requestData.data.data.code == 200) { //成功
+                                wx.setStorageSync('token', requestData.data.data.token);
+                                wx.setStorageSync('member_id', requestData.data.data.user_id);
+                                wx.navigateBack({
+                                  delta: 1
+                                })
+                              } else {
+                                wx.switchTab({
+                                  url: 'pages/index/index'
+                                })
+                              }
+                            }
+                          });
+                        }
                       })
                     }
                   }
@@ -72,8 +67,24 @@ function login(){
         }
       }
     })
+};
+
+function getInfo(cb)
+{
+   wx.getUserInfo({
+     success:function(res){
+       typeof cb == "function" && cb(res.userInfo);
+     },
+     fail:function(res){
+       //跳转到登录页面
+       wx.navigateTo({
+         url: '../login/login',
+       })
+     }
+   })
 }
 
 module.exports = {
-  login: login
+  login: login,
+  getInfo: getInfo
 };

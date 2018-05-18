@@ -79,21 +79,24 @@ Page({
           iv : userInfo.iv,
           session_key: wx.getStorageSync('LoginSessionKey')
         },
-        success:function(res){
-          if(res.data.code == 200){ //成功
-            wx.setStorageSync('token', info.data.token);
+        success:function(requestData){
+          if (requestData.data.code == 200){ //成功
+            wx.setStorageSync('token', requestData.data.data.token);
+            wx.setStorageSync('member_id', requestData.data.data.user_id);
             wx.navigateBack({
               delta: 1
             })
           }else{
             wx.switchTab({
-              url: '/index'
+              url: 'pages/index/index'
             })
           }
         }
       });
     } else {
-
+      wx.switchTab({
+        url: 'pages/index/index'
+      })
     }
   }
 })
