@@ -27,41 +27,6 @@ Page({
 
     }
     ],
-    currentTab: 0,
-    sort: 0,
-  },
-  // 点击标题切换当前页时改变样式
-  swichNav: function (e) {
-    var that = this
-    var cur = e.currentTarget.dataset.current;
-    if (this.data.currentTab == cur) { return false; }
-    else {
-      that.setData({
-        currentTab: cur,
-      })
-    }
-    that.setData({
-      sort: 0,
-    })
-    wx.pageScrollTo({
-      scrollTop: 0
-    })
-  },
-  // 价格按钮
-  swichPice: function () {
-    this.setData({
-      currentTab: 3,
-    })
-    if (this.data.sort == 1) {
-      console.log('bb')
-      this.setData({
-        sort: 2,
-      })
-    } else {
-      this.setData({
-        sort: 1,
-      })
-    }
   },
   /**
    * 生命周期函数--监听页面加载

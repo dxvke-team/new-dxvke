@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/find/find",
     "pages/user/user",
@@ -10,8 +11,8 @@
     "pages/exchangeList/exchangeList",
     "pages/orderList/orderList",
     "pages/update/update",
-    "pages/searchReasult/searchReasult",
     "pages/searchPage/searchPage",
+    "pages/searchReasult/searchReasult",
     "pages/goodsDetail/goodsDetail",
     "pages/pinDetail/pinDetail",
     "pages/JDdetail/JDdetail",

@@ -32,7 +32,6 @@ page{
 .tab-icon{
   width: 36rpx;
   height: 36rpx;
-  margin-right: 14rpx;
 }
 .tab-item.active{
   color: white;

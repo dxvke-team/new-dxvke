@@ -1,59 +1,45 @@
 // pages/taobao/taobao.js
+var http = require('../../utils/httpHelper.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goods: [{
-      id: 1,
-      pict_url: '../../images/empty_img.png',
-      title: '商品名称',
-      coupon_number: '100',
-      zk_final_price: {
-        rmb: '99',
-        corner: '99'
-      },
-
-    }, {
-      id: 1,
-      pict_url: '../../images/empty_img.png',
-      title: '商品名称',
-      coupon_number: '100',
-      zk_final_price: {
-        rmb: '99',
-        corner: '99'
-      },
-
-    }
+    page:1,
+    limit:20,
+    goods: [
+    //   {
+    //   id: 1,
+    //   pict_url: '../../images/empty_img.png',
+    //   title: '商品名称',
+    //   coupon_number: '100',
+    //   zk_final_price: {
+    //     rmb: '99',
+    //     corner: '99'
+    //   },
+    // }
     ],
-    currentTab:0,
-    sort: 0,
+    order:0,
+    sort: '',
+    loadingShow:true,
   },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var that = this
     var cur = e.currentTarget.dataset.current;
-    if (this.data.currentTab == cur) { return false; }
-    else {
       that.setData({
-        currentTab: cur,
+        order: cur,
+        sort: '',
       })
-    }
-    that.setData({
-      sort: 0,
-    })
-    wx.pageScrollTo({
-      scrollTop: 0
-    })
+    
   },
   // 价格按钮
   swichPice: function () {
     this.setData({
-      currentTab: 3,
+      order: 3,
     })
     if (this.data.sort == 1) {
-      console.log('bb')
       this.setData({
         sort: 2,
       })
@@ -63,11 +49,32 @@ Page({
       })
     }
   },
+  //淘宝9.9商品
+  getGoods: function () {
+    var that = this
+    http.httpGet('tbNineProductTotal', { page: that.data.page, limit: that.data.limit, order: that.data.order, sort: that.data.sort }, wx.getStorageSync('token'), function (res) {
+      var goods = that.data.goods.concat(res.data.list)
+      that.setData({
+        goods: goods,
+        loadingShow: true
+      });
+      wx.hideLoading();
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    wx.getStorage({
+      key: 'token',
+      success: function (res) {
+        that.setData({
+          token: res.data
+        });
+      }
+    })
+    that.getGoods()
   },
 
   /**
@@ -109,7 +116,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+     this.setData({
+       loadingShow:false
+     })
+     this.getGoods()
   },
 
   /**
