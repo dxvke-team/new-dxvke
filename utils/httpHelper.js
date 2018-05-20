@@ -36,6 +36,11 @@ function Post (url,data, token='', cb ){
       'token': token
     },
 		success: (res) => {
+      if (res.data.code == '601') {
+        wx.navigateTo({
+          url: '../login/login',
+        })
+      }
 			typeof cb == "function" && cb(res.data,"");
 		},
 		fail:(err) => {

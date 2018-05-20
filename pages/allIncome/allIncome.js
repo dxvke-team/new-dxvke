@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-     show:false,
+     show:true,
      command: "http://xlk.dxvke.com/api/toDownloadApp",
   },
   toshow: function (e) {

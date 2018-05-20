@@ -14,7 +14,7 @@ Page({
     list: 4,
     showAcer: true,
     showService: true,
-    showJuan: false,
+    showJuan: true,
     goodsDetail: {}, // 商品详情 - LQ
     command: '', //淘口令
     goodsType: '', //商品类型

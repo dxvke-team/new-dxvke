@@ -51,7 +51,7 @@
       <image src='../../images/share.png'></image>
       <view><button open-type='share'>分享</button></view>
     </view>
-    <view class='tab tab4' data-click_url='{{goodsDetail.click_url}}' data-pict_url='{{goodsDetail.pict_url}}' data-title='{{goodsDetail.title}}' catchtap='showJuan'>
+    <view class='tab tab4' data-click_url='{{goodsDetail.click_url}}' data-pict_url='{{goodsDetail.pict_url}}' data-title='{{goodsDetail.title}}'>
       <view>京东领券</view>
     </view>
   </view>

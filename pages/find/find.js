@@ -22,7 +22,7 @@ Page({
    //banner
   getBanner: function () {
     var that = this
-    http.httpGet("indexBanner", {type:11},that.data.token, function (res) {
+    http.httpGet("indexBanner", {type:11},wx.getStorageSync('token'), function (res) {
       that.setData({
         imgUrls: res.data
       });
@@ -32,7 +32,7 @@ Page({
   //淘宝9.9商品
   getGoods1: function () {
     var that = this
-    http.httpPost('tbNineProductTen', {}, that.data.token, function (res) {
+    http.httpPost('tbNineProductTen', {}, wx.getStorageSync('token'), function (res) {
       that.setData({
         goods1: res.data,
       });
@@ -43,7 +43,7 @@ Page({
   //急速秒杀商品
   getGoods2: function () {
     var that = this
-    http.httpPost('discoverPdd', {}, that.data.token, function (res) {
+    http.httpPost('discoverPdd', {}, wx.getStorageSync('token'), function (res) {
       that.setData({
         goods2: res.data,
       });
@@ -54,7 +54,7 @@ Page({
   //超值购商品
   getGoods3: function () {
     var that = this
-    http.httpPost('OverflowTen', {}, that.data.token, function (res) {
+    http.httpPost('OverflowTen', {}, wx.getStorageSync('token'), function (res) {
       that.setData({
         goods3: res.data,
       });
@@ -65,7 +65,7 @@ Page({
   //为你推荐商品
   getGoods4: function () {
     var that = this
-    http.httpPost('recommendTen', {}, that.data.token, function (res) {
+    http.httpPost('recommendTen', {}, wx.getStorageSync('token'), function (res) {
       that.setData({
         goods4: res.data,
       });
@@ -75,17 +75,17 @@ Page({
   },
   toGoodsDetail:function(e){
     wx.navigateTo({
-      url: "../goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id
+      url: "../goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id + '&type=0'
     })
   },
   toPinDetail:function(e){
     wx.navigateTo({
-      url: "../pinDetail/pinDetail?id=" + e.currentTarget.dataset.id
+      url: "../pinDetail/pinDetail?id=" + e.currentTarget.dataset.id + '&type=1'
     })
   },
   toJDdetail:function(e){
     wx.navigateTo({
-      url: "../JDdetail/JDdetail?id=" + e.currentTarget.dataset.id
+      url: "../JDdetail/JDdetail?id=" + e.currentTarget.dataset.id + '&type=2'
     })
   },
   /**
