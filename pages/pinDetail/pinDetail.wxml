@@ -2,16 +2,16 @@
 <view class='goodsDetail'>
   <view class='detail'>
   <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='height:100%;' indicator-color='rgba(255,255,255,.5)' indicator-active-color="white" circular="true">
-      <block wx:for="{{imgUrls}}" wx:key="{{item}}">
+      <block wx:for="{{goodsDetail.pict_url}}" wx:key="{{item}}">
         <swiper-item>
-          <image src="{{item.banner_image}}" class="slide-image" style="width:100%;height:100%;" catchtap='clickBanner' data-url='{{item.mini_url}}' />
+          <image src="{{item}}" class="slide-image" style="width:100%;height:100%;" />
         </swiper-item>
       </block>
     </swiper>
-    <image src='http:{{goodsDetail.pict_url}}' class='picture'></image>
+    <image src='{{goodsDetail.pict_url}}' class='picture'></image>
     <view class='detail_des'>
     <!-- {{goodsDetail.title}} -->
-      <text class='goods_name break'>哈哈哈哈或实地哦啊的涉农阿凡达死哦爱豆三栋赛抖擞的撒迪欧斯蒂芬</text>
+      <text class='goods_name break'>{{goodsDetail.title}} </text>
       <view class='flex' style='height:52rpx;'>
         <view class='display:flex;align-items: center;'>
           <view class='goods_price'>
@@ -26,7 +26,7 @@
             </text>
           </view>
         </view>
-        <view style='font-size:28rpx;color:#f40109;'>分享预估赚: 23.33元</view>
+        <view style='font-size:28rpx;color:#f40109;'>分享预估赚: {{goodsDetail.share_commission}}元</view>
       </view>
       <view style="font-size:28rpx; color:#999;height:56rpx;line-height:56rpx;">
         <text wx:if='{{goodsDetail.reserve_price.corner == 00}}'>价格<text style='text-decoration: line-through;margin-right:30rpx;'>￥{{goodsDetail.reserve_price.rmb}}</text></text>
@@ -36,7 +36,7 @@
     </view>
     <view class='des_title flex des'>
         <view>
-           最高分享赚: <text style='color:#f40109;'>2.89元</text>
+           最高分享赚: <text style='color:#f40109;'>{{goodsDetail.max_commission}}元</text>
         </view>
         <view style='display:flex;align-items: center;color:#999;'>
            立即申请
@@ -45,7 +45,7 @@
       </view>
     <view class='des'>
       <view class='des_title'>商品介绍 </view>
-      <view style='line-height:44rpx;color:#666;font-size:24rpx;padding-bottom:20rpx;' >哈哈睡抖擞的size藕丝到爱的风景搜爱的搜阿迪加搜爱打发时间</view>
+      <view style='line-height:44rpx;color:#666;font-size:24rpx;padding-bottom:20rpx;' >{{goodsDetail.item_description}}</view>
     </view>
   </view>
   <view style='height:98rpx;'></view>
@@ -69,10 +69,10 @@
       <view class="model_main_des">
         <view class="model_title">拼多多领券</view>
         <view style='font-size:24rpx;color:#333;line-height:76rpx;'>第一步：复制商品ID</view>
-        <input type="text" class="word" id="kouling" value='{{command}}' disabled='true'></input>
+        <input type="text" class="word" id="kouling" value='{{goodsDetail.copy_id}}' disabled='true'></input>
         <button class="m_btn" bindtap='copyCommand'>复制ID</button>
         <view style='font-size:24rpx;color:#333;line-height:76rpx;'>第二步: 联系客服，然后发送上一步复制的ID</view>
-         <button class="m_btn" bindtap='copyCommand'>联系客服领券</button>
+         <button class="m_btn" open-type='contact'>联系客服领券</button>
       </view>
       <image src="../../images/close.png" alt="" catchtap='closeJuan'></image>
     </view>

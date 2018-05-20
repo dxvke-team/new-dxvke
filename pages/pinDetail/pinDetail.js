@@ -1,5 +1,6 @@
 // pages/pinDeatail/pinDetail.js
 var http = require('../../utils/httpHelper.js');
+var login = require('../../utils/login.js');
 const app = getApp();
 wx.showShareMenu({
   withShareTicket: true
@@ -22,7 +23,7 @@ Page({
     var that = this;
     return {
       title: that.data.goodsDetail.title,
-      path: 'pages/goodsDetail/goodsDetail?id=' + that.data.goodsDetail.id + '&type=' + that.data.goodsType + 'is_share=1&share_member=' + wx.getStorageSync('member_id'),
+      path: 'pages/pinDetail/pinDetail?id=' + that.data.goodsDetail.id + '&type=' + that.data.goodsType + 'is_share=1&share_member=' + wx.getStorageSync('member_id'),
       success: function (res) {
         // 转发成功
         wx.showModal({
@@ -99,13 +100,12 @@ Page({
    */
   copyCommand: function () {
     var that = this;
-    console.log(that.data.command)
     wx.setClipboardData({
-      data: that.data.command,
+      data: that.data.goodsDetail.copy_id,
      
       success: function (res) {
         // wx.showModal({
-        //   content: '复制成功,请打开淘宝购买商品',
+        //   content: '复制成功',
         //   showCancel: false,
         //   success: function (result) {
         //     if (result.confirm) {

@@ -14,7 +14,7 @@ Page({
     list: 4,
     showAcer: true,
     showService: true,
-    showJuan: true,
+    showJuan: false,
     goodsDetail: {}, // 商品详情 - LQ
     command: '', //淘口令
     goodsType: '', //商品类型
@@ -24,7 +24,7 @@ Page({
     var that = this;
     return {
       title: that.data.goodsDetail.title,
-      path: 'pages/goodsDetail/goodsDetail?id=' + that.data.goodsDetail.id + '&type=' + that.data.goodsType + '&is_share=1&share_member='+ wx.getStorageSync('member_id'),
+      path: 'pages/JDdetail/JDdetail?id=' + that.data.goodsDetail.id + '&type=' + that.data.goodsType + '&is_share=1&share_member='+ wx.getStorageSync('member_id'),
       success: function (res) {
         // 转发成功
         wx.showModal({
@@ -116,17 +116,17 @@ Page({
   copyCommand: function () {
     var that = this;
     wx.setClipboardData({
-      data: that.data.command,
+      data: that.data.goodsDetail.copy_id,
       success: function (res) {
         wx.showModal({
-          content: '复制成功,请打开淘宝购买商品',
+          content: '复制成功',
           showCancel: false,
           success: function (result) {
-            if (result.confirm) {
-              that.setData({
-                showJuan: true
-              });
-            }
+            // if (result.confirm) {
+            //   that.setData({
+            //     showJuan: true
+            //   });
+            // }
           }
         })
       }
