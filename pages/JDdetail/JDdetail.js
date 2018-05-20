@@ -14,10 +14,12 @@ Page({
     list: 4,
     showAcer: true,
     showService: true,
-    showJuan: true,
+    showJuan: false,
     goodsDetail: {}, // 商品详情 - LQ
     command: '', //淘口令
     goodsType: '', //商品类型
+    isShare : false,
+    shareMember : ''
   },
 
   onShareAppMessage: function (res) {
@@ -42,6 +44,12 @@ Page({
     that.setData({
       show: false
     });
+    if (options.is_share == '1'){
+      that.setData({
+        isShare : true,
+        shareMember : options.share_member
+      });
+    }
     login.login(options);
     that.getProductDetail(options);
   },
@@ -115,20 +123,25 @@ Page({
    */
   copyCommand: function () {
     var that = this;
+
+    var copy_id = that.data.goodsDetail.copy_id + '-' + wx.getStorageSync('member_id');
+    if(that.data.isShare){
+      copy_id += '-' + that.data.shareMember
+    }
     wx.setClipboardData({
-      data: that.data.goodsDetail.copy_id,
+      data: copy_id,
       success: function (res) {
-        wx.showModal({
-          content: '复制成功',
-          showCancel: false,
-          success: function (result) {
-            // if (result.confirm) {
-            //   that.setData({
-            //     showJuan: true
-            //   });
-            // }
-          }
-        })
+        // wx.showModal({
+        //   content: '复制成功',
+        //   showCancel: false,
+        //   success: function (result) {
+        //     if (result.confirm) {
+        //       that.setData({
+        //         showJuan: true
+        //       });
+        //     }
+        //   }
+        // })
       }
     })
   }
