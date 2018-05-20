@@ -15,9 +15,9 @@
   </view>
   <view class="{{scroll_height<height?'barrage':'barraging'}}">
     <view class='tab'>
-      <view wx:for='{{tabList}}' wx:key='{{item}}' class="tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bindtap="swichNav">
-        <image src='{{item.img}}' class='tab-icon' wx:if='{{currentTab !==index}}'></image>
-        <image src='{{item.img2}}' class='tab-icon' wx:if='{{currentTab==index}}'></image>
+      <view wx:for='{{tabList}}' wx:key='{{item}}' class="tab-item {{currentTab==item.product_type?'active':''}}" data-current="{{item.product_type}}" bindtap="swichNav">
+        <image src='{{item.img}}' class='tab-icon' wx:if='{{currentTab !==item.product_type}}'></image>
+        <image src='{{item.img2}}' class='tab-icon' wx:if='{{currentTab==item.product_type}}'></image>
         {{item.name}}
       </view>
     </view>

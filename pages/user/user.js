@@ -28,19 +28,6 @@ Page({
       });
     });
   },
-onShareAppMessage: function (res) {
-  return {
-    title: '洞悉微客',
-    path: 'pages/index/index',
-    success: function (res) {
-      // 转发成功
-      wx.showModal({
-        content: '转发成功',
-        showCancel: false,
-      })
-    }
-  }
-},
 
 toOrderList:function(e){
   var type = e.currentTarget.dataset.type

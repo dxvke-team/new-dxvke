@@ -1,16 +1,16 @@
 <!--pages/goodsDeatail/goodsDetail.wxml-->
 <view class='goodsDetail'>
   <view class='detail'>
-    <image src='http:{{goodsDetail.pict_url}}' class='picture'></image>
+    <image src='{{goodsDetail.pict_url}}' class='picture'></image>
     <view class='detail_des'>
     <!-- {{goodsDetail.title}} -->
-      <text class='goods_name break'>哈哈哈哈或实地哦啊的涉农阿凡达死哦爱豆三栋赛抖擞的撒迪欧斯蒂芬</text>
+      <text class='goods_name break'>{{goodsDetail.title}} </text>
       <view class='flex' style='height:52rpx;'>
         <view class='display:flex;align-items: center;'>
           <view class='goods_price'>
             <text style='font-size:28rpx;color:#ff5606;'>券后: </text>￥
             <text style='font-size:46rpx;'>{{goodsDetail.zk_final_price.rmb}}</text>
-            <text wx:if='{{goodsDetail.zk_final_price.corner != 00}}'>.{{goodsDetail.zk_final_price.corner}}</text>
+            <text wx:if='{{goodsDetail.reserve_price.corner != 00}}'>.{{goodsDetail.zk_final_price.corner}}</text>
           </view>
           <view style="">
             <text class="juan_style">
@@ -19,17 +19,17 @@
             </text>
           </view>
         </view>
-        <view style='font-size:28rpx;color:#ff5606;'>分享预计赚: 23.33元</view>
+        <view style='font-size:28rpx;color:#ff5606;'>分享预估赚: {{goodsDetail.share_commission}}元</view>
       </view>
       <view style="font-size:28rpx; color:#999;height:56rpx;line-height:56rpx;">
-        <text wx:if='{{goodsDetail.reserve_price.corner == 00}}'>价格<text style='text-decoration: line-through;margin-right:30rpx;'>￥{{goodsDetail.reserve_price.rmb}}</text></text>
+        <text wx:if='{{goodsDetail.market_price.corner == 00}}'>价格<text style='text-decoration: line-through;margin-right:30rpx;'>￥{{goodsDetail.reserve_price.rmb}}</text></text>
 
         <text wx:else>价格<text style='text-decoration: line-through;margin-right:30rpx;'>￥{{goodsDetail.reserve_price.rmb}}.{{goodsDetail.reserve_price.corner}}</text></text>
       </view>
     </view>
     <view class='des_title flex des'>
         <view>
-           最高分享赚: <text style='color:#ff5606;'>2.89元</text>
+           最高分享赚: <text style='color:#ff5606;'>{{goodsDetail.max_commission}}元</text>
         </view>
         <view style='display:flex;align-items: center;color:#999;'>
            立即申请
@@ -49,9 +49,9 @@
       <image src='../../images/index_icon.png'></image>
       <view>首页</view>
     </view>
-    <view class='tab2 tab' catchtap='service'>
+    <view class='tab2 tab' catchtap='service'catchtap='onShareAppMessage'>
       <image src='../../images/share.png'></image>
-      <view>分享</view>
+      <view><button open-type='share'>分享</button></view>
     </view>
     <view class='tab tab4' data-click_url='{{goodsDetail.click_url}}' data-pict_url='{{goodsDetail.pict_url}}' data-title='{{goodsDetail.title}}' catchtap='showJuan'>
       <view>淘口令领券</view>

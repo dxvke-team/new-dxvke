@@ -6,14 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    pid : ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this;
+    that.setData({
+      pid : options.pid
+    });
   },
 
   /**
@@ -65,10 +68,17 @@ Page({
   
   },
 
+  cancelInfo : function(){
+    wx.switchTab({
+      url: '../index/index',
+    })
+  },
+
   /**
    * 用户点击授权信息
    */
   userInfoHandler: function(res){
+    var that = this;
     var userInfo = res.detail;
     if (userInfo.userInfo){
       wx.request({
@@ -77,7 +87,8 @@ Page({
         data:{
           encryptedData: userInfo.encryptedData,
           iv : userInfo.iv,
-          session_key: wx.getStorageSync('LoginSessionKey')
+          session_key: wx.getStorageSync('LoginSessionKey'),
+          pid: that.data.pid
         },
         success:function(requestData){
           if (requestData.data.code == 200){ //成功
@@ -88,14 +99,14 @@ Page({
             })
           }else{
             wx.switchTab({
-              url: 'pages/index/index'
+              url: '../index'
             })
           }
         }
       });
     } else {
       wx.switchTab({
-        url: 'pages/index/index'
+        url: '../index/index'
       })
     }
   }

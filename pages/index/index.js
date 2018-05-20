@@ -19,17 +19,20 @@ Page({
       {
         img:'../../images/index/taobao.png',
         img2:'../../images/index/taobao_active.png',
-        name:'淘宝'
+        name:'淘宝',
+        product_type:0
       },
       {
         img: '../../images/index/JD.png',
         img2: '../../images/index/JD_active.png',
-        name: '京东'
+        name: '京东',
+        product_type : 2
       },
       {
         img: '../../images/index/pin.png',
         img2: '../../images/index/pin_active.png',
-        name: '拼多多'
+        name: '拼多多',
+        product_type : 1
       },
     ],//淘宝，京东，拼多多
     currentTab:0,//选中的
@@ -51,7 +54,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
     var that=this
     var query=wx.createSelectorQuery()
     //选择id
@@ -67,12 +70,7 @@ Page({
       mask: true
     })
     var that = this;
-    login.login(function(res){
-        that.setData({
-          token:res
-        });
-    });
-    
+    login.login(options);
     that.getBanner()
     that.getGoodsType()
     that.getGoods()
@@ -82,7 +80,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: '洞悉微客',
-      path: 'pages/index/index',
+      path: 'pages/index/index?is_share=1&share_member='+wx.getStorageSync('member_id'),
       success: function (res) {
         // 转发成功
         wx.showModal({
@@ -102,7 +100,7 @@ Page({
   //首页banner
   getBanner:function(){
     var that = this
-    http.httpGet("indexBanner", {type:10}, that.token,function (res) {
+    http.httpGet("indexBanner", {type:10}, wx.getStorageSync('token'),function (res) {
       that.setData({
         imgUrls: res.data
       });
@@ -118,7 +116,7 @@ Page({
       data = { page: that.data.page, limit: that.data.limit, product_type: that.data.currentTab, cate_type: that.data.cate_type_id }
     }
     
-    http.httpGet('productList', data, that.token, function (res) {
+    http.httpGet('productList', data, wx.getStorageSync('token'), function (res) {
       if(res.data.list.length!==0){
         var goods = that.data.goods.concat(res.data.list)
         that.setData({
@@ -141,7 +139,7 @@ Page({
     }else{
       data = { type: that.data.currentTab }
     }
-    http.httpGet('productCateList', data, that.token,function (res) {
+    http.httpGet('productCateList', data, wx.getStorageSync('token'),function (res) {
       that.setData({
         goods_type: res.data,
         cate_type_id:res.data[0].id
@@ -160,7 +158,7 @@ Page({
       wx.navigateTo({
         url: "../goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id + '&type=' + self.data.currentTab
       })
-    } else if (this.data.currentTab == 1){
+    } else if (this.data.currentTab == 2){
       wx.navigateTo({
         url: "../JDdetail/JDdetail?id=" + e.currentTarget.dataset.id + '&type=' + self.data.currentTab
       })

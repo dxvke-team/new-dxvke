@@ -1,7 +1,12 @@
 var http = require('httpHelper.js');
 var config = require('../config.js');
 
-function login(cb){
+function login(options){
+    if(options.is_share){
+      var pid = options.share_member;
+    }else{
+      var pid = '';
+    }
     wx.login({
       success:function(res){
         if (res.code) {
@@ -17,7 +22,6 @@ function login(cb){
                 wx.setStorageSync('LoginSessionKey', info.data.session_key);
                 wx.setStorageSync('token', info.data.token);
                 wx.setStorageSync('member_id', info.data.user_id);
-                typeof cb == "function" && cb(info.data.token);
               }else{ //該用戶未註冊,獲取用戶信息進行註冊
                 wx.setStorageSync('LoginSessionKey', info.data.session_key);
                 //判斷該用户是否已授权
@@ -27,7 +31,7 @@ function login(cb){
                   
                       //跳转到登录页面
                       wx.navigateTo({
-                        url: '../login/login',
+                        url: '../login/login?pid='+pid,
                       })
                     } else {
                       wx.getUserInfo({
@@ -38,7 +42,8 @@ function login(cb){
                             data: {
                               encryptedData: newInfo.encryptedData,
                               iv: newInfo.iv,
-                              session_key: wx.getStorageSync('LoginSessionKey')
+                              session_key: wx.getStorageSync('LoginSessionKey'),
+                              pid:pid
                             },
                             success: function (requestData) {
                               if (requestData.data.data.code == 200) { //成功
@@ -49,7 +54,7 @@ function login(cb){
                                 })
                               } else {
                                 wx.switchTab({
-                                  url: 'pages/index/index'
+                                  url: '../index/index'
                                 })
                               }
                             }
@@ -63,7 +68,9 @@ function login(cb){
             }
           })
         } else {
-          console.log('登录失败！' + res.errMsg)
+          wx.switchTab({
+            url: '../index/index'
+          })
         }
       }
     })
