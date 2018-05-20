@@ -26,7 +26,7 @@
             </text>
           </view>
         </view>
-        <view style='font-size:28rpx;color:#f40109;'>分享预估赚: 23.33元</view>
+        <view style='font-size:28rpx;color:#f40109;'>分享预计赚: 23.33元</view>
       </view>
       <view style="font-size:28rpx; color:#999;height:56rpx;line-height:56rpx;">
         <text wx:if='{{goodsDetail.reserve_price.corner == 00}}'>价格<text style='text-decoration: line-through;margin-right:30rpx;'>￥{{goodsDetail.reserve_price.rmb}}</text></text>

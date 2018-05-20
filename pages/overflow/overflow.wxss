@@ -1,29 +1,4 @@
 /* pages/overflow/overflow.wxss */
-.tab-h{
-  height: 80rpx;
-  width: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
-  line-height: 80rpx;
-  background: white;
-  font-size: 28rpx;
-  white-space: nowrap;
-  border-top: 1rpx solid #e5e5e5;
-  border-bottom: 1rpx solid #e5e5e5;
-  position: fixed;
-  top: 0;
-}
-.tab-item{
-  display: inline-block;
-  color: #333;
-  width: calc(100%/4);
-  text-align: center;
-  position: relative;
-
-}
-.tab-item.active{
-   color: #9a7bff;
-}
 .name {
   font-size: 28rpx;
   color: #333;

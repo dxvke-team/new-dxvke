@@ -93,11 +93,10 @@
 .tab_item.active::after{
 content: "";
   display: block;
-  height: 8rpx;
+  height: 6rpx;
   width: 124rpx;
   background: #9a7bff;
   position: absolute;
   bottom: 0;
   left: calc((100% - 124rpx)/2);
-  border-radius: 16rpx;
 }

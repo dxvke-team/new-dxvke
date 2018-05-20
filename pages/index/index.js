@@ -171,35 +171,54 @@ Page({
     }
     
   },
+  bindDownLoad:function(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    })
+    var page = this.data.page + 1
+    this.setData({
+      page: page,
+      loadingShow: false,
+    })
+    this.getGoods()
+  },
+  toTop: function () {
+    this.setData({
+      scrollTop: 0
+    })
+  },
+  refresh:function(){
+    if (this.data.scroll_height<'-10'){
+      this.setData({
+        imgUrls: [], //banner图
+        goods: [], //商品列表
+        goods_type: [], //商品分类
+        scrollTop: 0,
+        page: 1
+      });
+      this.getBanner()
+      this.getGoods()
+      this.getGoodsType()
+      wx.stopPullDownRefresh()
+    }
+   
+  },
   onPullDownRefresh: function () {
     this.setData({
       imgUrls: [], //banner图
       goods: [], //商品列表
       goods_type: [], //商品分类
       scrollTop: 0,
-      page:1
+      page: 1
     });
     this.getBanner()
     this.getGoods()
-    // this.getGoodsType()
+    this.getGoodsType()
     wx.stopPullDownRefresh()
   },
   onReachBottom: function () {
-    // wx.showLoading({
-    //   title: '加载中',
-    //   mask: true,
-    // })
-    var page = this.data.page +  1
-    this.setData({
-      page:page,
-      loadingShow:false,
-    })
-    this.getGoods()
-  },
-  toTop:function(){
-    wx.pageScrollTo({
-      scrollTop: 0
-    })
+    
   },
 
   //banner跳转

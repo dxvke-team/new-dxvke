@@ -7,9 +7,9 @@
   <view class='search flex'>
     <view class='search-main'>
       <image src="../../images/search.png"></image>
-      <input focus="{{focus}}" bindfocus="bindfocus" bindconfirm="bindconfirm" confirm-type="search" value="{{keywords}}" placeholder="请输入"></input>
+      <input bindconfirm="bindconfirm" confirm-type="search" value="{{keywords}}" placeholder="请输入" bindinput='keywordsInput'></input>
     </view>
-    <view catchtap='toSearch' class='search-btn'>搜索</view>
+    <view catchtap='bindconfirm' class='search-btn'>搜索</view>
   </view>
   <view class='search_history'>
     <view style='position: relative;'>

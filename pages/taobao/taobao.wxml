@@ -1,10 +1,10 @@
 <!--pages/taobao/taobao.wxml-->
 <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
-      <view class="tab-item {{currentTab==0?'active':''}}" data-current="0"  bindtap="swichNav">综合</view>
-      <view class="tab-item {{currentTab==1?'active':''}}" data-current="1"  bindtap="swichNav">券额</view>
-      <view class="tab-item {{currentTab==2?'active':''}}" data-current="2"  bindtap="swichNav">新品</view>
-      <view class="tab-item {{sort!==0?'active':''}}" data-current="3"  bindtap="swichPice">价格
-        <image src='../../images/sort_price.png' style='width:12rpx;height:19rpx;margin-left:8rpx;' wx:if="{{sort==0}}"></image>
+      <view class="tab-item {{order==0?'active':''}}" data-current="0"  bindtap="swichNav">综合</view>
+      <view class="tab-item {{order==1?'active':''}}" data-current="1"  bindtap="swichNav">券额</view>
+      <view class="tab-item {{order==2?'active':''}}" data-current="2"  bindtap="swichNav">新品</view>
+      <view class="tab-item {{sort!==''?'active':''}}" data-current="3"  bindtap="swichPice">价格
+        <image src='../../images/sort_price.png' style='width:12rpx;height:19rpx;margin-left:8rpx;' wx:if="{{sort==''}}"></image>
         <image src='../../images/sort_price_asc.png' style='width:12rpx;height:19rpx;margin-left:8rpx;' wx:if="{{sort==1}}"></image>
         <image src='../../images/sort_price_desc.png' style='width:12rpx;height:19rpx;margin-left:8rpx;' wx:if="{{sort==2}}"></image>
       </view>
@@ -26,7 +26,7 @@
             </view>
             <view>
               <view>
-                <view class='share-income'>分享赚: 3.22元</view>
+                <view class='share-income'>预计赚: {{item.share_commission}}元</view>
               </view>
               <view class='des'>
                 <view style='color:#f51d46;'>
@@ -41,4 +41,5 @@
           </view>
         </view>
       </block>
+      <view hidden='{{loadingShow}}' class='load'>正在加载...</view>
     </view>

@@ -4,24 +4,24 @@
     indicator-color='rgba(255,255,255,.5)' indicator-active-color="white" circular="true">
     <block wx:for="{{imgUrls}}" wx:key="{{item}}">
       <swiper-item style="width:calc(100% - 18rpx);">
-        <image src="{{item.banner_image}}" class="slide-image" style="height:100%;width:calc(100% - 18rpx);border-radius: 8rpx;" catchtap='clickBanner' data-url='{{item.mini_url}}' />
+        <image src="{{item.image}}" class="slide-image" style="height:100%;width:calc(100% - 18rpx);border-radius: 8rpx;" catchtap='clickBanner' data-url='{{item.click_url}}' />
       </swiper-item>
     </block>
   </swiper>
   <view class='nav'>
-    <view class='nav-item'>
+    <view class='nav-item' catchtap='toTaobao'>
       <image src='../../images/find/tao.png' class='icon'></image>
       <view class='type'>淘宝9.9</view>
     </view>
-    <view class='nav-item'>
+    <view class='nav-item' catchtap='toSeckill'>
       <image src='../../images/find/pin.png' class='icon'></image>
       <view class='type'>极速秒杀</view>
     </view>
-    <view class='nav-item'>
+    <view class='nav-item' catchtap='toOverflow'>
       <image src='../../images/find/JD.png' class='icon'></image>
       <view class='type'>超值购</view>
     </view>
-    <view class='nav-item'>
+    <view class='nav-item' catchtap='toRecommend'>
       <image src='../../images/find/xlk.png' class='icon'></image>
       <view class='type'>为您推荐</view>
     </view>
@@ -31,8 +31,8 @@
       <image src='../../images/find/icon.png' class='main-icon'></image>淘宝9.9
     </view>
     <view style='background:white;'>
-      <block wx:for="{{goods}}" wx:key="{{item}}">
-        <view class="item-ans">
+      <block wx:for="{{goods1}}" wx:key="{{item}}">
+        <view class="item-ans" catchtap="toGoodsDetail" data-id='{{item.id}}'>
           <view class="avatar">
             <image class="img" src="{{item.pict_url}}"></image>
           </view>
@@ -46,7 +46,7 @@
             </view>
             <view>
               <view>
-                <view class='share-income'>分享赚: 3.22元</view>
+                <view class='share-income'>预计赚: 3.22元</view>
               </view>
               <view class='des'>
                 <view style='color:#f51d46;'>
@@ -71,8 +71,8 @@
       <image src='../../images/find/icon2.png' class='main-icon'></image>急速秒杀
     </view>
     <view style='background:white;'>
-      <block wx:for="{{goods}}" wx:key="{{item}}">
-        <view class="item-ans">
+      <block wx:for="{{goods2}}" wx:key="{{item}}">
+        <view class="item-ans" catchtap="toPinDetail" data-id='{{item.id}}'>
           <view class="avatar">
             <image class="img" src="{{item.pict_url}}"></image>
           </view>
@@ -86,7 +86,7 @@
             </view>
             <view>
               <view>
-                <view class='share-income'>分享赚: 3.22元</view>
+                <view class='share-income'>预计赚: 3.22元</view>
               </view>
               <view class='des'>
                 <view style='color:#f51d46;'>
@@ -111,8 +111,8 @@
       <image src='../../images/find/icon3.png' class='main-icon'></image>超值购
     </view>
     <view style='flex-wrap: wrap;margin-bottom:10rpx;' class='flex'>
-      <block wx:for="{{goods}}" wx:key="{{item}}">
-        <view class="goods-list">
+      <block wx:for="{{goods3}}" wx:key="{{item}}">
+        <view class="goods-list"  catchtap="toJDdetail" data-id='{{item.id}}'>
           <image class="" src="{{item.pict_url}}" style='width:100%;height:370rpx;'></image>
           <view style='padding:0 20rpx;height:172rpx;'>
             <view class="name" style='height:58rpx;line-height:58rpx;'>{{item.title}}</view>
@@ -121,7 +121,7 @@
                 <view class="juan_style_left">券</view>
                 <view class="juan_style_right">{{item.coupon_number}}元</view>
               </view>
-              <view class='share-income'>分享赚: 3.22元</view>
+              <view class='share-income'>预计赚: 3.22元</view>
             </view>
             <view style='color:#f51d46;height:82rpx;line-height:82rpx;'>
               <text style='font-size:24rpx;'>￥</text>
@@ -141,8 +141,8 @@
       <image src='../../images/find/icon4.png' class='main-icon'></image>为您推荐
     </view>
     <view style='flex-wrap: wrap;margin-bottom:10rpx;' class='flex'>
-      <block wx:for="{{goods}}" wx:key="{{item}}">
-        <view class="goods-list">
+      <block wx:for="{{goods4}}" wx:key="{{item}}">
+        <view class="goods-list" catchtap="toPinDetail" data-id='{{item.id}}'>
           <image class="" src="{{item.pict_url}}" style='width:100%;height:370rpx;'></image>
           <view style='padding:0 20rpx;height:172rpx;'>
             <view class="name" style='height:58rpx;line-height:58rpx;'>{{item.title}}</view>
@@ -151,7 +151,7 @@
                 <view class="juan_style_left">券</view>
                 <view class="juan_style_right">{{item.coupon_number}}元</view>
               </view>
-              <view class='share-income'>分享赚: 3.22元</view>
+              <view class='share-income'>预计赚: 3.22元</view>
             </view>
             <view style='color:#f51d46;height:82rpx;line-height:82rpx;'>
               <text style='font-size:24rpx;'>￥</text>

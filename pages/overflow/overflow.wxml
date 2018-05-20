@@ -1,16 +1,5 @@
 <!--pages/overflow/overflow.wxml-->
 <view class="container" style='font-size:0;'>
-   <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
-      <view class="tab-item {{currentTab==0?'active':''}}" data-current="0"  bindtap="swichNav">综合</view>
-      <view class="tab-item {{currentTab==1?'active':''}}" data-current="1"  bindtap="swichNav">券额</view>
-      <view class="tab-item {{currentTab==2?'active':''}}" data-current="2"  bindtap="swichNav">新品</view>
-      <view class="tab-item {{sort!==0?'active':''}}" data-current="3"  bindtap="swichPice">价格
-        <image src='../../images/sort_price.png' style='width:12rpx;height:19rpx;margin-left:8rpx;' wx:if="{{sort==0}}"></image>
-        <image src='../../images/sort_price_asc.png' style='width:12rpx;height:19rpx;margin-left:8rpx;' wx:if="{{sort==1}}"></image>
-        <image src='../../images/sort_price_desc.png' style='width:12rpx;height:19rpx;margin-left:8rpx;' wx:if="{{sort==2}}"></image>
-      </view>
-    </scroll-view>
-    <view style='height:80rpx;'></view>
    <view style='flex-wrap: wrap;margin-bottom:10rpx;' class='flex'>
       <block wx:for="{{goods}}" wx:key="{{item}}">
         <view class="goods-list">

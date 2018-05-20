@@ -68,3 +68,7 @@
 		background: linear-gradient(left, #8721b5, #db3283);
 		/* 标准的语法 */
 }
+.scoll-h{
+  overflow: scroll;
+  height: 100%;
+}
