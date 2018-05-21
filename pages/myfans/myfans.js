@@ -1,18 +1,22 @@
 // pages/myfans/myfans.js
+var login = require('../../utils/login.js');
+var http = require('../../utils/httpHelper.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    fansList:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    login.login(options);
+    //分页请求粉丝列表接口
   },
 
   /**

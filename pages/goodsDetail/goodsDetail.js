@@ -45,6 +45,12 @@ Page({
     that.setData({
       show:false
     });
+    if(options.is_share == 1){
+      that.setData({
+        isShare : true,
+        shareMember : options.share_member
+      });
+    }
     login.login(options);
     that.getProductDetail(options);
   },

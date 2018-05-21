@@ -22,7 +22,7 @@ Page({
    //banner
   getBanner: function () {
     var that = this
-    http.httpGet("indexBanner", { type: 11 }, wx.getStorageSync('token'), function (res) {
+    http.httpGet("indexBanner", {type:11},wx.getStorageSync('token'), function (res) {
       that.setData({
         imgUrls: res.data
       });
@@ -75,17 +75,17 @@ Page({
   },
   toGoodsDetail:function(e){
     wx.navigateTo({
-      url: "../goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id
+      url: "../goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id + '&type=0'
     })
   },
   toPinDetail:function(e){
     wx.navigateTo({
-      url: "../pinDetail/pinDetail?id=" + e.currentTarget.dataset.id
+      url: "../pinDetail/pinDetail?id=" + e.currentTarget.dataset.id + '&type=1'
     })
   },
   toJDdetail:function(e){
     wx.navigateTo({
-      url: "../JDdetail/JDdetail?id=" + e.currentTarget.dataset.id
+      url: "../JDdetail/JDdetail?id=" + e.currentTarget.dataset.id + '&type=2'
     })
   },
   /**

@@ -1,5 +1,6 @@
 // pages/pinDeatail/pinDetail.js
 var http = require('../../utils/httpHelper.js');
+var login = require('../../utils/login.js');
 const app = getApp();
 wx.showShareMenu({
   withShareTicket: true
@@ -16,13 +17,14 @@ Page({
     goodsDetail: {}, // 商品详情 - LQ
     command: "234325", //淘口令
     goodsType: '', //商品类型
+    isShare : ''
   },
 
   onShareAppMessage: function (res) {
     var that = this;
     return {
       title: that.data.goodsDetail.title,
-      path: 'pages/goodsDetail/goodsDetail?id=' + that.data.goodsDetail.id + '&type=' + that.data.goodsType + 'is_share=1&share_member=' + wx.getStorageSync('member_id'),
+      path: 'pages/pinDetail/pinDetail?id=' + that.data.goodsDetail.id + '&type=' + that.data.goodsType + '&is_share=1&share_member=' + wx.getStorageSync('member_id'),
       success: function (res) {
         // 转发成功
         wx.showModal({
@@ -40,6 +42,13 @@ Page({
     that.setData({
       show: false
     });
+    if (options.is_share == '1') {
+      that.setData({
+        isShare: true,
+        shareMember: options.share_member
+      });
+    }
+    console.log(options);
     login.login(options);
     that.getProductDetail(options);
   },
@@ -99,22 +108,15 @@ Page({
    */
   copyCommand: function () {
     var that = this;
-    console.log(that.data.command)
+    var copy_id = that.data.goodsDetail.copy_id + '-' + wx.getStorageSync('member_id');
+    if (that.data.isShare) {
+      copy_id += '-' + that.data.shareMember
+    }
     wx.setClipboardData({
-      data: that.data.command,
-     
+      data: copy_id,
       success: function (res) {
-        // wx.showModal({
-        //   content: '复制成功,请打开淘宝购买商品',
-        //   showCancel: false,
-        //   success: function (result) {
-        //     if (result.confirm) {
-        //       that.setData({
-        //         showJuan: true
-        //       });
-        //     }
-        //   }
-        // })
+        //复制成功,记录领券信息
+        
       }
     })
   }
