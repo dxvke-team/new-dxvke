@@ -1,17 +1,15 @@
 /* pages/seckill/seckill.wxss */
-.overflow{
-  width: 100%;
+.seckill{
   font-size: 0;
-  height: 100%;
-  position: fixed;
-  top: 0;
 }
 .tab{
   height: 88rpx;
-  line-height: 88rpx;
-
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
 }
-.tab view{
+.tab>view{
   display: inline-block;
   font-size: 28rpx;
   text-align: center;
@@ -20,78 +18,106 @@
   background-color: #414141;
 }
 .tab-item.active{
-  background-color: #ff425f;
+  background-color: #f51d46;
+}
+.tab-item{
+  position: relative;
+  flex-direction: column;
+  height: 88rpx;
+}
+ .tab-item>view:nth-child(1){
+  line-height: 44rpx;
+  margin-top: 4rpx;
+} 
+.tab-item.active::after{
+  width: 0rpx;
+  height: 0rpx;
+  border:8rpx solid transparent;
+  border-top: 8rpx solid #f51d46;
+  position: absolute;
+  content: '';
+  bottom: -16rpx;
+  left: calc((100% - 16rpx)/2);
 }
 
 
-
+/*商品列表样式  */
 .item-ans {
+  font-size: 0;
   width: 100%;
   display: flex;
   flex-grow: row no-wrap;
   justify-content: space-between;
-  padding: 30rpx;
+  padding: 20rpx 26rpx 40rpx 30rpx;
   box-sizing: border-box;
   align-items: flex-start;
-  border-bottom: 2rpx solid #f4f4f4;
+  border-bottom: 2rpx solid #e5e5e5;
 
 }
 
 .avatar {
-  width: 240rpx;
-  height: 224rpx;
-  position: relative;
-  padding-right: 30rpx;
+  width: 230rpx;
+  height: 230rpx;
+  padding-right: 24rpx;
 }
 
 .avatar .img {
-   width: 240rpx;
-  height: 224rpx;
+   width: 230rpx;
+  height: 230rpx;
+  border-radius: 8rpx;
 }
-
-.avatar .doyen {
-  width: 40rpx;
-  height: 40rpx;
-  position: absolute;
-  bottom: -2px;
-  right: 20rpx;
-}
-
 .expertInfo {
   flex-grow: 2;
-  margin-left: 10rpx;
-  height: 224rpx;
-  position: relative;
+  height: 230rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
-.expertInfo .name {
-  font-size: 32rpx;
+.name {
+  font-size: 28rpx;
   color: #333;
-  height: 48rpx;
+  height: 50rpx;
+  line-height: 50rpx;
   overflow: hidden;
 }
 .tab-content {
   background: white;
 }
-.overflow .old_price{
-  font-size: 20rpx;
+.old_price{
+  font-size: 24rpx;
     color: #999;
     margin-left: 10rpx;
     text-decoration: line-through;
 }
 .des{
-  display:flex;align-items:flex-end;position:absolute;bottom:0;
+  display:flex;align-items:flex-end;
+  justify-content: space-between;
 }
 .btn{
-  border-radius: 50rpx;
-    margin-top: 5rpx;
-    width: 116rpx;
+    border-radius: 8rpx; 
+    width: 130rpx;
     font-size: 24rpx;
     color: #fff;
-    background-color: #ff425f;
-    line-height: 46rpx;
-    display: inline-block;
-    margin:10rpx 0;
+    background-color: #f51d46;
+    line-height: 56rpx;
+    text-align: center;
+}
+.share-income{
+   font-size: 20rpx;
+   color: white;
+   display: inline-block;
+   padding: 0 16rpx;
+   border-radius: 16rpx;
+   height: 32rpx;
+   line-height: 32rpx;
+   background: -webkit-linear-gradient(left, #f51d46, #fe6d13);
+		/* Safari 5.1 - 6.0 */
+		background: -o-linear-gradient(left, #8721b5, #db3283);
+		/* Opera 11.1 - 12.0 */
+		background: -moz-linear-gradient(left, #8721b5, #db3283);
+		/* Firefox 3.6 - 15 */
+		background: linear-gradient(left, #8721b5, #db3283);
+		/* 标准的语法 */
 }
 .scoll-h{
   overflow: scroll;

@@ -12,6 +12,7 @@
   border-bottom: 1rpx solid #e5e5e5;
   position: fixed;
   top: 0;
+  z-index: 9999；
 }
 .tab-item{
   display: inline-block;
@@ -53,4 +54,8 @@
   width: calc((100% - 10rpx)/2);
   margin-top: 10rpx;
   font-size: 0;
+}
+.scoll-h{
+  overflow: scroll;
+  height: 100%;
 }

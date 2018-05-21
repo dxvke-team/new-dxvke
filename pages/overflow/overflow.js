@@ -1,38 +1,45 @@
 // pages/overflow/overflow.js
+var http = require('../../utils/httpHelper.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goods: [{
-      id: 1,
-      pict_url: '../../images/empty_img.png',
-      title: '商品名称',
-      coupon_number: '100',
-      zk_final_price: {
-        rmb: '99',
-        corner: '99'
-      },
+    page:1,
+    limit:20,
+    goods: [
+    //   {
+    //   id: 1,
+    //   pict_url: '../../images/empty_img.png',
+    //   title: '商品名称',
+    //   coupon_number: '100',
+    //   zk_final_price: {
+    //     rmb: '99',
+    //     corner: '99'
+    //   },
 
-    }, {
-      id: 1,
-      pict_url: '../../images/empty_img.png',
-      title: '商品名称',
-      coupon_number: '100',
-      zk_final_price: {
-        rmb: '99',
-        corner: '99'
-      },
-
-    }
+    // }
     ],
+    loadingShow:true,
+  },
+  getGoods: function () {
+    var that = this
+    http.httpGet('overflowTotal', { page: that.data.page, limit: that.data.limit, order: 0, sort: that.data.sort }, wx.getStorageSync('token'), function (res) {
+      var goods = that.data.goods.concat(res.data.list)
+      that.setData({
+        loadingShow: true,
+        goods: goods,
+
+      });
+      wx.hideLoading();
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getGoods()
   },
 
   /**
@@ -74,7 +81,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var page = this.data.page + 1
+    this.setData({
+      page:page,
+      loadingShow:false
+    })
+    this.getGoods()
   },
 
   /**

@@ -64,8 +64,28 @@
     border: none;
     padding: 0;
     outline: none;
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    z-index: 9999;
+  }
+  .model-close{
+    border-bottom-right-radius: 0;
+  }
+  .model-set{
+    border-bottom-left-radius: 0;
   }
   .model-set{
     color: #9a7bff;
      border-left: 1rpx solid #d2d3d5;
   }
+
+
+   button[plain] {
+color:#353535;
+border:none;
+background-color:transparent;
+ 
+}
+button[plain]:nth-child(1){
+  border-right: 1rpx solid #e5e5e5;
+}

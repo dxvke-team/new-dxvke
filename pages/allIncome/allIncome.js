@@ -1,4 +1,5 @@
 // pages/allIncome/allIncome.js
+var http = require('../../utils/httpHelper.js')
 Page({
 
   /**

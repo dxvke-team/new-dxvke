@@ -80,6 +80,14 @@
   width: 25%;
   text-align: center;
 }
+.tab2{
+  position: relative;
+}
+.share-icon{
+  position: absolute;
+  left: calc((100% - 40rpx)/2);
+  top: 16rpx;
+}
 .tab4{
   width: 50%;
    font-size: 28rpx;
@@ -194,3 +202,21 @@
     top: calc(((100% - 320rpx) / 2) - 300rpx);
     z-index: 999999;
   }
+
+
+  .btn{
+    position:static;
+    height: 98rpx;
+    border-radius: 0;
+    font-size: 20rpx;
+    color: #444;
+    padding-top: 48rpx;
+    box-sizing: border-box;
+
+  }
+  button[plain] {
+color:#353535;
+border:none;
+background-color:transparent;
+
+}

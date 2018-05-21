@@ -7,23 +7,17 @@ Page({
    */
   data: {
     winHeight: "",//窗口高度
-    currentTab: 0, //预设当前项的值
+    status: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
     scorllTop: 0,
-    banner: "", //banner图
     timeList: [{
-      start_time: '8:00',
+      time: '8:00',
       status: 1,
     }], //抢购时间列表
     goodsList1: [], //抢购商品
     goodsList2: [], //抢购商品
     goodsList3: [], //抢购商品
     goodsList4: [], //抢购商品
-    page1: 1, //页码
-    page2: 1,
-    page3: 1,
-    page4: 1,
-    limit: 10, //每页显示条数
   },
   // 滚动切换标签样式
   switchTab: function (e) {
@@ -35,28 +29,13 @@ Page({
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var that = this
-    var cur = e.target.dataset.current;
-    if (this.data.currentTaB == cur) { return false; }
+    var cur = e.currentTarget.dataset.current;
+    if (this.data.status == cur) { return false; }
     else {
       this.setData({
-        currentTab: cur,
+        status: cur,
       });
     }
-
-    // switch (cur) {
-    //   case 1:
-    //     that.getPanicList1();
-    //     break;
-    //   case 2:
-    //     that.getPanicList2();
-    //     break;
-    //   case 3:
-    //     that.getPanicList3();
-    //     break;
-    //   case 4:
-    //     that.getPanicList4();
-    //     break;
-    // }
   },
   //判断当前滚动超过一屏时，设置tab标题滚动条。
   checkCor: function () {
@@ -82,29 +61,27 @@ Page({
         var clientHeight = res.windowHeight,
           clientWidth = res.windowWidth,
           rpxR = 750 / clientWidth;
-        var calc = clientHeight * rpxR - 123 * rpxR;
+        var calc = clientHeight * rpxR;
+        console.log(calc)
         that.setData({
           winHeight: calc
         });
       }
     });
-    // that.getTime()
-    // //抢购商品 - 20180108 - LQ
-    // that.getPanicList1();
-    // that.getPanicList2();
-    // that.getPanicList3();
-    // that.getPanicList4();
+    that.getTime()
+    that.getGoods1();
+    that.getGoods2();
+    that.getGoods3();
+    that.getGoods4();
   },
 
-  //抢购时间 - 20180108 - LQ
+  //抢购时间
   getTime: function () {
     var that = this;
-    http.httpPost('newspaper_time', {
-      member_id: wx.getStorageSync('member_id')
-    }, function (res) {
-      var timeList = res.data.time;
+    http.httpGet('seckillTimeList',{},wx.getStorageSync('token'), function (res) {
+      var timeList = res.data
       for (var index in timeList) {
-        if (timeList[index]['status'] == 2) {
+        if (timeList[index]['status'] == 1) {
           var time = index;
         }
       }
@@ -115,66 +92,50 @@ Page({
     });
 
   },
-  getPanicList1: function () {
+  getGoods1: function () {
     var that = this;
     var condition = {
-      panic_id: 1,
-      page: that.data.page1,
-      limit: that.data.limit,
-      member_id: wx.getStorageSync('member_id')
+      time_index: 0,
     };
-    http.httpGet('overflow', condition, function (res) {
-      const goodsList1 = that.data.goodsList1.concat(res.data.goods_list)
+    http.httpGet('pddSeckillTotal', condition,wx.getStorageSync("token"), function (res) {
       that.setData({
-        goodsList1: goodsList1
+        goodsList1: res.data
       });
       wx.hideLoading();
     });
   },
-  getPanicList2: function () {
+  getGoods2: function () {
     var that = this;
     var condition = {
-      panic_id: 2,
-      page: that.data.page2,
-      limit: that.data.limit,
-      member_id: wx.getStorageSync('member_id')
+      time_index: 1,
     };
-    http.httpGet('overflow', condition, function (res) {
-      const goodsList2 = that.data.goodsList2.concat(res.data.goods_list)
+    http.httpGet('pddSeckillTotal', condition, wx.getStorageSync("token"), function (res) {
       that.setData({
-        goodsList2: goodsList2
+        goodsList2: res.data
       });
       wx.hideLoading();
     });
   },
-  getPanicList3: function () {
+  getGoods3: function () {
     var that = this;
     var condition = {
-      panic_id: 3,
-      page: that.data.page3,
-      limit: that.data.limit,
-      member_id: wx.getStorageSync('member_id')
+      time_index: 2,
     };
-    http.httpGet('overflow', condition, function (res) {
-      const goodsList3 = that.data.goodsList3.concat(res.data.goods_list)
+    http.httpGet('pddSeckillTotal', condition, wx.getStorageSync("token"),function (res) {
       that.setData({
-        goodsList3: goodsList3
+        goodsList3: res.data
       });
       wx.hideLoading();
     });
   },
-  getPanicList4: function () {
+  getGoods4: function () {
     var that = this;
     var condition = {
-      panic_id: 4,
-      page: that.data.page4,
-      limit: that.data.limit,
-      member_id: wx.getStorageSync('member_id')
+      time_index: 3,
     };
-    http.httpGet('overflow', condition, function (res) {
-      const goodsList4 = that.data.goodsList4.concat(res.data.goods_list)
+    http.httpGet('pddSeckillTotal', condition, wx.getStorageSync("token"), function (res) {
       that.setData({
-        goodsList4: goodsList4
+        goodsList4: res.data
       });
       wx.hideLoading();
     });
@@ -182,72 +143,32 @@ Page({
   onPullDownRefresh: function () {
     var that = this
     this.setData({
-      banner: "", //banner图
       timeList: [], //抢购时间列表
       goodsList1: [], //抢购商品
       goodsList2: [], //抢购商品
       goodsList3: [], //抢购商品
       goodsList4: [], //抢购商品
-      page1: 1, //页码
-      page2: 1,
-      page3: 1,
-      page4: 1,
-      limit: 10, //每页显示条数
     });
     that.getTime()
-    //抢购商品 - 20180108 - LQ
-    that.getPanicList1();
-    that.getPanicList2();
-    that.getPanicList3();
-    that.getPanicList4();
+    that.getGoods1();
+    that.getGoods2();
+    that.getGoods3();
+    that.getGoods4();
     wx.stopPullDownRefresh()
   },
-  lower: function (e) {
-    // wx.showLoading({
-    //   title: '加载中',
-    //   mask: true,
-    // })
-    var cur = this.data.currentTab
-    console.log(cur)
-    switch (cur) {
-      case 0:
-        var page1 = this.data.page1 + 1
-        var that = this
-        this.setData({
-          page1: page1
-        })
-        that.getPanicList1();
-        break;
-      case 1:
-        var page2 = this.data.page2 + 1
-        var that = this
-        this.setData({
-          page2: page2
-        })
-        that.getPanicList2();
-        break;
-      case 2:
-        var page3 = this.data.page3 + 1
-        var that = this
-        this.setData({
-          page3: page3
-        })
-        that.getPanicList3();
-        break;
-      case 3:
-        var page4 = this.data.page4 + 1
-        var that = this
-        this.setData({
-          page4: page4
-        })
-        that.getPanicList4();
-        break;
-    }
-  },
   toTop: function () {
-    this.setData({
-      scrollTop: 0
-    })
+    var that = this
+    //  高度自适应
+    wx.getSystemInfo({
+      success: function (res) {
+        var clientWidth = res.windowWidth,
+          rpxR = 750 / clientWidth;
+        var calc = -88 * rpxR;
+        that.setData({
+          scrollTop: calc
+        });
+      }
+    });
   },
   /**
    * 商品详情

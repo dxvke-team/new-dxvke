@@ -56,10 +56,6 @@ Page({
       url: '../index/index',
     })
   },
-  service: function () {
-   
-
-  },
   close: function (e) {
     this.setData({
       showService: true

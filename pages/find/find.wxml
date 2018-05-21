@@ -166,4 +166,7 @@
         <image src='../../images/user/right_icon.png' class='right-icon'></image>
     </view>
   </view>
+  <view class='goTop' catchtap='toTop'>
+    <image src='../../images/goTop.png'></image>
+  </view>
 </view>

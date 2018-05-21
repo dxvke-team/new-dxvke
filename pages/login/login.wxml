@@ -7,8 +7,8 @@
         <view class='model-title'>是否进行页面授权</view>
         <view class="model-des">需要获取您的公开信息(昵称、头像等)，请到小程序的设置中打开用户信息授权</view>
         <view class='footer flex'>
-         <button class='model-close' bindtap='cancelInfo'>取消</button>
-         <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class='model-set'>去设置</button>
+         <button class='model-close' bindtap='cancelInfo' plain='true'>取消</button>
+         <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class='model-set' plain='true'>去设置</button>
         </view>
       </view>
     </view>

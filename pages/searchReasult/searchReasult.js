@@ -166,16 +166,14 @@ Page({
     wx.navigateBack({})
   },
   lower: function (e) {
-    this.setData({
-      loadingShow:false
-    })
     var cur = this.data.currentTab
     switch (cur) {
       case 0:
         var page1 = this.data.page1 + 1
         var that = this
         this.setData({
-          page1: page1
+          page1: page1,
+          loadingShow: false
         })
         that.getGoodsList1();
         break;
@@ -183,7 +181,8 @@ Page({
         var page2 = this.data.page2 + 1
         var that = this
         this.setData({
-          page2: page2
+          page2: page2,
+          loadingShow: false
         })
         that.getGoodsList2();
         break;
@@ -191,7 +190,8 @@ Page({
         var page3 = this.data.page3 + 1
         var that = this
         this.setData({
-          page3: page3
+          page3: page3,
+          loadingShow: false
         })
         that.getGoodsList3();
         break;
@@ -199,16 +199,26 @@ Page({
         var page4 = this.data.page4 + 1
         var that = this
         this.setData({
-          page4: page4
+          page4: page4,
+          loadingShow: false
         })
         that.getGoodsList4();
         break;
     }
   },
   toTop: function () {
-    this.setData({
-      scrollTop: 0
-    })
+    var that = this
+    //  高度自适应
+    wx.getSystemInfo({
+      success: function (res) {
+        var clientWidth = res.windowWidth,
+          rpxR = 750 / clientWidth;
+        var calc = -144 * rpxR;
+        that.setData({
+          scrollTop: calc
+        });
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -282,7 +292,45 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    var cur = this.data.currentTab
+    switch (cur) {
+      case 0:
+        var page1 = this.data.page1 + 1
+        var that = this
+        this.setData({
+          page1: page1,
+          loadingShow: false
+        })
+        that.getGoodsList1();
+        break;
+      case 1:
+        var page2 = this.data.page2 + 1
+        var that = this
+        this.setData({
+          page2: page2,
+          loadingShow: false
+        })
+        that.getGoodsList2();
+        break;
+      case 2:
+        var page3 = this.data.page3 + 1
+        var that = this
+        this.setData({
+          page3: page3,
+          loadingShow: false
+        })
+        that.getGoodsList3();
+        break;
+      case 3:
+        var page4 = this.data.page4 + 1
+        var that = this
+        this.setData({
+          page4: page4,
+          loadingShow: false
+        })
+        that.getGoodsList4();
+        break;
+    }
   },
 
   /**

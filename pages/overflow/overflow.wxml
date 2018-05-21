@@ -22,6 +22,7 @@
         </view>
       </block>
     </view>
+     <view hidden='{{loadingShow}}' class='load'>正在加载...</view>
    <view class='goTop' catchtap='toTop'>
      <image src='../../images/goTop.png'></image>
   </view>
