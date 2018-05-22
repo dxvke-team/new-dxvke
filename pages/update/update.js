@@ -7,8 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{},
-    level:1,
+    userl:true,
     showModel:true,
   },
 
@@ -20,8 +19,18 @@ Page({
     login.getInfo(function (res) {
       that.setData({
         userInfo: res,
-        level:options.level
       });
+    });
+    this.getUserInfo()
+  },
+  getUserInfo: function () {
+    //请求用户信息接口
+    var that = this;
+    http.httpGet('userInfo', {}, wx.getStorageSync('token'), function (res) {
+      that.setData({
+        level: res.data.level_id
+      });
+      wx.stopPullDownRefresh()
     });
   },
   update:function(){
@@ -58,6 +67,39 @@ Page({
     });
     
     
+  },
+  update2: function () {
+    var that = this
+    http.httpPost("checkUpgradeLevel3", {}, wx.getStorageSync('token'), function (res) {
+      if (res.code == 200) {
+        wx.showModal({
+          content: res.data.message,
+          showCancel: false,
+          confirmColor: '#9a7bff',
+          confirmText: "知道了",
+          success: function (result) {
+            console.log(result)
+            if (result.confirm) {
+              wx.navigateBack({})
+            }
+          }
+        })
+      } else if (res.code = 400) {
+        wx.showModal({
+          content: res.error,
+          showCancel: false,
+          confirmColor: '#9a7bff',
+          confirmText: "知道了",
+          success: function (result) {
+            if (result.confirm) {
+              that.setData({
+                show: true
+              });
+            }
+          }
+        })
+      }
+    });
   },
   toContact: function () {
     this.setData({
@@ -96,18 +138,4 @@ Page({
   onUnload: function () {
   
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  }
 })

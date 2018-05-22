@@ -65,10 +65,10 @@ Page({
         height: res[0].height
       });
     })
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    //   mask: true
+    // })
     var that = this;
     login.login(options);
     that.getBanner()
@@ -134,7 +134,7 @@ Page({
       }else{
 
       }
-      wx.hideLoading();
+      // wx.hideLoading();
     })
 
   },
@@ -180,10 +180,10 @@ Page({
     
   },
   bindDownLoad:function(){
-    wx.showLoading({
-      title: '加载中',
-      mask: true,
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    //   mask: true,
+    // })
     var page = this.data.page + 1
     this.setData({
       page: page,

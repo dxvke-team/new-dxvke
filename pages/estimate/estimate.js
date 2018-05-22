@@ -116,7 +116,7 @@ Page({
 
 
   toTop: function () {
-    wx.pageScrollTo({
+    this.setData({
       scrollTop: 0
     })
   },
