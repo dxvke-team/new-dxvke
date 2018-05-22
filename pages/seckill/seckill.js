@@ -7,7 +7,7 @@ Page({
    */
   data: {
     winHeight: "",//窗口高度
-    status: 0, //预设当前项的值
+    status: null, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
     scorllTop: 0,
     timeList: [{
@@ -22,14 +22,15 @@ Page({
   // 滚动切换标签样式
   switchTab: function (e) {
     this.setData({
-      currentTab: e.detail.current
+      status: e.detail.current
     });
     this.checkCor();
   },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var that = this
-    var cur = e.currentTarget.dataset.current;
+    var cur = Number(e.currentTarget.dataset.current)
+    
     if (this.data.status == cur) { return false; }
     else {
       this.setData({
@@ -39,7 +40,7 @@ Page({
   },
   //判断当前滚动超过一屏时，设置tab标题滚动条。
   checkCor: function () {
-    if (this.data.currentTab > 4) {
+    if (this.data.status > 4) {
       this.setData({
         scrollLeft: 300
       })
@@ -87,7 +88,7 @@ Page({
       }
       that.setData({
         timeList: timeList,
-        currentTab: time
+        status: time
       });
     });
 
@@ -102,6 +103,7 @@ Page({
         goodsList1: res.data
       });
       wx.hideLoading();
+      wx.stopPullDownRefresh()
     });
   },
   getGoods2: function () {
@@ -114,6 +116,7 @@ Page({
         goodsList2: res.data
       });
       wx.hideLoading();
+      wx.stopPullDownRefresh()
     });
   },
   getGoods3: function () {
@@ -126,6 +129,7 @@ Page({
         goodsList3: res.data
       });
       wx.hideLoading();
+      wx.stopPullDownRefresh()
     });
   },
   getGoods4: function () {
@@ -138,6 +142,7 @@ Page({
         goodsList4: res.data
       });
       wx.hideLoading();
+      wx.stopPullDownRefresh()
     });
   },
   onPullDownRefresh: function () {
@@ -175,8 +180,39 @@ Page({
    */
   toGoodsDetail: function (e) {
     var goods_id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?id=' + goods_id + '&type=1',
-    })
+    if (e.currentTarget.dataset.status==0){
+      return false
+    }else{
+      wx.navigateTo({
+        url: '../pinDetail/pinDetail?id=' + goods_id + '&type=1',
+      })
+    }
+  },
+  onPullDownRefresh: function () {
+    if (this.data.status==0){
+        this.setData({
+          goodsList1: [],
+          page1:1,
+        })
+        this.getGoods1()
+    } else if (this.data.status == 1){
+      this.setData({
+        goodsList2: [],
+        page2: 1,
+      })
+      this.getGoods1()
+    } else if (this.data.status == 2){
+      this.setData({
+        goodsList3: [],
+        page3: 1,
+      })
+      this.getGoods1()
+    }else{
+      this.setData({
+        goodsList4: [],
+        page4: 1,
+      })
+      this.getGoods4()
+    }
   }
 })

@@ -81,7 +81,7 @@ Page({
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var that = this
-    var cur = e.currentTarget.dataset.current;
+    var cur = Number(e.currentTarget.dataset.current);
     if (this.data.currentTab == cur) { return false; }
     else {
       that.setData({
@@ -127,10 +127,10 @@ Page({
     });
   },
   lower: function (e) {
-    var cur = this.data.order
+    var cur = this.data.currentTab
     var that = this
     switch (cur) {
-      case '0':
+      case 0:
         var page1 = this.data.page1 + 1
         this.setData({
           page1: page1,
@@ -138,7 +138,7 @@ Page({
         })
         that.getGoods1();
         break;
-      case '1':
+      case 1:
         var page2 = this.data.page2 + 1
         this.setData({
           page2: page2,
@@ -146,7 +146,7 @@ Page({
         })
         that.getGoods2();
         break;
-      case '2':
+      case 2:
         var page3 = this.data.page3 + 1
         this.setData({
           page3: page3,
@@ -154,7 +154,7 @@ Page({
         })
         that.getGoods3();
         break;
-      case '3':
+      case 3:
         var page4 = this.data.page4 + 1
         this.setData({
           page4: page4,
@@ -163,6 +163,11 @@ Page({
         that.getGoods4();
         break;
     }
+  },
+  toGoodsDetail: function (e) {
+    wx.navigateTo({
+      url: "../pinDetail/pinDetail?id=" + e.currentTarget.dataset.id + '&type=1'
+    })
   },
   /**
    * 生命周期函数--监听页面加载

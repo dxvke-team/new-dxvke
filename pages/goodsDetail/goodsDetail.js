@@ -140,18 +140,23 @@ Page({
     wx.setClipboardData({
       data: that.data.command,
       success: function (res) {
-        wx.showModal({
-          content: '复制成功,请打开淘宝购买商品',
-          showCancel: false,
-          success:function(result){
-            if(result.confirm){
-              that.setData({
-                showJuan : true
-              });
-            }
-          }
-        })
+        // wx.showModal({
+        //   content: '复制成功,请打开淘宝购买商品',
+        //   showCancel: false,
+        //   success:function(result){
+        //     if(result.confirm){
+        //       that.setData({
+        //         showJuan : true
+        //       });
+        //     }
+        //   }
+        // })
       }
+    })
+  },
+  toUpdate:function(){
+    wx.navigateTo({
+      url: '../update/update',
     })
   }
 })

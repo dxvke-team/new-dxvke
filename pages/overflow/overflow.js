@@ -35,6 +35,11 @@ Page({
       wx.hideLoading();
     })
   },
+  toGoodsDetail: function (e) {
+    wx.navigateTo({
+      url: "../JDdetail/JDdetail?id=" + e.currentTarget.dataset.id + '&type=2'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

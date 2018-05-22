@@ -1,17 +1,21 @@
 <!--pages/myfans/myfans.wxml-->
 <view>
-    <view class='tip'>全部共3位</view>
-    <view class='list'>
-        <view class='list-item'>
-            <image src='../../images/product.png' class='icon'></image>
-            <view style='height:100rpx;'>
-              <view class='name'>名字</view>
-              <view style='display:flex;align-item:center;'>
-                 <view class='level'>帮主</view>
-                 <view class='new'>今日新增</view>
-              </view>
-            </view>
+  <view class='tip'>全部共3位</view>
+  <view class='list'>
+    <view class='list-item' wx:for="{{fansList}}" wx:key="{{item}}">
+      <image src='{{item.head_image}}' class='icon'></image>
+      <view style='height:100rpx;'>
+        <view class='name'>{{item.nickname}}</view>
+        <view style='display:flex;align-item:center;'>
+          <view class='level'>{{item.level_title}}</view>
+          <view class='new' wx:if="{{item.is_today==1}}">今日新增</view>
         </view>
+      </view>
     </view>
-    <view class='no-more'>扩大粉丝量能获取更多福利哦~</view>
+  </view>
+  <view class='no-more' wx:if="{{noData}}">扩大粉丝量能获取更多福利哦~</view>
+  <view hidden='{{loadingShow}}' class='load'>正在加载...</view>
+  <view class='goTop' catchtap='toTop'>
+    <image src='../../images/goTop.png'></image>
+  </view>
 </view>

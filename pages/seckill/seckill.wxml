@@ -1,7 +1,7 @@
 <!--pages/seckill/seckill.wxml-->
 <view class='seckill'>
   <view class='tab'>
-    <view wx:for='{{timeList}}' wx:key='{{item}}' class="flex tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bindtap="swichNav">
+    <view wx:for='{{timeList}}' wx:key='{{item}}' class="flex tab-item {{status==index?'active':''}}" data-current="{{index}}" bindtap="swichNav">
       <view>{{item.time}}</view>
       <view wx:if='{{item.status == 0}}' style='font-size:24rpx;'>未开抢</view>
       <view wx:elif='{{item.status == 1}}' style='font-size:24rpx;'>抢购中</view>
@@ -13,7 +13,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
       <block wx:for="{{goodsList1}}" wx:key="{{item}}">
-        <view class="item-ans">
+        <view class="item-ans"  catchtap="toGoodsDetail" data-id='{{item.id}}' data-status='{{item.status}}'>
           <view class="avatar">
             <image class="img" src="{{item.pict_url}}"></image>
           </view>
@@ -36,7 +36,8 @@
                   <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
                   <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
                 </view>
-                <view class='btn'>马上抢 ></view>
+                <view class='btn' wx:if="{{item.status!==0}}">马上抢 ></view>
+                <view class='btn' style='background:#bfbfbf' wx:if="{{item.status==0}}">待开抢 ></view>
               </view>
             </view>
           </view>
@@ -47,7 +48,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
       <block wx:for="{{goodsList2}}" wx:key="{{item}}">
-        <view class="item-ans">
+        <view class="item-ans"  catchtap="toGoodsDetail" data-id='{{item.id}}' data-status='{{item.status}}'>
           <view class="avatar">
             <image class="img" src="{{item.pict_url}}"></image>
           </view>
@@ -70,7 +71,8 @@
                   <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
                   <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
                 </view>
-                <view class='btn'>马上抢 ></view>
+                <view class='btn' wx:if="{{item.status!=0}}">马上抢 ></view>
+                <view class='btn' style='background:#bfbfbf' wx:if="{{item.status==0}}">待开抢 ></view>
               </view>
             </view>
           </view>
@@ -81,7 +83,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
       <block wx:for="{{goodsList3}}" wx:key="{{item}}">
-        <view class="item-ans">
+        <view class="item-ans"  catchtap="toGoodsDetail" data-id='{{item.id}}' data-status='{{item.status}}'>
           <view class="avatar">
             <image class="img" src="{{item.pict_url}}"></image>
           </view>
@@ -104,7 +106,8 @@
                   <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
                   <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
                 </view>
-                <view class='btn'>马上抢 ></view>
+                <view class='btn' wx:if="{{item.status!=0}}">马上抢 ></view>
+                <view class='btn' style='background:#bfbfbf' wx:if="{{item.status==0}}">待开抢 ></view>
               </view>
             </view>
           </view>
@@ -115,7 +118,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
       <block wx:for="{{goodsList4}}" wx:key="{{item}}">
-        <view class="item-ans">
+        <view class="item-ans"  catchtap="toGoodsDetail" data-id='{{item.id}}' data-status='{{item.status}}'>
           <view class="avatar">
             <image class="img" src="{{item.pict_url}}"></image>
           </view>
@@ -138,7 +141,8 @@
                   <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
                   <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
                 </view>
-                <view class='btn'>马上抢 ></view>
+                <view class='btn' wx:if="{{item.status!=0}}">马上抢 ></view>
+                <view class='btn' style='background:#bfbfbf' wx:if="{{item.status==0}}">待开抢 ></view>
               </view>
             </view>
           </view>

@@ -1,7 +1,7 @@
 <!--pages/allIncome/allIncome.wxml-->
 <view>
    <view class='header'>
-      <view class='num'>1.00</view>
+      <view class='num'>{{total_amount}}</view>
       <view class='title'>可提现金额(元)</view>
    </view>
    <view class='withdraw' catchtap='toshow'>
@@ -12,15 +12,19 @@
        <image src='../../images/user/right_icon.png' class='icon'></image>
    </view>
    <view class='main'>
-       <view class='list'>
+       <view class='list' wx:for="{{list}}" wx:key="{{item}}">
           <view>
-             <view class='list-title'>淘宝自购奖励</view>
-             <view class='list-time'>2013-12-11</view>
+             <view class='list-title'>{{item.title}}</view>
+             <view class='list-time'>{{item.income_time}}</view>
           </view>
-          <view class='list-money'>+0.5元</view>
+          <view class='list-money'>+{{item.transport_acer}}元</view>
        </view>
    </view>
-   <view class='no-more'>只有这么多了</view>
+   <view class='no-more' wx:if="{{noData}}">只有这么多了</view>
+   <view hidden='{{loadingShow}}' class='load'>正在加载...</view>
+   <view class='goTop' catchtap='toTop'>
+      <image src='../../images/goTop.png'></image>
+    </view>
    <view class="model" hidden='{{show}}'>
     <view class="model_bd">
     </view>

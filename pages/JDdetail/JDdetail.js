@@ -14,12 +14,13 @@ Page({
     list: 4,
     showAcer: true,
     showService: true,
-    showJuan: false,
+    showJuan: true,
     goodsDetail: {}, // 商品详情 - LQ
     command: '', //淘口令
     goodsType: '', //商品类型
     isShare : false,
-    shareMember : ''
+    shareMember : '',
+    contact:false,
   },
 
   onShareAppMessage: function (res) {
@@ -70,22 +71,9 @@ Page({
     })
   },
   showJuan: function (e) {
-    var that = this;
-    var condition = {
-      click_url: e.currentTarget.dataset.click_url,
-      pict_url: e.currentTarget.dataset.pict_url,
-      title: e.currentTarget.dataset.title,
-      member_id: wx.getStorageSync('member_id')
-    };
-
-    http.httpPost('command', condition, function (res) {
-      that.setData({
-        command: res.data.command
-      });
-      that.setData({
-        showJuan: false
-      })
-    });
+    this.setData({
+      showJuan: false
+    })
   },
   closeJuan: function (e) {
     this.setData({
@@ -127,6 +115,9 @@ Page({
     wx.setClipboardData({
       data: copy_id,
       success: function (res) {
+        that.setData({
+          contact:true,
+        })
         // wx.showModal({
         //   content: '复制成功',
         //   showCancel: false,
@@ -139,6 +130,11 @@ Page({
         //   }
         // })
       }
+    })
+  },
+  toUpdate: function () {
+    wx.navigateTo({
+      url: '../update/update',
     })
   }
 })

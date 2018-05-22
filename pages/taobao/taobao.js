@@ -35,7 +35,8 @@ Page({
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var that = this
-    var cur = e.currentTarget.dataset.current;
+    var cur = Number(e.currentTarget.dataset.current);
+     
       that.setData({
         order: cur,
         sort: '',
@@ -47,14 +48,14 @@ Page({
     if (this.data.sort == 1) {
       this.setData({
         sort: 2,
-        order: '3',
+        order: 3,
         goods4:[],
         page4:1,
       })
     } else {
       this.setData({
         sort: 1,
-        order: '3',
+        order: 3,
         goods4:[],
         page4:1,
       })
@@ -111,8 +112,9 @@ Page({
   lower: function (e) {
     var cur = this.data.order
     var that = this
+    console.log(typeof cur)
     switch (cur) {
-      case '0':
+      case 0:
         var page1 = this.data.page1 + 1
         this.setData({
           page1: page1,
@@ -120,7 +122,7 @@ Page({
         })
         that.getGoods1();
         break;
-      case '1':
+      case 1:
         var page2 = this.data.page2 + 1
         this.setData({
           page2: page2,
@@ -128,7 +130,7 @@ Page({
         })
         that.getGoods2();
         break;
-      case '2':
+      case 2:
         var page3 = this.data.page3 + 1
         this.setData({
           page3: page3,
@@ -136,7 +138,7 @@ Page({
         })
         that.getGoods3();
         break;
-      case '3':
+      case 3:
         var page4 = this.data.page4 + 1 
         this.setData({
           page4: page4,
@@ -181,7 +183,11 @@ Page({
       }
     });
   },
-  
+  toGoodsDetail:function(e){
+    wx.navigateTo({
+      url: "../goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id + '&type=0'
+    })
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -196,7 +202,7 @@ Page({
     var cur = this.data.order
     var that = this
     switch (cur) {
-      case '0':
+      case 0:
         console.log(cur)
         var page1 = this.data.page1 + 1
         this.setData({
@@ -205,7 +211,7 @@ Page({
         })
         that.getGoods1();
         break;
-      case '1':
+      case 1:
         console.log(cur)
         var page2 = this.data.page2 + 1
         this.setData({
@@ -214,7 +220,7 @@ Page({
         })
         that.getGoods2();
         break;
-      case '2':
+      case 2:
         console.log(cur)
         var page3 = this.data.page3 + 1
         this.setData({
@@ -223,7 +229,7 @@ Page({
         })
         that.getGoods3();
         break;
-      case '3':
+      case 3:
         console.log(cur)
         var page4 = this.data.page4 + 1
         this.setData({

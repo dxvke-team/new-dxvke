@@ -15,7 +15,7 @@
     </view>
     <view class='nav-item' catchtap='toSeckill'>
       <image src='../../images/find/pin.png' class='icon'></image>
-      <view class='type'>极速秒杀</view>
+      <view class='type'>急速秒杀</view>
     </view>
     <view class='nav-item' catchtap='toOverflow'>
       <image src='../../images/find/JD.png' class='icon'></image>
@@ -46,7 +46,7 @@
             </view>
             <view>
               <view>
-                <view class='share-income'>预计赚: 3.22元</view>
+                <view class='share-income'>预计赚: {{item.share_commission}}元</view>
               </view>
               <view class='des'>
                 <view style='color:#f51d46;'>
@@ -86,7 +86,7 @@
             </view>
             <view>
               <view>
-                <view class='share-income'>预计赚: 3.22元</view>
+                <view class='share-income'>预计赚: {{item.share_commission}}元</view>
               </view>
               <view class='des'>
                 <view style='color:#f51d46;'>
@@ -121,7 +121,7 @@
                 <view class="juan_style_left">券</view>
                 <view class="juan_style_right">{{item.coupon_number}}元</view>
               </view>
-              <view class='share-income'>预计赚: 3.22元</view>
+              <view class='share-income'>预计赚: {{item.share_commission}}元</view>
             </view>
             <view style='color:#f51d46;height:82rpx;line-height:82rpx;'>
               <text style='font-size:24rpx;'>￥</text>
@@ -151,7 +151,7 @@
                 <view class="juan_style_left">券</view>
                 <view class="juan_style_right">{{item.coupon_number}}元</view>
               </view>
-              <view class='share-income'>预计赚: 3.22元</view>
+              <view class='share-income'>预计赚: {{item.share_commission}}元</view>
             </view>
             <view style='color:#f51d46;height:82rpx;line-height:82rpx;'>
               <text style='font-size:24rpx;'>￥</text>

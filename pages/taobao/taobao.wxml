@@ -15,7 +15,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
       <block wx:for="{{goods1}}" wx:key="{{item}}">
-        <view class="item-ans">
+        <view class="item-ans" catchtap="toGoodsDetail" data-id='{{item.id}}'>
           <view class="avatar">
             <image class="img" src="{{item.pict_url}}"></image>
           </view>
@@ -50,7 +50,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
       <block wx:for="{{goods2}}" wx:key="{{item}}">
-        <view class="item-ans">
+        <view class="item-ans"  catchtap="toGoodsDetail" data-id='{{item.id}}'>
           <view class="avatar">
             <image class="img" src="{{item.pict_url}}"></image>
           </view>
@@ -85,7 +85,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
       <block wx:for="{{goods3}}" wx:key="{{item}}">
-        <view class="item-ans">
+        <view class="item-ans"  catchtap="toGoodsDetail" data-id='{{item.id}}'>
           <view class="avatar">
             <image class="img" src="{{item.pict_url}}"></image>
           </view>
@@ -120,7 +120,7 @@
   <swiper-item>
     <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
       <block wx:for="{{goods4}}" wx:key="{{item}}">
-        <view class="item-ans">
+        <view class="item-ans"  catchtap="toGoodsDetail" data-id='{{item.id}}'>
           <view class="avatar">
             <image class="img" src="{{item.pict_url}}"></image>
           </view>

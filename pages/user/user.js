@@ -10,6 +10,7 @@ Page({
     userInfo: {},
     userInfoApi: {},
     hasUserInfo: false,
+    showModel:true,
   },
 
   onLoad: function () {
@@ -20,15 +21,19 @@ Page({
         userInfo:res
       });
     });
-
-    //请求用户信息接口
-    http.httpGet('userInfo', {}, wx.getStorageSync('token'),function(res){
-      that.setData({
-        userInfoApi: res.data
-      });
-    });
+    this.getUserInfo()
+    
   },
-
+getUserInfo:function(){
+  //请求用户信息接口
+  var that = this;
+  http.httpGet('userInfo', {}, wx.getStorageSync('token'), function (res) {
+    that.setData({
+      userInfoApi: res.data
+    });
+    wx.stopPullDownRefresh()
+  });
+},
 toOrderList:function(e){
   var type = e.currentTarget.dataset.type
   wx.navigateTo({
@@ -53,8 +58,22 @@ toEstimate:function(e){
     })
   },
   toUpdate: function (e) {
+    var that =this
     wx.navigateTo({
-      url: '../update/update',
+      url: '../update/update?level=' + that.data.userInfoApi.level_id,
+    })
+  },
+  onPullDownRefresh: function () {
+    this.getUserInfo()
+  },
+  toContact:function(){
+    this.setData({
+      showModel:false
+    })
+  },
+  closeModel:function(){
+    this.setData({
+      showModel: true,
     })
   }
 })

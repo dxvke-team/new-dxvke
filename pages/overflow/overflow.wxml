@@ -2,7 +2,7 @@
 <view class="container" style='font-size:0;'>
    <view style='flex-wrap: wrap;margin-bottom:10rpx;' class='flex'>
       <block wx:for="{{goods}}" wx:key="{{item}}">
-        <view class="goods-list">
+        <view class="goods-list"  catchtap="toGoodsDetail" data-id='{{item.id}}'>
           <image class="" src="{{item.pict_url}}" style='width:100%;height:370rpx;'></image>
           <view style='padding:0 20rpx;height:172rpx;'>
             <view class="name" style='height:58rpx;line-height:58rpx;'>{{item.title}}</view>
@@ -11,7 +11,7 @@
                 <view class="juan_style_left">券</view>
                 <view class="juan_style_right">{{item.coupon_number}}元</view>
               </view>
-              <view class='share-income'>分享赚: 3.22元</view>
+              <view class='share-income'>分享赚: {{item.share_commission}}元</view>
             </view>
             <view style='color:#f51d46;height:82rpx;line-height:82rpx;'>
               <text style='font-size:24rpx;'>￥</text>

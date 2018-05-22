@@ -1,13 +1,28 @@
 <!--pages/update/update.wxml-->
-<view style='background:white;with:100%;height:100%;overflow:hidden;'>
-   <view class='header'>
+<view style='background:white;with:100%;padding-bottom:20rpx;'>
+  <view style='overflow:hidden;'>
+    <view class='header'>
       <image src='{{userInfo.avatarUrl}}' class='user-pic'></image>
       <view class='user-name'>{{userInfo.nickName}}</view>
-      <image src='../../images/user/level1_icon.png' class='user-power' mode='widthFix'></image>
-       <image src='../../images/user/level_icon.png' class='user-power' mode='widthFix' wx:if="{{false}}"></image>
-       <image src='../../images/user/text.png' class='user-power' mode='widthFix'  wx:if="{{false}}"></image>
-   </view>
-     <image src='../../images/user/level2.jpg' mode='widthFix'style="width:100%;"></image>
-     <image src='../../images/user/level3.jpg' mode='widthFix'style="width:100%;" wx:if="{{false}}"></image>
-     <button bindtap="default" class='btn'>满足资格，我要升级</button>
+      <image src='../../images/user/level1_icon.png' class='user-power' mode='widthFix' wx:if="{{level==1}}"></image>
+      <image src='../../images/user/level_icon.png' class='user-power' mode='widthFix' wx:if="{{level==2}}"></image>
+      <image src='../../images/user/text.png' class='user-power' mode='widthFix' wx:if="{{level==3}}"></image>
+    </view>
+  </view>
+  <image src='../../images/user/level2.jpg' mode='widthFix' style="width:100%;" wx:if="{{level==1}}"></image>
+  <image src='../../images/user/level3.jpg' mode='widthFix' style="width:100%;" wx:if="{{level==2}}"></image>
+  <view class='highest' wx:if="{{level==3}}">您已经是最高级别的帮主了~</view>
+  <button bindtap="default" class='btn' wx:if="{{level==1}}" catchtap='update'>满足资格，我要升级</button>
+  <button bindtap="default" class='btn' wx:if="{{level==2}}" catchtap='toContact'>联系客服</button>
+  <view class="model" hidden='{{showModel}}'>
+    <view class="model_bd">
+    </view>
+    <view class="model_main">
+      <view class="model_main_des">
+         <image src='../../images/qr.jpg' class='qr'></image>
+         <view class='words'>请关注微信公众号：DXXX5S</view>
+      </view>
+      <image src="../../images/close.png" alt="" catchtap='closeModel' class='cancel'></image>
+    </view>
+  </view>
 </view>

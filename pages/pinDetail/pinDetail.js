@@ -17,7 +17,10 @@ Page({
     goodsDetail: {}, // 商品详情 - LQ
     command: "234325", //淘口令
     goodsType: '', //商品类型
-    isShare : ''
+    isShare : '',
+    interval: 5000,
+    duration: 1000,
+    contact:false,
   },
 
   onShareAppMessage: function (res) {
@@ -83,7 +86,11 @@ Page({
       showJuan: true
     })
   },
-
+  toUpdate:function(){
+    wx.navigateTo({
+      url: '../update/update',
+    })
+  },
   /**
    * 获取商品详情 - 20180112 - LQ
    */
@@ -116,7 +123,9 @@ Page({
       data: copy_id,
       success: function (res) {
         //复制成功,记录领券信息
-        
+        that.setData({
+          contact:true
+        })
       }
     })
   }

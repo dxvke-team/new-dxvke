@@ -2,10 +2,6 @@
 .goodsDetail{
   font-size: 0;
 }
-.detail .picture{
-   width: 100%;
-   height: 750rpx;
-}
 .detail .goods_name{
   font-size: 32rpx;
   color: #333;
@@ -160,7 +156,7 @@
     color: white;
     font-size: 32rpx;
     text-align: center;
-    line-height: 72rpx;
+    line-height: 88rpx;
     border-radius: 15rpx 15rpx 0 0;
     background: -webkit-linear-gradient(left, #ed5156, #f40109); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(left, #ed5156, #f40109); /* Opera 11.1 - 12.0 */
@@ -188,3 +184,27 @@
     top: calc(((100% - 320rpx) / 2) - 300rpx);
     z-index: 999999;
   }
+  .btn{
+    height: 98rpx;
+    border-radius: 0;
+    font-size: 20rpx;
+    color: #444;
+    padding-top: 48rpx;
+    box-sizing: border-box;
+    background: white;
+
+  } 
+   button[plain] {
+   color:#353535;
+   border:none;
+   background-color:transparent;
+
+}
+.share-icon{
+  position: absolute;
+  left: calc((100% - 40rpx)/2);
+  top: 16rpx;
+}
+.tab2{
+  position: relative;
+}

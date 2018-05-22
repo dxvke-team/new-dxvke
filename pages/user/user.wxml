@@ -3,11 +3,17 @@
 
     <view style='position:relative; margin:0 30rpx;'>
       <image class='head_image' src='{{userInfo.avatarUrl}}'></image>
-      <image src='../../images/user/level0_icon.png' class='level-icon'></image>
+       <image src='../../images/user/level0_icon.png' class='level-icon' wx:if="{{userInfoApi.level_id=='1'}}"></image> 
+       <image src='../../images/user/level1.png' class='level-icon' wx:if="{{userInfoApi.level_id=='2'}}"></image> 
+       <image src='../../images/user/level2.png' class='level-icon' wx:if="{{userInfoApi.level_id=='3'}}"></image> 
     </view>
     <view>
       <view class='nickname'>{{userInfo.nickName}}</view>
-      <view class='level'>帮众</view>
+      <view style='height:60rpx;'>
+          <view class='level' wx:if="{{userInfoApi.level_id=='1'}}">帮众</view>
+          <view class='level' wx:if="{{userInfoApi.level_id=='2'}}">长老</view>
+          <view class='level' wx:if="{{userInfoApi.level_id=='3'}}">帮主</view> 
+      </view>
 
     </view>
   </view>
@@ -47,12 +53,23 @@
        </view>
        <image src='../../images/user/right_icon.png' class='icon'></image>
     </view>
-    <view class='main-item'>
+    <view class='main-item' catchtap="toContact">
        <view>
           <image src='../../images/user/server.png' class='item-icon'></image>
-          联系客服<!--客服使用 <button open-type="contact" ></button>-->
-          <button open-type="contact" >联系客服</button>
+          联系客服
        </view>
        <image src='../../images/user/right_icon.png' class='icon'></image>
     </view>
+   
 </view>
+ <view class="model" hidden='{{showModel}}'>
+    <view class="model_bd">
+    </view>
+    <view class="model_main">
+      <view class="model_main_des">
+         <image src='../../images/qr.jpg' class='qr'></image>
+         <view class='words'>请关注微信公众号：DXXX5S</view>
+      </view>
+      <image src="../../images/close.png" alt="" catchtap='closeModel' class='cancel'></image>
+    </view>
+  </view>

@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "预估收入"
+  "navigationBarTitleText": "预估收入",
+  "enablePullDownRefresh": true
 }

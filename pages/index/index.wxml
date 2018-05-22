@@ -47,7 +47,7 @@
           </view>
           <view>
             <view>
-              <view class='share-income'>预计赚: 3.22元</view>
+              <view class='share-income'>预计赚: {{item.share_commission}}元</view>
             </view>
             <view class='des'>
               <view style='color:#f51d46;'>

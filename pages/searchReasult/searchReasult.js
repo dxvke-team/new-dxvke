@@ -220,6 +220,21 @@ Page({
       }
     });
   },
+  toGoodsDetail:function(e){
+    var self = this
+      if(this.data.type==0){
+        // 淘宝
+        wx.navigateTo({
+          url: "../goodsDetail/goodsDetail?id=" + e.currentTarget.dataset.id + '&type=' + self.data.type
+        })
+      }else{
+        // 拼多多
+        wx.navigateTo({
+          url: "../pinDetail/pinDetail?id=" + e.currentTarget.dataset.id + '&type=' + self.data.type
+        })
+      }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
