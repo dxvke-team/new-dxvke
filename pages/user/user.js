@@ -60,7 +60,7 @@ toEstimate:function(e){
   toUpdate: function (e) {
     var that =this
     wx.navigateTo({
-      url: '../update/update?level=' + that.data.userInfoApi.level_id,
+      url: '../update/update',
     })
   },
   onPullDownRefresh: function () {

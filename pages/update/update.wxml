@@ -1,5 +1,5 @@
 <!--pages/update/update.wxml-->
-<view style='background:white;with:100%;padding-bottom:20rpx;'>
+<view style='background:white;with:100%;padding-bottom:40rpx;'>
   <view style='overflow:hidden;'>
     <view class='header'>
       <image src='{{userInfo.avatarUrl}}' class='user-pic'></image>
@@ -13,6 +13,7 @@
   <image src='../../images/user/level3.jpg' mode='widthFix' style="width:100%;" wx:if="{{level==2}}"></image>
   <view class='highest' wx:if="{{level==3}}">您已经是最高级别的帮主了~</view>
   <button bindtap="default" class='btn' wx:if="{{level==1}}" catchtap='update'>满足资格，我要升级</button>
+  <button bindtap="default" class='btn' wx:if="{{level==2}}" catchtap='update2' style='margin-bottom:30rpx;'>满足资格，我要升级</button>
   <button bindtap="default" class='btn' wx:if="{{level==2}}" catchtap='toContact'>联系客服</button>
   <view class="model" hidden='{{showModel}}'>
     <view class="model_bd">
