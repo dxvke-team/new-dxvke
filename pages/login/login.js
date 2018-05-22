@@ -100,7 +100,7 @@ Page({
             })
           }else{
             wx.switchTab({
-              url: '../index'
+              url: '../index/index'
             })
           }
         }

@@ -73,9 +73,17 @@ Page({
     login.login(options);
     that.getBanner()
     that.getGoodsType()
-    that.getGoods()
-    // 调用登录接口
-  
+    that.getGoods()  
+  },
+  onShow : function(){
+    var that = this;
+    that.getGoods()  
+  },
+  onHide : function(){
+    var that = this;
+    that.setData({
+      goods : []
+    });
   },
   onShareAppMessage: function (res) {
     return {
@@ -140,12 +148,14 @@ Page({
       data = { type: that.data.currentTab }
     }
     http.httpGet('productCateList', data, wx.getStorageSync('token'),function (res) {
+      console.log(res.data);
       that.setData({
         goods_type: res.data,
         cate_type_id:res.data[0].id
       });
     });
   },
+  
   toSearch:function(e){
     wx.navigateTo({
       url: "../searchPage/searchPage",

@@ -80,6 +80,7 @@ function getInfo(cb)
 {
    wx.getUserInfo({
      success:function(res){
+       console.log(res);
        typeof cb == "function" && cb(res.userInfo);
      },
      fail:function(res){

@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/user/user",
     "pages/index/index",
     "pages/find/find",
-    
+    "pages/user/user",
     "pages/allIncome/allIncome",
     "pages/estimate/estimate",
     "pages/myfans/myfans",

@@ -17,13 +17,25 @@ Page({
     var that = this;
     //获取用户信息
     login.getInfo(function(res){
+      console.log(res);
       that.setData({
         userInfo:res
       });
     });
     this.getUserInfo()
-    
   },
+
+  onShow:function(){
+    var that = this;
+    wx.getUserInfo({
+      success: function (res) {
+       that.setData({
+         userInfo:res.userInfo
+       })
+      },
+    })
+  },
+
 getUserInfo:function(){
   //请求用户信息接口
   var that = this;
