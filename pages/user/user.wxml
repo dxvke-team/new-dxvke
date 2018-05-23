@@ -53,6 +53,13 @@
        </view>
        <image src='../../images/user/right_icon.png' class='icon'></image>
     </view>
+    <view class='main-item' catchtap="toInvite">
+       <view>
+          <image src='../../images/user/invite.png' class='item-icon'></image>
+         邀请好友
+       </view>
+       <image src='../../images/user/right_icon.png' class='icon'></image>
+    </view>
     <view class='main-item' catchtap="toContact">
        <view>
           <image src='../../images/user/server.png' class='item-icon'></image>

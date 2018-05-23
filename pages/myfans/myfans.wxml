@@ -1,6 +1,6 @@
 <!--pages/myfans/myfans.wxml-->
 <view>
-  <view class='tip'>全部共3位</view>
+  <view class='tip'>全部共{{total}}位</view>
   <view class='list'>
     <view class='list-item' wx:for="{{fansList}}" wx:key="{{item}}">
       <image src='{{item.head_image}}' class='icon'></image>

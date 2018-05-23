@@ -2,8 +2,8 @@
 <view style='background:white;with:100%;padding-bottom:40rpx;'>
   <view style='overflow:hidden;'>
     <view class='header'>
-      <image src='{{userInfo.avatarUrl}}' class='user-pic'></image>
-      <view class='user-name'>{{userInfo.nickName}}</view>
+      <image src='{{avatarUrl}}' class='user-pic'></image>
+      <view class='user-name'>{{name}}</view>
       <image src='../../images/user/level1_icon.png' class='user-power' mode='widthFix' wx:if="{{level==1}}"></image>
       <image src='../../images/user/level_icon.png' class='user-power' mode='widthFix' wx:if="{{level==2}}"></image>
       <image src='../../images/user/text.png' class='user-power' mode='widthFix' wx:if="{{level==3}}"></image>

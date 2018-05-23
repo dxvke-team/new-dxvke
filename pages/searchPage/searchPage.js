@@ -30,7 +30,7 @@ Page({
   // 清空搜索历史 - 20180109 - LQ
   clearHistory:function(){
     var that = this;
-    http.httpPost('delSearch', {},wx.getStorageSync('token') ,function(res){
+    http.httpPost('delSearchHistory', {},wx.getStorageSync('token') ,function(res){
       if(res.code == 200){
         that.setData({
           historyWords : []

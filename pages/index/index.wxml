@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view>
 <scroll-view style='height:100vh' scroll-y="true" bindscroll="scroll" bindscrolltolower="bindDownLoad" bindscrolltoupper="refresh" scroll-top="{{scrollTop}}">
-  <view style="width:100%;height:388rpx;position:relative;" id='banner'>
+  <view style="width:100%;height:300rpx;position:relative;" id='banner'>
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='height:100%;' indicator-color='rgba(255,255,255,.5)' indicator-active-color="white" circular="true">
       <block wx:for="{{imgUrls}}" wx:key="{{item}}">
         <swiper-item>

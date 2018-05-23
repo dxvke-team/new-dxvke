@@ -1,0 +1,13 @@
+<!--pages/invite/invite.wxml-->
+<view class='invite'>
+  <view class='title'>推荐好友，锁定粉丝</view>
+  <view class='text'>好友关注授权小程序后即可成为您的粉丝，</view>
+  <view class='text'>您的粉丝购物后，您将获得相应的返佣。</view>
+  <view style='margin:40rpx auto 50rpx;width:510rpx;height:804rpx;position:relative;'>
+     <canvas class='img' canvas-id="imgCanvas" id='canvas'></canvas>
+  </view>
+  <view class='flex'>
+    <button open-type='share' class='btn btn1' plain='true'>推荐给好友</button>
+    <view class='btn btn2' catchtap='saveImg'>生成海报</view>
+  </view>
+</view>

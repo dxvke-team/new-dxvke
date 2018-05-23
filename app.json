@@ -1,6 +1,6 @@
 {
   "pages": [
-    
+   
     "pages/index/index",
     "pages/find/find",
     "pages/user/user",
@@ -19,7 +19,10 @@
     "pages/taobao/taobao",
     "pages/overflow/overflow",
     "pages/seckill/seckill",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/invite/invite"
+   
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
