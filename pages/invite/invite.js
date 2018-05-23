@@ -30,7 +30,7 @@ Page({
       wx.getImageInfo({
         src: qrcodeUrl,
         success: function (res) {
-          context.drawImage(qrcodeUrl, 130, 270, 65, 65);
+          context.drawImage(res.path, 130, 270, 65, 65);
           context.save();
           context.restore();
           context.stroke();
@@ -51,8 +51,6 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: function (res) {
-              console.log(res.userInfo.avatarUrl)//头像
-              console.log(res.userInfo.nickName)//昵称
               // 我是昵称，邀请你来享利客啦
               context.setFontSize(8);
               context.setTextAlign('left');
@@ -143,46 +141,5 @@ Page({
         })
       }
     }
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
+  }
 })

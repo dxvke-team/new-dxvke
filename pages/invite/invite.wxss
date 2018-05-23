@@ -35,10 +35,9 @@
 }
 button[plain] {
   border: 1rpx solid #9a7bff;
-}
-.btn1{
   color: #9a7bff;
 }
+
 .btn2{
   background: #9a7bff;
   color: white;
