@@ -97,7 +97,7 @@ font-size: 20rpx;
 .goTop{
   position: fixed;
   right: 28rpx;
-  bottom: 20rpx; 
+  bottom: 80rpx; 
   border-radius: 50%;
   
 }

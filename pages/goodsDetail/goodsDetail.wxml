@@ -49,7 +49,7 @@
       <image src='../../images/index_icon.png'></image>
       <view>首页</view>
     </view>
-    <view class='tab2 tab' catchtap='service'catchtap='onShareAppMessage'>
+    <view class='tab2 tab'>
       <image src='../../images/share.png'  class='share-icon'></image>
       <button open-type='share' class='btn' plain='true'>分享</button>
     </view>

@@ -13,17 +13,27 @@ Page({
     list2:[],
     loadingShow:true,
     scrollTop:0,
+    noData1:false,
+    noData2:false,
   },
   // 获取收入列表
   getlist1: function () {
     var that = this
     http.httpGet('transPortList', { page: that.data.page1, limit: that.data.limit, type:1}, wx.getStorageSync('token'), function (res) {
       var list1 = that.data.list1.concat(res.data.list)
-      that.setData({
-        loadingShow: true,
-        list1: list1,
+      if (res.data.list.length < that.data.limit) {
+           that.setData({
+             noData1:true,
+             loadingShow: true,
+             list1: list1,
+           })
+      }else{
+        that.setData({
+          loadingShow: true,
+          list1: list1,
 
-      });
+        });
+      }
       wx.hideLoading();
       wx.stopPullDownRefresh()
     })
@@ -33,11 +43,19 @@ Page({
     var that = this
     http.httpGet('transPortList', { page: that.data.page2, limit: that.data.limit, type: 2 }, wx.getStorageSync('token'), function (res) {
       var list2 = that.data.list2.concat(res.data.list)
-      that.setData({
-        loadingShow: true,
-        list2: list2,
+      if (res.data.list.length < that.data.limit) {
+        that.setData({
+          noData2: true,
+          loadingShow: true,
+          list2: list2,
+        })
+      } else {
+        that.setData({
+          loadingShow: true,
+          list2: list2,
 
-      });
+        });
+      }
       wx.hideLoading();
       wx.stopPullDownRefresh()
     })
@@ -79,20 +97,28 @@ Page({
     var that = this
     switch (cur) {
       case 0:
-        var page1 = this.data.page1 + 1
-        this.setData({
-          page1: page1,
-          loadingShow: false,
-        })
-        that.getlist1();
+       if(that.data.noData1){
+         return false
+       }else{
+         var page1 = this.data.page1 + 1
+         this.setData({
+           page1: page1,
+           loadingShow: false,
+         })
+         that.getlist1();
+       }
         break;
       case 1:
-        var page2 = this.data.page2 + 1
-        this.setData({
-          page2: page2,
-          loadingShow: false,
-        })
-        that.getlist2();
+        if (that.data.noData2) {
+          return false
+        } else {
+          var page2 = this.data.page2 + 1
+          this.setData({
+            page2: page2,
+            loadingShow: false,
+          })
+          that.getlist2();
+        }
         break;
     }
   },

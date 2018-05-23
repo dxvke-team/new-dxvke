@@ -1,5 +1,4 @@
 // pages/update/update.js
-var login = require('../../utils/login.js');
 var http = require('../../utils/httpHelper.js');
 Page({
 
@@ -7,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userl:true,
+    avatarUrl:'',
+    name:'',
     showModel:true,
   },
 
@@ -16,11 +16,21 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    login.getInfo(function (res) {
-      that.setData({
-        userInfo: res,
-      });
-    });
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              that.setData({
+                avatarUrl: res.userInfo.avatarUrl,
+                name: res.userInfo.nickName
+              })
+            }
+          })
+        }
+      }
+    })
     this.getUserInfo()
   },
   getUserInfo: function () {

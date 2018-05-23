@@ -69,9 +69,13 @@ toEstimate:function(e){
     })
   },
   toUpdate: function (e) {
-    var that =this
     wx.navigateTo({
       url: '../update/update',
+    })
+  },
+  toInvite:function(e){
+    wx.navigateTo({
+      url: '../invite/invite',
     })
   },
   onPullDownRefresh: function () {
