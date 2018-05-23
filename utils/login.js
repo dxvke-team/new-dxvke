@@ -4,6 +4,8 @@ var config = require('../config.js');
 function login(options){
     if(options.is_share){
       var pid = options.share_member;
+    } else if (options.scene){
+      var pid = decodeURIComponent(options.scene);
     }else{
       var pid = '';
     }
@@ -80,7 +82,6 @@ function getInfo(cb)
 {
    wx.getUserInfo({
      success:function(res){
-       console.log(res);
        typeof cb == "function" && cb(res.userInfo);
      },
      fail:function(res){

@@ -128,5 +128,39 @@ Page({
         })
       }
     })
+  },
+
+  //跳转拼多多小程序
+  jumpToPddMini : function()
+  {
+    var that = this;
+    var copy_id = that.data.goodsDetail.copy_id + '-' + wx.getStorageSync('member_id');
+    if (that.data.isShare) {
+      copy_id += '-' + that.data.shareMember
+    }
+  
+    wx.navigateToMiniProgram({
+      appId: that.data.goodsDetail.pdd_app_id,
+      path: that.data.goodsDetail.pdd_mini_url,
+      extraData: {
+        userId: copy_id
+      },
+      envVersion: 'develop',
+      success(res) {
+        // 打开成功,记录领券信息
+        if (that.data.isShare) {
+          var share_member = that.data.shareMember
+        }else{
+          var share_member = 0;
+        }
+        var condition = {
+          goods_id : that.data.goodsDetail.id,
+          share_member: share_member
+        }
+        http.httpPost('recordCouponNotePdd', condition,wx.getStorageSync('token'),function(res){
+
+        });
+      }
+    })
   }
 })

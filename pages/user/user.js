@@ -17,7 +17,6 @@ Page({
     var that = this;
     //获取用户信息
     login.getInfo(function(res){
-      console.log(res);
       that.setData({
         userInfo:res
       });

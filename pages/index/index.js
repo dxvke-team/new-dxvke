@@ -89,6 +89,7 @@ Page({
     return {
       title: '洞悉微客',
       path: 'pages/index/index?is_share=1&share_member='+wx.getStorageSync('member_id'),
+      imageUrl : '../../images/indexShare.jpg',
       success: function (res) {
         // 转发成功
         wx.showModal({
@@ -148,7 +149,6 @@ Page({
       data = { type: that.data.currentTab }
     }
     http.httpGet('productCateList', data, wx.getStorageSync('token'),function (res) {
-      console.log(res.data);
       that.setData({
         goods_type: res.data,
         cate_type_id:res.data[0].id
