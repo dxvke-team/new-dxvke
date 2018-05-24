@@ -10,7 +10,7 @@ App({
     wx.setStorageSync('PHPSESSID',null);
     //wx.setStorageSync('member_id', null);
     wx.setEnableDebug({
-      enableDebug: true
+      enableDebug: false
     })
   },
 

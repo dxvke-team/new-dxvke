@@ -21,6 +21,7 @@ Page({
     interval: 5000,
     duration: 1000,
     contact:false,
+    isShen:false
   },
 
   onShareAppMessage: function (res) {
@@ -51,9 +52,15 @@ Page({
         shareMember: options.share_member
       });
     }
-    console.log(options);
     login.login(options);
     that.getProductDetail(options);
+    http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
+      if (res.data.status) {
+        that.setData({
+          isShen: true
+        });
+      }
+    });
   },
 
   /**
@@ -134,18 +141,19 @@ Page({
   jumpToPddMini : function()
   {
     var that = this;
-    var copy_id = that.data.goodsDetail.copy_id + '-' + wx.getStorageSync('member_id');
     if (that.data.isShare) {
-      copy_id += '-' + that.data.shareMember
+      var share_member = that.data.shareMember
+    }else{
+      var share_member = 0;
     }
-  
+
     wx.navigateToMiniProgram({
       appId: that.data.goodsDetail.pdd_app_id,
       path: that.data.goodsDetail.pdd_mini_url,
       extraData: {
-        userId: copy_id
+        userId: wx.getStorageSync('member_id')
       },
-      envVersion: 'develop',
+      // envVersion: 'develop',
       success(res) {
         // 打开成功,记录领券信息
         if (that.data.isShare) {

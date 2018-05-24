@@ -19,7 +19,8 @@ Page({
      command:'', //淘口令
      goodsType:'', //商品类型,
      isShare : false,
-     shareMember : ''
+     shareMember : '',
+     isShen : false
   },
 
   onShareAppMessage: function () {
@@ -53,6 +54,14 @@ Page({
     }
     login.login(options);
     that.getProductDetail(options);
+
+    http.httpPost('checkMiniShen',{},wx.getStorageSync('token'),function(res){
+      if(res.data.status){
+        that.setData({
+          isShen:true
+        });
+      }
+    });
   },
 
   /**
@@ -76,6 +85,9 @@ Page({
   },
   showJuan:function(e){
     var that = this;
+    if(that.data.isShen){
+      return false;
+    }
     var condition = {
       click_url: e.currentTarget.dataset.click_url,
       pict_url: e.currentTarget.dataset.pict_url,

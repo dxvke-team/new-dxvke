@@ -21,6 +21,7 @@ Page({
     isShare : false,
     shareMember : '',
     contact:false,
+    isShen : false
   },
 
   onShareAppMessage: function (res) {
@@ -53,6 +54,13 @@ Page({
     }
     login.login(options);
     that.getProductDetail(options);
+    http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
+      if (res.data.status) {
+        that.setData({
+          isShen: true
+        });
+      }
+    });
   },
 
   /**
