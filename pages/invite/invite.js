@@ -16,7 +16,11 @@ Page({
     var that=this
     const ctx = wx.createCanvasContext('imgCanvas')
     ctx.drawImage("../../images/user/invite_bd.jpg", 0, 0, 255, 402)
+<<<<<<< HEAD
     ctx.save()
+=======
+    ctx.save();
+>>>>>>> 3a1af1f6c4bcbe3f89716a04a627c5b4c8185a04
     ctx.restore();
     ctx.stroke();
     that.setQrcode(ctx)
@@ -26,14 +30,21 @@ Page({
     var that = this;
     http.httpPost("getPersonEwm", {}, wx.getStorageSync('token'), function (res) {
       var qrcodeUrl = res.data.ewm
-      wx.getImageInfo({
-        src: qrcodeUrl,
+      wx.downloadFile({
+        url: res.data.ewm, 
         success: function (res) {
-          context.drawImage(res.path, 130, 270, 65, 65);
-          context.save();
-          context.restore();
-          context.stroke();
-          that.setPhoto(context)
+          console.log(res)
+          if (res.statusCode == 200) {
+            // tempFilePath
+            context.drawImage(res.tempFilePath, 130, 270, 65, 65);
+            context.save();
+            context.restore();
+            context.stroke();
+            // context.draw(false, function (e) {
+
+            // })
+            that.setPhoto(context)
+          }
         }
       })
     });
@@ -60,26 +71,27 @@ Page({
               context.restore();
               context.stroke();
               var src = res.userInfo.avatarUrl
-              wx.getImageInfo({
-                src: src,
-                success:function(res){
-                  var path = res.path
-                  console.log(path)
-                  context.arc(43, 44, 22, 0, 2 * Math.PI)
-                  context.lineWidth = 2;  //描边宽度为3px
-                  context.setStrokeStyle('#b760e6')
-                  context.stroke();  //描边
-                  context.clip()
-                  context.drawImage(path, 21, 22, 44, 44);
-                  context.save();
-                  context.restore();
-                  context.stroke();
-                  context.draw(false, function (e) { 
-                    wx.hideLoading()
-                  })
+              wx.downloadFile({
+                url: src,
+                success: function (res) {
+                  if (res.statusCode == 200) {
+                    var path = res.tempFilePath
+                    console.log(path)
+                    context.arc(43, 44, 22, 0, 2 * Math.PI)
+                    context.lineWidth = 2;  //描边宽度为3px
+                    context.setStrokeStyle('#b760e6')
+                    context.stroke();  //描边
+                    context.clip()
+                    context.drawImage(path, 21, 22, 44, 44);
+                    context.save();
+                    context.restore();
+                    context.stroke();
+                    context.draw(false, function (e) {
+
+                    })
+                  } 
                 }
               })
-              
             }
           })
         }
