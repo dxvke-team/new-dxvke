@@ -16,15 +16,14 @@ Page({
     var that=this
     const ctx = wx.createCanvasContext('imgCanvas')
     ctx.drawImage("../../images/user/invite_bd.jpg", 0, 0, 255, 402)
+    ctx.save()
+    ctx.restore();
+    ctx.stroke();
     that.setQrcode(ctx)
   },
   //第二步绘制二维码图片  
   setQrcode: function (context) {
     var that = this;
-    wx.showToast({
-      title: '加载中',
-      icon: 'loading',
-    });  
     http.httpPost("getPersonEwm", {}, wx.getStorageSync('token'), function (res) {
       var qrcodeUrl = res.data.ewm
       wx.getImageInfo({
