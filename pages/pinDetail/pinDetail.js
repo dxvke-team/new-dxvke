@@ -141,34 +141,36 @@ Page({
   jumpToPddMini : function()
   {
     var that = this;
-    if (that.data.isShare) {
-      var share_member = that.data.shareMember
-    }else{
-      var share_member = 0;
-    }
 
-    wx.navigateToMiniProgram({
-      appId: that.data.goodsDetail.pdd_app_id,
-      path: that.data.goodsDetail.pdd_mini_url,
-      extraData: {
-        userId: wx.getStorageSync('member_id')
-      },
-      // envVersion: 'develop',
-      success(res) {
-        // 打开成功,记录领券信息
-        if (that.data.isShare) {
-          var share_member = that.data.shareMember
-        }else{
-          var share_member = 0;
-        }
-        var condition = {
-          goods_id : that.data.goodsDetail.id,
-          share_member: share_member
-        }
-        http.httpPost('recordCouponNotePdd', condition,wx.getStorageSync('token'),function(res){
-
-        });
+    if(!that.data.isShen){
+      if (that.data.isShare) {
+        var share_member = that.data.shareMember
+      } else {
+        var share_member = 0;
       }
-    })
+      wx.navigateToMiniProgram({
+        appId: that.data.goodsDetail.pdd_app_id,
+        path: that.data.goodsDetail.pdd_mini_url,
+        extraData: {
+          userId: wx.getStorageSync('member_id')
+        },
+        // envVersion: 'develop',
+        success(res) {
+          // 打开成功,记录领券信息
+          if (that.data.isShare) {
+            var share_member = that.data.shareMember
+          } else {
+            var share_member = 0;
+          }
+          var condition = {
+            goods_id: that.data.goodsDetail.id,
+            share_member: share_member
+          }
+          http.httpPost('recordCouponNotePdd', condition, wx.getStorageSync('token'), function (res) {
+
+          });
+        }
+      })
+    }
   }
 })

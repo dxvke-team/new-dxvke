@@ -70,14 +70,23 @@ Page({
     //   mask: true
     // })
     var that = this;
-    login.login(options);
-    that.getBanner()
-    that.getGoodsType()
-    that.getGoods()  
+    login.login(options,function(res){
+      if(res){
+        that.setData({
+          token:res
+        });
+        that.getBanner()
+        that.getGoodsType()
+        that.getGoods()  
+      }
+    });
   },
   onShow : function(){
     var that = this;
-    that.getGoods()  
+    if(that.data.token){
+      that.getGoods()  
+    }
+    
   },
   onHide : function(){
     var that = this;

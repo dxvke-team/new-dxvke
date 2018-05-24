@@ -122,7 +122,6 @@ Page({
          id: options.id, 
          product_type	: options.type,
       }, wx.getStorageSync('token'),function (res) {
-        console.log(res.data);
       that.setData({
         goodsDetail: res.data
       });

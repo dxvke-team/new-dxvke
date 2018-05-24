@@ -79,9 +79,13 @@ Page({
     })
   },
   showJuan: function (e) {
-    this.setData({
-      showJuan: false
-    })
+    var that = this;
+    if(!that.data.isShen){
+      that.setData({
+        showJuan: false
+      })
+    }
+    
   },
   closeJuan: function (e) {
     this.setData({

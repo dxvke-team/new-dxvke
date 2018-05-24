@@ -1,7 +1,7 @@
 var http = require('httpHelper.js');
 var config = require('../config.js');
 
-function login(options){
+function login(options,cb=''){
     if(options.is_share){
       var pid = options.share_member;
     } else if (options.scene){
@@ -24,6 +24,7 @@ function login(options){
                 wx.setStorageSync('LoginSessionKey', info.data.session_key);
                 wx.setStorageSync('token', info.data.token);
                 wx.setStorageSync('member_id', info.data.user_id);
+                typeof cb == "function" && cb(info.data.token);
               }else{ //該用戶未註冊,獲取用戶信息進行註冊
                 wx.setStorageSync('LoginSessionKey', info.data.session_key);
                 //判斷該用户是否已授权

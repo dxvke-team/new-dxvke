@@ -16,11 +16,7 @@ Page({
     var that=this
     const ctx = wx.createCanvasContext('imgCanvas')
     ctx.drawImage("../../images/user/invite_bd.jpg", 0, 0, 255, 402)
-<<<<<<< HEAD
     ctx.save()
-=======
-    ctx.save();
->>>>>>> 3a1af1f6c4bcbe3f89716a04a627c5b4c8185a04
     ctx.restore();
     ctx.stroke();
     that.setQrcode(ctx)
@@ -115,21 +111,27 @@ Page({
         })
         wx.hideToast()
         //保存图片到相册  
-        wx.saveImageToPhotosAlbum({
-          filePath: tempFilePath,
-          success(res) {
-            wx.showToast({
-              title: '保存成功',
-              icon: 'success',
-              duration: 2000
-            })
-          },
-          fail(res) {
-            wx.showToast({
-              title: '保存失败',
-              icon: 'success',
-              duration: 2000
-            })
+        wx.getSetting({
+          success:(res) => {
+            if (res.authSetting['scope.writePhotosAlbum'] === false){ //未授权
+              wx.openSetting({
+                success: (openRes) => {
+
+                }
+              });
+            }else{
+              //保存图片到相册  
+              wx.saveImageToPhotosAlbum({
+                filePath: tempFilePath,
+                success(res) {
+                  wx.showToast({
+                    title: '保存成功',
+                    icon: 'success',
+                    duration: 2000
+                  })
+                }
+              })
+            }
           }
         })
       },
@@ -142,8 +144,9 @@ Page({
     var that = this;
     var member_id = wx.getStorageSync('member_id');
     return {
-      title: '洞悉微客',
+      title: '推荐好友,锁定粉丝',
       path: 'pages/index/index?is_share=1&share_member=' + wx.getStorageSync('member_id'),
+      imageUrl: '../../images/inviteShare.jpg',
       success: function (res) {
         // 转发成功
         wx.showModal({
