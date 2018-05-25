@@ -1,5 +1,7 @@
 {
   "pages": [
+    
+    
    
     "pages/index/index",
     "pages/find/find",
@@ -19,7 +21,9 @@
     "pages/overflow/overflow",
     "pages/seckill/seckill",
     "pages/login/login",
-    "pages/invite/invite"
+    "pages/invite/invite",
+    "pages/rewardList/rewardList",
+    "pages/reward/reward"
     
   ],
   "window": {

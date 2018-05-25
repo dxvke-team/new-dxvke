@@ -1,0 +1,84 @@
+<!--pages/rewardList/rewardList.wxml-->
+<view style='font-size:0'>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx;">
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
+        <image class='banner' src='../../images/find/banner.jpg'></image>
+        <view class='infoList'>
+          <swiper autoplay="true" interval="5000" duration="500" vertical="true" class='infoList' class='swiper' circular="{{true}}">
+            <block wx:for="{{infoList}}" wx:key="item">
+              <swiper-item class="item">
+                <image src='../../images/find/info.png' class='icon'></image> {{item.info}}
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+        <block wx:for="{{goods}}" wx:key="{{item}}">
+          <view class="item-ans" catchtap="toReward" data-id='{{item.id}}'>
+            <view class="avatar">
+              <image class="img" src="{{item.pict_url}}"></image>
+            </view>
+            <view class="expertInfo">
+              <view class="name">{{item.title}}</view>
+              <view>
+                <view class='des'>
+                  <view style='color:#f51d46;'>
+                    <text style='font-size:24rpx;color:#333;'>价格:</text>
+                    <text style='font-size:36rpx;'>￥{{item.zk_final_price.rmb}}</text>
+                    <text style='font-size:36rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
+                  </view>
+                  <view class='btn'>求打赏</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <view hidden='{{loadingShow}}' class='load'>正在加载...</view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
+        <block wx:for="{{goods}}" wx:key="{{item}}">
+          <view class="item-ans" catchtap="toGoodsDetail" data-id='{{item.id}}'>
+            <view class="avatar">
+              <image class="img" src="{{item.pict_url}}"></image>
+              <image class='fail' src='../../images/find/fail_icon.png'></image>
+            </view>
+            <view class="expertInfo">
+              <view>
+                <view class="name">{{item.title}}</view>
+                <view class='time'>还剩{{time}}结束</view>
+              </view>
+                <view class='des'>
+                  <view>
+                      <view style='font-size:24rpx;color:#666;text-decoration: line-through;'>价格:￥99.98</view>
+                     <view style='font-size:28rpx;color:#f51d46; font-weight: bold;'>已打赏9.9元</view> 
+                     <!-- <view style='font-size:28rpx;color:#f51d46;'>打赏失败</view> -->
+
+                  </view>
+                  <view class='btn' style='font-size:28rpx;'>继续打赏</view>
+                  <!-- <view class='btn' style='font-size:28rpx;'>去领券</view> -->
+                </view>
+            </view>
+          </view>
+        </block>
+        <view hidden='{{loadingShow}}' class='load'>正在加载...</view>
+      </scroll-view>
+    </swiper-item>
+
+  </swiper>
+
+
+
+
+
+
+  <view style='height:98rpx;'></view>
+  <view class='tab flex'>
+    <view class="tab-item flex {{currentTab==item.type?'active':''}}" wx:for="{{tabList}}" wx:key="item" bindtap="swichTab" data-current="{{item.type}}">
+      <image src='{{item.img}}' class='tab-icon' wx:if='{{currentTab !==item.type}}'></image>
+      <image src='{{item.img2}}' class='tab-icon' wx:if='{{currentTab ==item.type}}'></image>
+      {{item.name}}
+    </view>
+  </view>
+</view>

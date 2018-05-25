@@ -1,0 +1,143 @@
+/* pages/rewardList/rewardList.wxss */
+.scoll-h{
+  overflow: scroll;
+  height: 100%;
+}
+.time{
+  color: white;
+  background: #333;
+  border-radius: 20rpx;
+  width: 234rpx;
+  height: 34rpx;
+  line-height:34rpx;
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 10rpx;
+}
+.banner{
+  width: 100%;
+  height: 260rpx;
+}
+.infoList{
+  width: 100%;
+  height: 80rpx;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+.swiper{
+   width: calc(100% - 32rpx);
+  height: 56rpx;
+  line-height: 56rpx;
+  background: #f0eeff;
+  border-radius: 28rpx;
+  font-size: 24rpx;
+  color: #333;
+  padding: 0 28rpx;
+  box-sizing: border-box;
+}
+.icon{
+  width: 20rpx;
+  height: 20rpx;
+  margin-right: 10rpx;
+}
+.item{
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
+
+
+
+.item-ans {
+  font-size: 0;
+  width: 100%;
+  display: flex;
+  flex-grow: row no-wrap;
+  justify-content: space-between;
+  padding: 20rpx 26rpx 40rpx 30rpx;
+  box-sizing: border-box;
+  align-items: flex-start;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+.item-ans:nth-child(1){
+  border-top: 1rpx solid #e5e5e5;
+}
+
+.avatar {
+  width: 230rpx;
+  height: 230rpx;
+  padding-right: 24rpx;
+  position: relative;
+}
+
+.avatar .img {
+   width: 230rpx;
+  height: 230rpx;
+  border-radius: 8rpx;
+}
+.expertInfo {
+  flex-grow: 2;
+  height: 230rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.expertInfo .name {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 40rpx;
+  display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+overflow: hidden;
+}
+.tab-content {
+  background: white;
+}
+.des{
+  display:flex;align-items:flex-end;
+  justify-content: space-between;
+}
+.btn{
+    border-radius: 8rpx;
+    width: 168rpx;
+    font-size: 28rpx;
+    color: #fff;
+    background-color: #f51d46;
+    line-height: 72rpx;
+    text-align: center;
+}
+
+/*tab选项卡  */
+.tab{
+  width: 100%;
+  height: 98rpx;
+  border-top: 1rpx solid #e5e5e5;
+  position: fixed;
+  bottom: 0;
+  background: white;
+  font-size: 28rpx;
+}
+.tab-item{
+  width: 50%;
+  justify-content: center;
+}
+.tab-item.active{
+  color: #9a7bff;
+}
+.tab-icon{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 18rpx;
+}
+.fail{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 230rpx;
+  height: 230rpx;
+}
