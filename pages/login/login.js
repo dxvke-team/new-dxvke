@@ -95,8 +95,8 @@ Page({
           if (requestData.data.code == 200){ //成功
             wx.setStorageSync('token', requestData.data.data.token);
             wx.setStorageSync('member_id', requestData.data.data.user_id);
-            wx.navigateBack({
-              delta: 1
+            wx.switchTab({
+              url: '../index/index'
             })
           }else{
             wx.switchTab({

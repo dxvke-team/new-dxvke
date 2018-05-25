@@ -52,7 +52,13 @@ Page({
         shareMember : options.share_member
       });
     }
-    login.login(options);
+    login.login(options,function(res){
+      if(!res){
+        wx.navigateTo({
+          url: '../login/login',
+        })
+      }
+    });
     that.getProductDetail(options);
 
     http.httpPost('checkMiniShen',{},wx.getStorageSync('token'),function(res){

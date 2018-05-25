@@ -31,11 +31,7 @@ function login(options,cb=''){
                 wx.getSetting({
                   success:function(setData){
                     if (setData.authSetting['scope.userInfo'] == undefined || setData.authSetting['scope.userInfo'] == false){
-                  
-                      //跳转到登录页面
-                      wx.navigateTo({
-                        url: '../login/login?pid='+pid,
-                      })
+                      typeof cb == "function" && cb(false);
                     } else {
                       wx.getUserInfo({
                         success:function(newInfo){
@@ -49,12 +45,10 @@ function login(options,cb=''){
                               pid:pid
                             },
                             success: function (requestData) {
-                              if (requestData.data.data.code == 200) { //成功
+                              if (requestData.data.code == 200) { //成功
                                 wx.setStorageSync('token', requestData.data.data.token);
                                 wx.setStorageSync('member_id', requestData.data.data.user_id);
-                                wx.navigateBack({
-                                  delta: 1
-                                })
+                                typeof cb == "function" && cb(true);
                               } else {
                                 wx.switchTab({
                                   url: '../index/index'
