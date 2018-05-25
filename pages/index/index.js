@@ -46,7 +46,7 @@ Page({
     loadingShow:true,
     scroll_height:'',
     height:'',
-    token:''
+    token:'',
   },
   //事件处理函数
   bindViewTap: function() {

@@ -1,5 +1,6 @@
 {
   "pages": [
+   
     "pages/index/index",
     "pages/find/find",
     "pages/user/user",
@@ -7,7 +8,6 @@
     "pages/estimate/estimate",
     "pages/myfans/myfans",
     "pages/classify/classify",
-    "pages/exchangeList/exchangeList",
     "pages/update/update",
     "pages/searchPage/searchPage",
     "pages/searchReasult/searchReasult",
@@ -20,7 +20,6 @@
     "pages/seckill/seckill",
     "pages/login/login",
     "pages/invite/invite"
-   
     
   ],
   "window": {

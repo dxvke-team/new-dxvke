@@ -1,5 +1,5 @@
 <!--pages/recommend/recommend.wxml-->
-<view class="container" style='font-size:0;overflow:hidden;'>
+<view class="container" style='font-size:0;'>
   <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
     <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">综合</view>
     <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">券额</view>
