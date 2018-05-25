@@ -8,10 +8,12 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     wx.setStorageSync('PHPSESSID',null);
+    // wx.setStorageSync('token', null)
+    // wx.setStorageSync('member_id', null)
     //wx.setStorageSync('member_id', null);
     wx.setEnableDebug({
       enableDebug: false
-    })
+    });
   },
 
   globalFunction: function(){

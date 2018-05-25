@@ -1,7 +1,7 @@
 var http = require('httpHelper.js');
 var config = require('../config.js');
 
-function login(options){
+function login(options,cb=''){
     if(options.is_share){
       var pid = options.share_member;
     } else if (options.scene){
@@ -24,17 +24,14 @@ function login(options){
                 wx.setStorageSync('LoginSessionKey', info.data.session_key);
                 wx.setStorageSync('token', info.data.token);
                 wx.setStorageSync('member_id', info.data.user_id);
+                typeof cb == "function" && cb(info.data.token);
               }else{ //該用戶未註冊,獲取用戶信息進行註冊
                 wx.setStorageSync('LoginSessionKey', info.data.session_key);
                 //判斷該用户是否已授权
                 wx.getSetting({
                   success:function(setData){
                     if (setData.authSetting['scope.userInfo'] == undefined || setData.authSetting['scope.userInfo'] == false){
-                  
-                      //跳转到登录页面
-                      wx.navigateTo({
-                        url: '../login/login?pid='+pid,
-                      })
+                      typeof cb == "function" && cb(false);
                     } else {
                       wx.getUserInfo({
                         success:function(newInfo){
@@ -48,12 +45,10 @@ function login(options){
                               pid:pid
                             },
                             success: function (requestData) {
-                              if (requestData.data.data.code == 200) { //成功
+                              if (requestData.data.code == 200) { //成功
                                 wx.setStorageSync('token', requestData.data.data.token);
                                 wx.setStorageSync('member_id', requestData.data.data.user_id);
-                                wx.navigateBack({
-                                  delta: 1
-                                })
+                                typeof cb == "function" && cb(true);
                               } else {
                                 wx.switchTab({
                                   url: '../index/index'

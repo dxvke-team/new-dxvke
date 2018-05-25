@@ -59,7 +59,7 @@
          邀请好友
        </view>
        <image src='../../images/user/right_icon.png' class='icon'></image>
-    </view>
+    </view>  
     <view class='main-item' catchtap="toContact">
        <view>
           <image src='../../images/user/server.png' class='item-icon'></image>
