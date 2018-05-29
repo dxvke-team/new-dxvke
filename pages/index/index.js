@@ -334,7 +334,6 @@ Page({
           pid: that.data.pid
         },
         success: function (requestData) {
-          console.log();
           if (requestData.data.code == 200) { //成功
             wx.setStorageSync('token', requestData.data.data.token);
             wx.setStorageSync('member_id', requestData.data.data.user_id);

@@ -29,7 +29,6 @@ Page({
       wx.downloadFile({
         url: res.data.ewm, 
         success: function (res) {
-          // console.log(res)
           if (res.statusCode == 200) {
             // tempFilePath
             context.drawImage(res.tempFilePath, 130, 270, 65, 65);
@@ -72,7 +71,6 @@ Page({
                 success: function (res) {
                   if (res.statusCode == 200) {
                     var path = res.tempFilePath
-                    // console.log(path)
                     context.arc(43, 44, 22, 0, 2 * Math.PI)
                     context.lineWidth = 2;  //描边宽度为3px
                     context.setStrokeStyle('#b760e6')
@@ -136,7 +134,6 @@ Page({
         })
       },
       fail: function (res) {
-        console.log(res);
       }
     });
   },

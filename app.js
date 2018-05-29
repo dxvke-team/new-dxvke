@@ -47,7 +47,6 @@ App({
       },
       fail: function (res) {
         fail++;
-        console.log(res);
       },
       complete: function (res) {
         i++;

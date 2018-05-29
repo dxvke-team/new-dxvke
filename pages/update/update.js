@@ -53,7 +53,6 @@ Page({
           confirmColor:'#9a7bff',
           confirmText:"知道了",
           success: function (result) {
-            console.log(result)
             if (result.confirm) {
              wx.navigateBack({})
             }
@@ -88,7 +87,6 @@ Page({
           confirmColor: '#9a7bff',
           confirmText: "知道了",
           success: function (result) {
-            console.log(result)
             if (result.confirm) {
               wx.navigateBack({})
             }
