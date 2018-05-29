@@ -88,6 +88,11 @@ Page({
       url: "../JDdetail/JDdetail?id=" + e.currentTarget.dataset.id + '&type=2'
     })
   },
+  toRewardList:function(e){
+     wx.navigateTo({
+       url: '../rewardList/rewardList',
+     })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

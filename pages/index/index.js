@@ -261,7 +261,7 @@ Page({
   swichNav: function (e) {
     var that = this
     var cur = e.currentTarget.dataset.current;
-    if (this.data.currentTaB == cur) { 
+    if (this.data.currentTab == cur) { 
       return false; 
       }
     else {

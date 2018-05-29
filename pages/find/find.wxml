@@ -26,6 +26,9 @@
       <view class='type'>为您推荐</view>
     </view>
   </view>
+  <view style=' text-align: center;' catchtap='toRewardList'>
+       <image src='../../images/find/reward.png' class='reward'></image>
+  </view>
   <view class='main'>
     <view class='title'>
       <image src='../../images/find/icon.png' class='main-icon'></image>淘宝9.9
