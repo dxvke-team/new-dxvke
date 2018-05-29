@@ -1,7 +1,5 @@
 {
   "pages": [
-    
-    
    
     "pages/index/index",
     "pages/find/find",
@@ -24,6 +22,7 @@
     "pages/invite/invite",
     "pages/rewardList/rewardList",
     "pages/reward/reward"
+    
     
   ],
   "window": {

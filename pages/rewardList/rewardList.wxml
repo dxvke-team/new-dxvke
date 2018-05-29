@@ -3,7 +3,7 @@
   <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx;">
     <swiper-item>
       <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
-        <image class='banner' src='../../images/find/banner.jpg'></image>
+        <image class='banner' src='{{banner.image}}'></image>
         <view class='infoList'>
           <swiper autoplay="true" interval="5000" duration="500" vertical="true" class='infoList' class='swiper' circular="{{true}}">
             <block wx:for="{{infoList}}" wx:key="item">
@@ -13,7 +13,7 @@
             </block>
           </swiper>
         </view>
-        <block wx:for="{{goods}}" wx:key="{{item}}">
+        <block wx:for="{{goods1}}" wx:key="{{item}}">
           <view class="item-ans" catchtap="toReward" data-id='{{item.id}}'>
             <view class="avatar">
               <image class="img" src="{{item.pict_url}}"></image>
@@ -24,8 +24,7 @@
                 <view class='des'>
                   <view style='color:#f51d46;'>
                     <text style='font-size:24rpx;color:#333;'>价格:</text>
-                    <text style='font-size:36rpx;'>￥{{item.zk_final_price.rmb}}</text>
-                    <text style='font-size:36rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
+                    <text style='font-size:36rpx;'>￥{{item.price}}</text>
                   </view>
                   <view class='btn'>求打赏</view>
                 </view>
@@ -38,7 +37,7 @@
     </swiper-item>
     <swiper-item>
       <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
-        <block wx:for="{{goods}}" wx:key="{{item}}">
+        <block wx:for="{{goods2}}" wx:key="{{item}}">
           <view class="item-ans" catchtap="toGoodsDetail" data-id='{{item.id}}'>
             <view class="avatar">
               <image class="img" src="{{item.pict_url}}"></image>
@@ -70,9 +69,6 @@
 
 
 
-
-
-
   <view style='height:98rpx;'></view>
   <view class='tab flex'>
     <view class="tab-item flex {{currentTab==item.type?'active':''}}" wx:for="{{tabList}}" wx:key="item" bindtap="swichTab" data-current="{{item.type}}">
@@ -81,4 +77,21 @@
       {{item.name}}
     </view>
   </view>
+
+  <view class="model" hidden='{{showModel}}'>
+    <view class="model_bd">
+    </view>
+    <view class="model_main">
+      <view class="model_main_des">
+        <view class="model-des">该商品正在打赏中，快去邀请好友来打赏拿补贴吧！ </view>
+        <view class='footer flex'>
+         <button class='model-close' bindtap='closeModel' plain='true'>取消</button>
+         <button class='model-set' bindtap='toSeek' plain='true'>查看详情</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+
 </view>

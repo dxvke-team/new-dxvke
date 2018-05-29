@@ -12,7 +12,7 @@ App({
     // wx.setStorageSync('member_id', null)
     //wx.setStorageSync('member_id', null);
     wx.setEnableDebug({
-      enableDebug: false
+      enableDebug: true
     });
   },
 

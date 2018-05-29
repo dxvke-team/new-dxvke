@@ -49,13 +49,21 @@ Page({
     token:'',
     login:true,
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
+  // //事件处理函数
+  // bindViewTap: function() {
+  //   wx.navigateTo({
+  //     url: '../logs/logs'
+  //   })
+  // },
   onLoad: function (options) {
+    if(options.share_query==1){
+      setTimeout(function () {
+        wx.hideLoading()
+        wx.navigateTo({
+          url: '../reward/reward?id=' + options.id + '&type=' + options.type + '&share_member=' + options.share_member,
+        })
+      }, 500)
+    }
     var that=this
     var query=wx.createSelectorQuery()
     //选择id
@@ -83,7 +91,6 @@ Page({
     });
 
     login.login(options,function(res){
-      console.log(res)
       if(res){
         that.setData({
           token : res

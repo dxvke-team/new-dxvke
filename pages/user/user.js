@@ -51,33 +51,6 @@ toOrderList:function(e){
     url: '../orderList/orderList?type='+type,
   })
 },
-
-toAll:function(e){
-    wx.navigateTo({
-      url: '../allIncome/allIncome',
-    })
-},
-
-toEstimate:function(e){
-    wx.navigateTo({
-      url: '../estimate/estimate',
-    })
-  },
-  toMyfans:function(e){
-    wx.navigateTo({
-      url: '../myfans/myfans',
-    })
-  },
-  toUpdate: function (e) {
-    wx.navigateTo({
-      url: '../update/update',
-    })
-  },
-  toInvite:function(e){
-    wx.navigateTo({
-      url: '../invite/invite',
-    })
-  },
   onPullDownRefresh: function () {
     this.getUserInfo()
   },

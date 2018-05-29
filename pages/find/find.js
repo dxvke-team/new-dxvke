@@ -88,11 +88,6 @@ Page({
       url: "../JDdetail/JDdetail?id=" + e.currentTarget.dataset.id + '&type=2'
     })
   },
-  toRewardList:function(e){
-     wx.navigateTo({
-       url: '../rewardList/rewardList',
-     })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -115,26 +110,6 @@ Page({
     that.getGoods2()
     that.getGoods3()
     that.getGoods4()
-  },
-  toTaobao:function(){
-    wx.navigateTo({
-      url: '../taobao/taobao',
-    })
-  },
-  toSeckill: function () {
-    wx.navigateTo({
-      url: '../seckill/seckill',
-    })
-  },
-  toOverflow: function () {
-    wx.navigateTo({
-      url: '../overflow/overflow',
-    })
-  },
-  toRecommend:function(){
-    wx.navigateTo({
-      url: '../recommend/recommend',
-    })
   },
   toTop: function () {
     wx.pageScrollTo({

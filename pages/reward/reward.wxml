@@ -1,90 +1,119 @@
 <!--pages/reward/reward.wxml-->
 <view class='reward'>
-   <view class='header'>
-       <image src='../../images/find/reward_bd.jpg' class='bd'></image>
-       <view class='rule' catchtap='showRule'>活动规则</view>
-       <view class='header-main'>
-            <image src='../../images/user/JD.jpg' class='photo'></image>
-            <view style='text-align: center;margin-top:65rpx;'>
-               <view class='nickname'>昵称</view>
-               <view class='tip'>"我发现一件好货,一起0元拿！"</view>
-            </view>
-            <view class='flex pro-main'>
-               <image src='../../images/user/JD.jpg' class='pro-pic'></image>
-               <view class='pro-des'>
-                  <view class='pro-title'>商品名称米昂抖擞抖擞阿迪搜啊发动机欧萨积分都撒打飞机哦撒酒疯do死哦阿迪搜啊金佛打飞机扫</view>
-                  <view>
-                      <view class='pro-price'>￥34.33</view>
-                      <view class='time'>还剩{{time}}结束</view>
-                  </view>
-               </view>
-            </view>
-       </view>
-   </view>
-   <view style='text-align: center;margin:30rpx 44rpx 50rpx;'>
-       <view style='font-size:34rpx;color:white;'>已有<text style='color:#ffda00;font-weight: bold;'>3</text>人打赏，共计<text style='font-size:44rpx;color:#ffda00;font-weight: bold;'>12.21</text>元</view>
-      <view class='progress'>
-        <progress percent="{{precent}}" stroke-width="9" activeColor="#ffd700" backgroundColor="#ac1717"/>
+  <scroll-view style='height:100vh' scroll-y="true" bindscrolltolower="bindDownLoad" scroll-top="{{scrollTop}}">
+  <view class='header' wx:if="{{!selfShow}}">
+    <image src='../../images/find/reward_bd.jpg' class='bd'></image>
+    <view class='rule' catchtap='showRule'>活动规则</view>
+    <view class='header-main'>
+      <image src='../../images/find/hadReward.png' class='reward-icon' wx:if="{{detail.bargain_count==10}}"></image>
+       <image src='../../images/find/notReward.png' class='reward-icon' wx:if="{{time==0}}"></image>   
+      <image src='{{detail.head_image}}' class='photo'></image>
+      <view style='text-align: center;margin-top:65rpx;'>
+        <view class='nickname'>{{detail.nickname}}</view>
+        <view class='tip'>"我发现一件好货,一起0元拿！"</view>
       </view>
-      <view class='flex' style='font-size:24rpx;color:white;margin-top:6rpx;'>
-        <view>0人</view>
-        <view>10人</view>
-      </view>
-      <view style='margin:30rpx 0 30rpx;'>
-          <image src='../../images/find/btn_icon1.png' class='btn'></image>
-         <view style='position:relative;'>
-              <image src='../../images/find/btn_icon2.gif' class='btn'></image>
-              <button open-type='share' class="m_btn"  style='width:100%;height:100rpx;left:0;'></button>
-         </view>
-      </view>
-      <view class='member'>
-          <view class='member-title'>
-              <image src='../../images/find/member_title.png' style='width:302rpx;height:31rpx;'></image>
-          </view>
-          <view class='flex member-list' wx:for="{{5}}">
-            <view class='flex'>
-                <view class='index'>1</view>
-                <image src='../../images/user/JD.jpg' class='member-pic'></image>
-                <view class='member-name'>用户昵称用户</view>
-            </view>
-            <view style='font-size:28rpx;color:#ffda00;' class='flex'>
-                <image src='../../images/find/cash.png' class='cash'></image>
-                打赏10.23元
-            </view>
-          </view>
-      </view>
-   </view>
-    <view style='flex-wrap: wrap;margin-bottom:10rpx;' class='flex'>
-      <block wx:for="{{goods}}" wx:key="{{item}}">
-        <view class="goods-list"  catchtap="toGoodsDetail" data-id='{{item.id}}'>
-          <image class="" src="{{item.pict_url}}" style='width:100%;height:370rpx;'></image>
-          <view style='padding:0 20rpx;height:172rpx;'>
-            <view class="name">{{item.title}}</view>
-            <view style='color:#f51d46;height:82rpx;line-height:82rpx;'>
-              <text style='font-size:24rpx;'>￥</text>
-              <text style='font-size:36rpx;'>{{item.zk_final_price.rmb}}</text>
-              <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
-            </view>
+      <view class='flex pro-main'>
+        <image src='{{detail.pict_url}}' class='pro-pic'></image>
+        <view class='pro-des'>
+          <view class='pro-title'>{{detail.title}}</view>
+          <view>
+            <view class='pro-price'>￥{{detail.price}}</view>
+            <view class='time' wx:if="{{time!==0}}">还剩 {{hour}} : {{minute}} : {{second}} 结束</view>
           </view>
         </view>
-      </block>
+      </view>
     </view>
-     <view hidden='{{loadingShow}}' class='load'>正在加载...</view>
-   <view class='goTop' catchtap='toTop'>
-     <image src='../../images/goTop.png'></image>
+  </view>
+   <view class='header' style='height:444rpx;' wx:if="{{selfShow}}">
+   <image src='../../images/find/reward_bd.jpg' class='bd'></image>
+      <view class='header-main' style='top:24rpx;'>
+       <image src='../../images/find/hadReward.png' class='reward-icon' style='top:88rpx;right:30rpx;' wx:if="{{status==1}}"></image> 
+       <image src='../../images/find/done.png' class='reward-icon' style='top:88rpx;right:30rpx;' wx:if="{{status==3}}"></image> 
+       <image src='../../images/find/notReward.png' class='reward-icon' style='top:88rpx;right:30rpx;' wx:if="{{status==2}}"></image> 
+      <view class='flex pro-main'>
+        <image src='{{detail.pict_url}}' class='pro-pic'></image>
+        <view class='pro-des'>
+          <view class='pro-title'>{{detail.title}}</view>
+          <view class='pro-price'>￥{{detail.price}}</view>
+        </view>
+      </view>
+      <view style=' text-align: center;'>
+          <navigator url='../rewardList/rewardList' class='income-item' hover-class="none">
+           <image src='../../images/find/btn_icon4.gif' class='my-buy-btn'></image>
+           </navigator>
+      </view>
+    </view> 
+  </view> 
+  <view style='text-align: center;margin:30rpx 44rpx 50rpx;' wx:if="{{!selfShow}}">
+    <view style='font-size:34rpx;color:white;'>已有
+      <text style='color:#ffda00;font-weight: bold;'>{{detail.bargain_count}}</text>人打赏，共计
+      <text style='font-size:44rpx;color:#ffda00;font-weight: bold;'>{{detail.bargain_money}}</text>元</view>
+    <view class='progress'>
+      <progress percent="{{progress}}" stroke-width="9" activeColor="#ffd700" backgroundColor="#ac1717" />
+    </view>
+    <view class='flex' style='font-size:24rpx;color:white;margin-top:6rpx;'>
+      <view>0人</view>
+      <view>10人</view>
+    </view>
+    <view style='margin:30rpx 0 30rpx;'>
+      <image src='../../images/find/btn_icon1.png' class='btn' wx:if="{{detail.bargain_count!==10}}"></image>
+      <view style='position:relative;' wx:if="{{detail.bargain_count==10}}">
+        <image src='../../images/find/btn_icon3.gif' class='btn'></image>
+        <button open-type='share' class="m_btn" style='width:100%;height:100rpx;left:0;'></button>
+      </view>
+      <view style='position:relative;' wx:if="{{detail.bargain_count!==10}}">
+        <image src='../../images/find/btn_icon2.gif' class='btn'></image>
+        <button open-type='share' class="m_btn" style='width:100%;height:100rpx;left:0;'></button>
+      </view>
+    </view>
+    <view class='member'>
+      <view class='member-title'>
+        <image src='../../images/find/member_title.png' style='width:302rpx;height:31rpx;'></image>
+      </view>
+      <view class='flex member-list' wx:for="{{memberList}}" wx:key="{{item}}">
+        <view class='flex'>
+          <view class='index'>{{index + 1}}</view>
+          <image src='{{item.head_image}}' class='member-pic'></image>
+          <view class='member-name'>{{item.nickname}}</view>
+        </view>
+        <view style='font-size:28rpx;color:#ffda00;' class='flex'>
+          <image src='../../images/find/cash.png' class='cash'></image>
+          打赏{{item.bargain_money}}元
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='flex-wrap: wrap;margin-bottom:10rpx;' class='flex'>
+    <block wx:for="{{goods}}" wx:key="{{item}}">
+      <view class="goods-list" catchtap="toGoodsDetail" data-id='{{item.id}}'>
+        <image class="" src="{{item.pict_url}}" style='width:100%;height:370rpx;'></image>
+        <view style='padding:0 20rpx;height:172rpx;'>
+          <view class="name">{{item.title}}</view>
+          <view style='color:#f51d46;height:82rpx;line-height:82rpx;'>
+            <text style='font-size:24rpx;'>￥</text>
+            <text style='font-size:36rpx;'>{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view hidden='{{loadingShow}}' class='load' wx:if="{{!noData}}">正在加载...</view>
+  <view class='no-more' wx:if="{{noData}}">没有更多数据了~</view>
+  <view class='goTop' catchtap='toTop'>
+    <image src='../../images/goTop.png'></image>
   </view>
   <view class="model" hidden='{{showModel}}'>
     <view class="model_bd">
     </view>
     <view class="model_main">
       <view class="model_main_des">
-         <image src='../../images/find/model_bd.png' class='model_header'></image>
-         <view class='des'>您已获得<text style='color:#dc1502;font-weight: bold;'>6.23元</text>打赏，分享越多，获得的打赏越多</view>
-         <view style='position:relative;'>
-              <image src='../../images/find/model_btn.png' class='btn_bd'></image> 
-             <button open-type='share' class="m_btn">立即分享打CALL</button>
-         </view>
-         
+        <image src='../../images/find/model_bd.png' class='model_header'></image>
+        <view class='des'>您已获得
+          <text style='color:#dc1502;font-weight: bold;'>{{money}}元 </text>打赏，分享越多，获得的打赏越多</view>
+        <view style='position:relative;'>
+          <image src='../../images/find/model_btn.png' class='btn_bd'></image>
+          <button open-type='share' class="m_btn">立即分享打CALL</button>
+        </view>
       </view>
       <image src="../../images/close.png" alt="" catchtap='closeModel' class='cancel'></image>
     </view>
@@ -94,28 +123,46 @@
     </view>
     <view class="model_main" style='height:651rpx;'>
       <view class="model_main_des">
-         <image src='../../images/find/rule_text.png' style='width:520rpx;height:651rpx;'></image>
+        <image src='../../images/find/rule_text.png' style='width:520rpx;height:651rpx;'></image>
       </view>
       <image src="../../images/close.png" alt="" catchtap='closeRule' class='cancel'></image>
     </view>
   </view>
+  </scroll-view>
 </view>
 <view class="model" hidden='{{showReward}}'>
+  <view class="model_bd">
+  </view>
+  <view class="model_main">
+    <view class="model_main_des">
+      <view class='model_header' style='background:#e8e8e8;'>
+        <image src='{{avatarUrl}}' class='model-photo'></image>
+        <view style='font-size:24rpx;color:#666;line-height:70rpx;'>"谢谢老铁帮我打赏了
+          <text style='color:#dc1502;'>{{money}}元</text>"</view>
+      </view>
+      <view class='des'>享利客邀请您打赏，您也可以领补贴
+        <text style='color:#dc1502;font-weight: bold;'>0元</text>拿{{detail.title}}</view>
+      <view style='position:relative;'>
+        <image src='../../images/find/model_btn.png' class='btn_bd'></image>
+        <button open-type='share' class="m_btn">立即分享打CALL</button>
+      </view>
+
+    </view>
+    <image src="../../images/close.png" alt="" catchtap='closeReward' class='cancel'></image>
+  </view>
+</view>
+
+<view class="model" hidden='{{login}}'>
     <view class="model_bd">
     </view>
-    <view class="model_main">
+    <view class="model_main login-model">
       <view class="model_main_des">
-         <view class='model_header' style='background:#e8e8e8;'>
-              <image src='../../images/user/JD.jpg' class='model-photo'></image>
-              <view style='font-size:24rpx;color:#666;line-height:70rpx;'>"谢谢老铁帮我打赏了<text style='color:#dc1502;'>2.58元</text>"</view>
-         </view>
-         <view class='des'>享利客邀请您打赏，您也可以领补贴<text style='color:#dc1502;font-weight: bold;'>0元</text>哪【商品名称】</view>
-         <view style='position:relative;'>
-              <image src='../../images/find/model_btn.png' class='btn_bd'></image> 
-             <button open-type='share' class="m_btn">立即分享打CALL</button>
-         </view>
-         
+        <view class='model-title'>是否进行页面授权</view>
+        <view class="model-des">需要获取您的公开信息(昵称、头像等)，请到小程序的设置中打开用户信息授权</view>
+        <view class='footer flex'>
+         <button class='model-close' bindtap='cancelInfo' plain='true'>取消</button>
+         <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class='model-set' plain='true'>去设置</button>
+        </view>
       </view>
-      <image src="../../images/close.png" alt="" catchtap='closeReward' class='cancel'></image>
     </view>
   </view>
