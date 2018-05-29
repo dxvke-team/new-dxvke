@@ -45,8 +45,6 @@ function Post (url,data, token='', cb ){
 		},
 		fail:(err) => {
 			typeof cb == "function" && cb(null,err.errMsg);
-			console.log("http请求:"+config.HTTP_url);
-			console.log(err)
 		}
 	});
 };

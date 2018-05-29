@@ -112,7 +112,6 @@ Page({
   lower: function (e) {
     var cur = this.data.order
     var that = this
-    console.log(typeof cur)
     switch (cur) {
       case 0:
         var page1 = this.data.page1 + 1
@@ -203,7 +202,6 @@ Page({
     var that = this
     switch (cur) {
       case 0:
-        console.log(cur)
         var page1 = this.data.page1 + 1
         this.setData({
           page1: page1,
@@ -212,7 +210,6 @@ Page({
         that.getGoods1();
         break;
       case 1:
-        console.log(cur)
         var page2 = this.data.page2 + 1
         this.setData({
           page2: page2,
@@ -221,7 +218,6 @@ Page({
         that.getGoods2();
         break;
       case 2:
-        console.log(cur)
         var page3 = this.data.page3 + 1
         this.setData({
           page3: page3,
@@ -230,7 +226,6 @@ Page({
         that.getGoods3();
         break;
       case 3:
-        console.log(cur)
         var page4 = this.data.page4 + 1
         this.setData({
           page4: page4,

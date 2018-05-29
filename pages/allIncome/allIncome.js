@@ -1,5 +1,6 @@
 // pages/allIncome/allIncome.js
 var http = require('../../utils/httpHelper.js')
+var config = require('../../config.js');
 Page({
 
   /**
@@ -9,7 +10,7 @@ Page({
      show:true,
      noData:false,
      loadingShow: true,
-     command: "http://xlk.dxvke.com/api/toDownloadApp",
+     command: config.HTTP_BASE_URL,
      page:1,
      limit:20,
      list:[],

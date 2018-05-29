@@ -69,7 +69,6 @@ Page({
   },
 
   cancelInfo : function(){
-    console.log('aaa')
     wx.switchTab({
       url: '../index/index',
     })
