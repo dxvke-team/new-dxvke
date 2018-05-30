@@ -46,7 +46,7 @@
             <view class="expertInfo">
               <view>
                 <view class="name">{{item.title}}</view>
-                <view class='time' hidden='{{item.status==2||item.status==1}}'>还剩{{time}}结束</view>
+                <view class='time' hidden='{{item.status==2||item.status==1}}'>还剩 {{item.hour}} : {{item.minute}} : {{item.second}} 结束</view>
               </view>
                 <view class='des'>
                   <view>
@@ -67,8 +67,6 @@
     </swiper-item>
 
   </swiper>
-
-
 
   <view style='height:98rpx;'></view>
   <view class='tab flex'>
