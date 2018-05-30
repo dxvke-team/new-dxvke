@@ -1,6 +1,6 @@
 {
   "pages": [
-   
+     "pages/rewardList/rewardList",
     "pages/index/index",
     "pages/find/find",
     "pages/user/user",
@@ -20,8 +20,9 @@
     "pages/seckill/seckill",
     "pages/login/login",
     "pages/invite/invite",
-    "pages/rewardList/rewardList",
+    
     "pages/reward/reward"
+    
     
     
   ],

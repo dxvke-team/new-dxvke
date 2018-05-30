@@ -41,22 +41,23 @@
           <view class="item-ans" catchtap="toGoodsDetail" data-id='{{item.id}}'>
             <view class="avatar">
               <image class="img" src="{{item.pict_url}}"></image>
-              <image class='fail' src='../../images/find/fail_icon.png'></image>
+              <image class='fail' src='../../images/find/fail_icon.png' wx:if="{{item.status==2}}"></image>
             </view>
             <view class="expertInfo">
               <view>
                 <view class="name">{{item.title}}</view>
-                <view class='time'>还剩{{time}}结束</view>
+                <view class='time' hidden='{{item.status==2||item.status==1}}'>还剩{{time}}结束</view>
               </view>
                 <view class='des'>
                   <view>
-                      <view style='font-size:24rpx;color:#666;text-decoration: line-through;'>价格:￥99.98</view>
-                     <view style='font-size:28rpx;color:#f51d46; font-weight: bold;'>已打赏9.9元</view> 
-                     <!-- <view style='font-size:28rpx;color:#f51d46;'>打赏失败</view> -->
+                      <view style='font-size:24rpx;color:#666;text-decoration: line-through;' hidden='{{item.status==2}}'>价格:￥99.98</view>
+                     <view style='font-size:28rpx;color:#f51d46; font-weight: bold;' hidden='{{item.status==2}}'>已打赏9.9元</view> 
+                      <view style='font-size:28rpx;color:#f51d46;' wx:if="{{item.status==2}}">打赏失败</view> 
 
                   </view>
-                  <view class='btn' style='font-size:28rpx;'>继续打赏</view>
-                  <!-- <view class='btn' style='font-size:28rpx;'>去领券</view> -->
+                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==0}}">继续打赏</view>
+                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==2}}" catchtap='rewardAgain'>重新打赏</view>
+                  <view class='btn' style='font-size:28rpx;' wx:if="{{item.status==1}}" catchtap='toQuan' data-id="{{item.id}}">去领券</view> 
                 </view>
             </view>
           </view>

@@ -160,13 +160,18 @@ Page({
         money:options.money,
         id: options.id
       })
-
+      this.getDetail(options.id)
+      this.getGoods()
+      this.getMemberList(options.id)
     }else if(options.status==1){
     //  查看详情 不显示弹框
       that.setData({
         showModel: true,
         id: options.id
       })
+      this.getDetail(options.id)
+      this.getGoods()
+      this.getMemberList(options.id)
     }
     if(options.type==2){
       this.setData({
@@ -207,7 +212,7 @@ Page({
                             that.setData({
                               id: res.bargain_id,
                               money: res.money,
-                              selfShow: false,
+                              showReward:false,
                             })
                             that.getDetail(res.bargain_id)
                             that.getGoods()
@@ -264,9 +269,6 @@ Page({
       });
  
     }
-    this.getDetail(options.id)
-    this.getGoods()
-    this.getMemberList(options.id)
   },
   /**
 * 用户点击授权信息
@@ -308,12 +310,13 @@ Page({
                           that.setData({
                             id: res.num_iid,
                           })
-                          that.doBargain(2, function (res) {
+
+                          that.doBargain(1, function (res) {
                             if (res.status == 0) {
                               that.setData({
                                 id: res.bargain_id,
                                 money: res.money,
-                                selfShow: false,
+                                showReward: false,
                               })
                               that.getDetail(res.bargain_id)
                               that.getGoods()
