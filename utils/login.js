@@ -20,7 +20,6 @@ function login(options,cb=''){
               code: res.code
             },
             success:function(info){
-              console.log(info);
               if(info.data.status){ //該用戶已註冊
                 wx.setStorageSync('LoginSessionKey', info.data.session_key);
                 wx.setStorageSync('token', info.data.token);
