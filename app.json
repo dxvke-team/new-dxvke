@@ -1,7 +1,7 @@
 {
   "pages": [
-     "pages/rewardList/rewardList",
     "pages/index/index",
+    "pages/rewardList/rewardList",
     "pages/find/find",
     "pages/user/user",
     "pages/allIncome/allIncome",

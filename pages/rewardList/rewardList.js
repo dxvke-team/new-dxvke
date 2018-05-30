@@ -53,7 +53,6 @@ Page({
   swichTab:function(e){
     var that = this
     var cur = e.currentTarget.dataset.current;
-    console.log(cur)
     if (this.data.currentTab == cur) {
       return false;
     }
@@ -247,50 +246,19 @@ Page({
     http.httpGet('bargainSuccessGetCoupon', {id:id}, wx.getStorageSync('token'), function (res) {
      if(res.code==200){
         if (!that.data.isShen) {
-         if (that.data.isShare) {
-           var share_member = that.data.shareMember
-         } else {
-           var share_member = 0;
-         }
          wx.navigateToMiniProgram({
-           appId: that.data.goodsDetail.pdd_app_id,
-           path: that.data.goodsDetail.pdd_mini_url,
+           appId: res.data.pdd_app_id,
+           path: res.data.pdd_mini_url,
            extraData: {
              userId: wx.getStorageSync('member_id')
            },
            // envVersion: 'develop',
            success(res) {
-             // 打开成功,记录领券信息
-             if (that.data.isShare) {
-               var share_member = that.data.shareMember
-             } else {
-               var share_member = 0;
-             }
-             var condition = {
-               goods_id: that.data.goodsDetail.id,
-               share_member: share_member
-             }
-             http.httpPost('recordCouponNotePdd', condition, wx.getStorageSync('token'), function (res) {
-
-             });
            }
          })
        }
-
-
-
-
-
-
-
-
-
-
-     }else{
-       
      }
     })
-
   },
   rewardAgain:function(e){
 
@@ -353,11 +321,11 @@ Page({
         })
       },
       fail: function (res) {
-        // 转发失败
-        wx.showModal({
-          content: '转发失败',
-          showCancel: false,
-        })
+        // // 转发失败
+        // wx.showModal({
+        //   content: '转发失败',
+        //   showCancel: false,
+        // })
       }
     }
   }
