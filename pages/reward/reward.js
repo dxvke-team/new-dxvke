@@ -164,7 +164,7 @@ Page({
     //  查看详情 不显示弹框
       that.setData({
         showModel: true,
-        id: options.id
+        id: options.id,
       })
       this.getDetail(options.id)
       this.getGoods()
@@ -172,7 +172,8 @@ Page({
     }
     if(options.type==2){
       this.setData({
-        id: options.id
+        id: options.id,
+        photo: options.photo,
       })
       this.getDetail(options.id)
       this.getMemberList(options.id)
@@ -412,7 +413,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '洞悉微客',
-      path: 'pages/index/index?&share_query=1&id=' + this.data.id + '&type=2&share_member=' + wx.getStorageSync('member_id'),
+      path: 'pages/index/index?&share_query=1&id=' + this.data.id + '&type=2&share_member=' + wx.getStorageSync('member_id') + '&photo=' + this.data.detail.head_image,
       success: function (res) {
         // 转发成功
         wx.showModal({

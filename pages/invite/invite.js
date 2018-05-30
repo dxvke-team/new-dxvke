@@ -31,7 +31,7 @@ Page({
         success: function (res) {
           if (res.statusCode == 200) {
             // tempFilePath
-            context.drawImage(res.tempFilePath, 130, 270, 65, 65);
+            context.drawImage(res.tempFilePath, 95, 250, 65, 65);
             context.save();
             context.restore();
             context.stroke();
@@ -59,9 +59,9 @@ Page({
               // 我是昵称，邀请你来享利客啦
               context.setFontSize(8);
               context.setTextAlign('left');
-              context.setFillStyle('#333333');
-              context.fillText('我是' + res.userInfo.nickName+',', 72,50)
-              context.fillText('邀请你来享利客啦', 72, 60)
+              context.setFillStyle('#ffffff');
+              context.fillText('我是' + res.userInfo.nickName+',', 45,18)
+              context.fillText('邀请你来享利客啦', 45, 28)
               context.save();
               context.restore();
               context.stroke();
@@ -71,12 +71,11 @@ Page({
                 success: function (res) {
                   if (res.statusCode == 200) {
                     var path = res.tempFilePath
-                    context.arc(43, 44, 22, 0, 2 * Math.PI)
-                    context.lineWidth = 2;  //描边宽度为3px
-                    context.setStrokeStyle('#b760e6')
+                    context.arc(20, 20, 14, 0, 2 * Math.PI)
+                    context.setStrokeStyle('#ffffff')
                     context.stroke();  //描边
                     context.clip()
-                    context.drawImage(path, 21, 22, 44, 44);
+                    context.drawImage(path, 0,0, 40, 40,);
                     context.save();
                     context.restore();
                     context.stroke();

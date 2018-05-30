@@ -60,7 +60,7 @@ Page({
       setTimeout(function () {
         wx.hideLoading()
         wx.navigateTo({
-          url: '../reward/reward?is_share=1&id=' + options.id + '&type=' + options.type + '&share_member=' + options.share_member,
+          url: '../reward/reward?is_share=1&id=' + options.id + '&type=' + options.type + '&share_member=' + options.share_member+'&photo='+options.photo,
         })
       }, 500)
     }

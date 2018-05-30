@@ -36,6 +36,7 @@
 button[plain] {
   border: 1rpx solid #9a7bff;
   color: #9a7bff;
+  margin: 0;
 }
 
 .btn2{

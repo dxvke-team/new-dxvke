@@ -25,7 +25,7 @@
       <view class='scroll_box'>
         <scroll-view scroll-x="true" class='goods-type' scroll-left="{{scrollNavbarLeft}}">
           <view class="item_list {{currentType==index?'type-active':''}}" wx:for="{{goods_type}}" wx:key="{{item}}" catchtap='swichType' data-current="{{index}}" data-id="{{item.id}}">
-            <view>{{item.cate_name}}</view>
+            <view><image src='../../images/index/icon.png' style='width:28rpx;height:28rpx;' wx:if='{{currentType==index}}'></image>{{item.cate_name}}</view>
           </view>
         </scroll-view>
       </view>

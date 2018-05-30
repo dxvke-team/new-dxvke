@@ -35,9 +35,9 @@
         <view hidden='{{loadingShow}}' class='load'>正在加载...</view>
       </scroll-view>
     </swiper-item>
-    <swiper-item>
+    <swiper-item style="border-top:1rpx solid #e5e5e5;">
       <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
-        <block wx:for="{{goods2}}" wx:key="{{item}}">
+        <block wx:for="{{goods2}}" wx:key="{{item}}" wx:if="goods2.lenght!==0">
           <view class="item-ans" catchtap="toGoodsDetail" data-id='{{item.id}}'>
             <view class="avatar">
               <image class="img" src="{{item.pict_url}}"></image>
@@ -46,7 +46,7 @@
             <view class="expertInfo">
               <view>
                 <view class="name">{{item.title}}</view>
-                <view class='time' hidden='{{item.status==2||item.status==1}}'>还剩 {{item.hour}} : {{item.minute}} : {{item.second}} 结束</view>
+                <view class='time' hidden='{{item.status==2||item.status==1}}'>还剩 {{item.surplus_hour}} : {{item.surplus_minute}} : {{item.surplus_second}}结束 </view>
               </view>
                 <view class='des'>
                   <view>
@@ -54,19 +54,21 @@
                      <view style='font-size:28rpx;color:#f51d46; font-weight: bold;' hidden='{{item.status==2}}'>已打赏9.9元</view> 
                       <view style='font-size:28rpx;color:#f51d46;' wx:if="{{item.status==2}}">打赏失败</view> 
                   </view>
-                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==0}}">继续打赏</view>
-                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==2}}" catchtap='rewardAgain'>重新打赏</view>
-                  <view class='btn' style='font-size:28rpx;' wx:if="{{item.status==1}}" catchtap='toQuan' data-id="{{item.id}}">去领券</view> 
+                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==0}}" catchtap="toReward" data-id='{{item.num_iid}}'>继续打赏</view>
+                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==2}}" catchtap="toReward" data-id='{{item.num_iid}}'>重新打赏</view>
+                  <view class='btn' style='font-size:28rpx;' wx:if="{{item.status==1}}" catchtap='toQuan' data-id="{{item.num_iid}}">去领券</view> 
                 </view>
             </view>
           </view>
         </block>
+        <view style='text-align: center;margin-top:40rpx;' wx:if="goods2.lenght==0" > 
+            <image src='../../images/nothing.png' style='width:250rpx;height:140rpx;'></image>
+            <view class='no-more'>暂无数据</view>
+        </view>
         <view hidden='{{loadingShow}}' class='load'>正在加载...</view>
       </scroll-view>
     </swiper-item>
-
   </swiper>
-
   <view style='height:98rpx;'></view>
   <view class='tab flex'>
     <view class="tab-item flex {{currentTab==item.type?'active':''}}" wx:for="{{tabList}}" wx:key="item" bindtap="swichTab" data-current="{{item.type}}">
