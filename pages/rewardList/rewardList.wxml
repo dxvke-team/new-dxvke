@@ -54,14 +54,14 @@
                      <view style='font-size:28rpx;color:#f51d46; font-weight: bold;' hidden='{{item.status==2}}'>已打赏9.9元</view> 
                       <view style='font-size:28rpx;color:#f51d46;' wx:if="{{item.status==2}}">打赏失败</view> 
                   </view>
-                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==0}}" catchtap="toReward" data-id='{{item.num_iid}}'>继续打赏</view>
+                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==0}}" catchtap="toBargainInfo" data-id='{{item.id}}'>继续打赏</view>
                   <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==2}}" catchtap="toReward" data-id='{{item.num_iid}}'>重新打赏</view>
-                  <view class='btn' style='font-size:28rpx;' wx:if="{{item.status==1}}" catchtap='toQuan' data-id="{{item.num_iid}}">去领券</view> 
+                  <view class='btn' style='font-size:28rpx;' wx:if="{{item.status==1}}" catchtap='toQuan' data-id="{{item.id}}">去领券</view> 
                 </view>
             </view>
           </view>
         </block>
-        <view style='text-align: center;margin-top:40rpx;' wx:if="goods2.lenght==0" > 
+        <view style='text-align: center;margin-top:40rpx;' wx:if="{{goods2.length==0}}" > 
             <image src='../../images/nothing.png' style='width:250rpx;height:140rpx;'></image>
             <view class='no-more'>暂无数据</view>
         </view>

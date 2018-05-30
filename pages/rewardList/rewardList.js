@@ -70,7 +70,7 @@ Page({
       }else if(res.status==0){
         wx.navigateTo({
           url: '../reward/reward?id=' + res.bargain_id + '&money=' + res.money + '&status=' + res.status,
-      })
+        })
       }else if(res.status==2){
         // 打赏失败
         wx.showModal({
@@ -79,8 +79,15 @@ Page({
         })
       }
     })
-      
   },
+
+  toBargainInfo : function(e){
+    var id = e.currentTarget.dataset.id;;
+    wx.navigateTo({
+      url: '../reward/reward?id=' + id + '&status=1'
+    })
+  },
+
   // 执行砍价
   doBargain: function (id,cb) {
     var that = this
