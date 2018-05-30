@@ -66,7 +66,7 @@
         <button open-type='share' class="m_btn" style='width:100%;height:100rpx;left:0;'></button>
       </view>
     </view>
-    <view class='member'>
+    <view class='member' wx:if="memberList.length!==0">
       <view class='member-title'>
         <image src='../../images/find/member_title.png' style='width:302rpx;height:31rpx;'></image>
       </view>
@@ -136,12 +136,12 @@
   <view class="model_main">
     <view class="model_main_des">
       <view class='model_header' style='background:#e8e8e8;'>
-        <image src='{{avatarUrl}}' class='model-photo'></image>
+        <image src='{{photo}}' class='model-photo'></image>
         <view style='font-size:24rpx;color:#666;line-height:70rpx;'>"谢谢老铁帮我打赏了
           <text style='color:#dc1502;'>{{money}}元</text>"</view>
       </view>
       <view class='des'>享利客邀请您打赏，您也可以领补贴
-        <text style='color:#dc1502;font-weight: bold;'>0元</text>拿{{detail.title}}</view>
+        <text style='color:#dc1502;font-weight: bold;'>0元 </text>拿好物</view>
       <view style='position:relative;'>
         <image src='../../images/find/model_btn.png' class='btn_bd'></image>
         <button open-type='share' class="m_btn">立即分享打CALL</button>

@@ -20,10 +20,7 @@
     "pages/seckill/seckill",
     "pages/login/login",
     "pages/invite/invite",
-    
     "pages/reward/reward"
-    
-    
     
   ],
   "window": {

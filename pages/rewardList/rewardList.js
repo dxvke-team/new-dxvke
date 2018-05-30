@@ -58,10 +58,13 @@ Page({
     }
     else {
       this.setData({
-        currentTab: cur
+        currentTab: cur,
+        page2:1,
+        goods2: [],
       });
-      // that.getGoodsType(cur)
-      // that.getGoods(cur)
+      if(cur==1){
+        this.getGoods2()
+      }
     }
 
   },
@@ -112,7 +115,7 @@ Page({
     })
   },
   //带天数的倒计时
-  countDown:function(times){
+  countDown:function(times,arr,i,cb){
     var timer= null,
         self=this
     timer=setInterval(function () {
@@ -129,15 +132,14 @@ Page({
       if (hour <= 9) hour = '0' + hour;
       if (minute <= 9) minute = '0' + minute;
       if (second <= 9) second = '0' + second;
-       self.setData({
-         time: hour + ':' + minute + ':' + second
-       })
+      typeof cb == "function" && cb(hour, minute, second,arr,i);
       times--;
     }, 1000);
     if(times<=0) {
       clearInterval(timer);
     }
   },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -157,7 +159,7 @@ Page({
     this.countDown(1200)
     this.getBanner()
     this.getGoods1()
-    this.getGoods2()
+    // this.getGoods2()
     http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
       if (res.data.status) {
         that.setData({
@@ -202,9 +204,42 @@ Page({
           goods2: goods2,
           loading: true,
         });
-      } else {
+         var timer = null,
+           self = this
+         timer = setInterval(function () {
+           var day = 0,
+             hour = 0,
+             minute = 0,
+             second = 0;//时间默认值
+           for (var i = 0; i < goods2.length; i++) {
+             if (goods2[i].surplus_time > 0) {
+               day = Math.floor(goods2[i].surplus_time / (60 * 60 * 24));
+               hour = Math.floor(goods2[i].surplus_time / (60 * 60)) - (day * 24);
+               minute = Math.floor(goods2[i].surplus_time / 60) - (day * 24 * 60) - (hour * 60);
+               second = Math.floor(goods2[i].surplus_time) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+             }
+             if (hour <= 9) hour = '0' + hour;
+             if (minute <= 9) minute = '0' + minute;
+             if (second <= 9) second = '0' + second;
+             goods2[i].surplus_hour = hour
+             goods2[i].surplus_minute = minute
+             goods2[i].surplus_second = second
+             goods2[i].surplus_time--;
+             that.setData({
+               goods2: goods2
+             });
+             if (goods2[i].surplus_time <= 0) {
+               clearInterval(timer);
+             }
+           }
+         }, 1000);
+         
 
-      }
+
+
+
+
+      } 
       // wx.hideLoading();
     })
 

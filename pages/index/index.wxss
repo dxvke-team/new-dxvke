@@ -35,25 +35,16 @@ page{
   margin-right: 8rpx;
 }
 .tab-item.active{
-  color: white;
-  background: -webkit-linear-gradient(left, #8721b5, #db3283);
-		/* Safari 5.1 - 6.0 */
-		background: -o-linear-gradient(left, #8721b5, #db3283);
-		/* Opera 11.1 - 12.0 */
-		background: -moz-linear-gradient(left, #8721b5, #db3283);
-		/* Firefox 3.6 - 15 */
-		background: linear-gradient(left, #8721b5, #db3283);
-		/* 标准的语法 */
+  color: #d13089;
 }
 .tab-item.active::after{
-  width: 0rpx;
-  height: 0rpx;
-  border:8rpx solid transparent;
-  border-bottom: 8rpx solid white;
+  width: 112rpx;
+  height: 4rpx;
+  background: #d13089;
   position: absolute;
   content: '';
   bottom: 0;
-  left: calc((100% - 16rpx)/2);
+  left: calc((100% - 112rpx)/2);
 }
  .scroll_box{
   background: white;
@@ -65,6 +56,7 @@ page{
 }
 .goods-type{
   height: 100%;
+  background: #f9f9f9;
 }
 .item_list{
   height: 100%;
@@ -83,7 +75,6 @@ page{
 .type-active>view{
   color: #d13089;
   padding: 0 10rpx;
-  border-bottom: 6rpx solid #d13089;
   box-sizing: border-box;
 }
 .item-ans {
