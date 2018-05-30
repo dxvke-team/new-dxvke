@@ -62,10 +62,7 @@ Page({
   // 砍价打赏团列表
   getMemberList: function (id) {
     var that = this
-    console.log(id);
     http.httpGet("bargainInfoMemberList", { id: id }, wx.getStorageSync('token'), function (res) {
-      console.log('memberList');
-      console.log(res.data);
       that.setData({
         memberList: res.data
       });
@@ -203,6 +200,7 @@ Page({
                       name: res.userInfo.nickName
                     })
                     that.doBargain(2, function (res) {
+                      console.log(res);return false;
                        //打赏成功
                       if (res.status == 0) {
                         that.setData({
@@ -241,7 +239,9 @@ Page({
                           content: '您今日的助力打赏次数已达到上限',
                           showCancel: false,
                         })
-                      }else {
+                      }else if(res.status == 5) {
+
+                      }else{
                         that.setData({
                           showReward: true,
                           selfShow: true,
@@ -258,19 +258,43 @@ Page({
               }
             }
           })
-
-       
-
-          
         } else {
           that.setData({
             login: false
           });
         }
       });
- 
     }
   },
+
+  toGoodsDetail: function(e){
+    var id = e.currentTarget.dataset.id;
+    var that = this
+    that.setData({
+      id : id
+    });
+    that.doBargain(1, function (res) {
+      if (res.status == 1) {
+        that.setData({
+          showModel: false,
+          bargain_id: res.bargain_id,
+          money: res.money,
+          status: res.status
+        })
+      } else if (res.status == 0) {
+        wx.navigateTo({
+          url: '../reward/reward?id=' + res.bargain_id + '&money=' + res.money + '&status=' + res.status,
+        })
+      } else if (res.status == 2) {
+        // 打赏失败
+        wx.showModal({
+          content: '该商品已失效',
+          showCancel: false,
+        })
+      }
+    })
+  },
+
   /**
 * 用户点击授权信息
 */
@@ -368,47 +392,31 @@ Page({
      
     }
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 打赏成功领券
    */
-  onShow: function () {
-  
+  getCoupon : function(e){
+    var that = this
+    var id = e.currentTarget.dataset.id
+    http.httpGet('bargainSuccessGetCoupon', { id: id }, wx.getStorageSync('token'), function (res) {
+      if (res.code == 200) {
+        if (!that.data.isShen) {
+          wx.navigateToMiniProgram({
+            appId: res.data.pdd_app_id,
+            path: res.data.pdd_mini_url,
+            extraData: {
+              userId: wx.getStorageSync('member_id')
+            },
+            // envVersion: 'develop',
+            success(res) {
+            }
+          })
+        }
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
 
   /**
    * 用户点击右上角分享

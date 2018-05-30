@@ -8,7 +8,7 @@
           <swiper autoplay="true" interval="5000" duration="500" vertical="true" class='infoList' class='swiper' circular="{{true}}">
             <block wx:for="{{infoList}}" wx:key="item">
               <swiper-item class="item">
-                <image src='../../images/find/info.png' class='icon'></image> {{item.info}}
+                <image src='../../images/find/info.png' class='icon'></image> {{item.msg}}
               </swiper-item>
             </block>
           </swiper>
@@ -50,18 +50,18 @@
               </view>
                 <view class='des'>
                   <view>
-                      <view style='font-size:24rpx;color:#666;text-decoration: line-through;' hidden='{{item.status==2}}'>价格:￥99.98</view>
+                      <view style='font-size:24rpx;color:#666;text-decoration: line-through;' hidden='{{item.status==2}}'>价格:￥{{item.price}}</view>
                      <view style='font-size:28rpx;color:#f51d46; font-weight: bold;' hidden='{{item.status==2}}'>已打赏9.9元</view> 
                       <view style='font-size:28rpx;color:#f51d46;' wx:if="{{item.status==2}}">打赏失败</view> 
                   </view>
-                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==0}}" catchtap="toReward" data-id='{{item.num_iid}}'>继续打赏</view>
+                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==0}}" catchtap="toBargainInfo" data-id='{{item.id}}'>继续打赏</view>
                   <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==2}}" catchtap="toReward" data-id='{{item.num_iid}}'>重新打赏</view>
-                  <view class='btn' style='font-size:28rpx;' wx:if="{{item.status==1}}" catchtap='toQuan' data-id="{{item.num_iid}}">去领券</view> 
+                  <view class='btn' style='font-size:28rpx;' wx:if="{{item.status==1}}" catchtap='toQuan' data-id="{{item.id}}">去领券</view> 
                 </view>
             </view>
           </view>
         </block>
-        <view style='text-align: center;margin-top:40rpx;' wx:if="{{goods2.lenght==0}}" > 
+        <view style='text-align: center;margin-top:40rpx;' wx:if="{{goods2.length==0}}" >
             <image src='../../images/nothing.png' style='width:250rpx;height:140rpx;'></image>
             <view class='no-more'>暂无数据</view>
         </view>
@@ -91,7 +91,4 @@
       </view>
     </view>
   </view>
-
-
-
 </view>

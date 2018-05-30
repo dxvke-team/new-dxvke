@@ -57,9 +57,9 @@
     </view>
     <view style='margin:30rpx 0 30rpx;'>
       <image src='../../images/find/btn_icon1.png' class='btn' wx:if="{{detail.bargain_count!==10}}"></image>
-      <view style='position:relative;' wx:if="{{detail.bargain_count==10}}">
+      <view style='position:relative;' wx:if="{{detail.bargain_count>=10}}">
         <image src='../../images/find/btn_icon3.gif' class='btn'></image>
-        <button open-type='share' class="m_btn" style='width:100%;height:100rpx;left:0;'></button>
+        <button bindtap='getCoupon' data-id='{{detail.id}}' class="m_btn" style='width:100%;height:100rpx;left:0;'></button>
       </view>
       <view style='position:relative;' wx:if="{{detail.bargain_count!==10}}">
         <image src='../../images/find/btn_icon2.gif' class='btn'></image>
@@ -130,6 +130,7 @@
   </view>
   </scroll-view>
 </view>
+
 <view class="model" hidden='{{showReward}}'>
   <view class="model_bd">
   </view>
