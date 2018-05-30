@@ -48,6 +48,7 @@ Page({
      winHeight: '',
      scrollTop: 0,
      showModel:true,
+     isShen:false,
   },
   swichTab:function(e){
     var that = this
@@ -158,6 +159,13 @@ Page({
     this.getBanner()
     this.getGoods1()
     this.getGoods2()
+    http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
+      if (res.data.status) {
+        that.setData({
+          isShen: true
+        });
+      }
+    });
   },
   //砍价banner
   getBanner: function () {
@@ -233,12 +241,65 @@ Page({
         break;
     }
   },
-  
+  toQuan:function(e){
+    var that = this
+    var id = e.currentTarget.dataset.id
+    http.httpGet('bargainSuccessGetCoupon', {id:id}, wx.getStorageSync('token'), function (res) {
+     if(res.code==200){
+        if (!that.data.isShen) {
+         if (that.data.isShare) {
+           var share_member = that.data.shareMember
+         } else {
+           var share_member = 0;
+         }
+         wx.navigateToMiniProgram({
+           appId: that.data.goodsDetail.pdd_app_id,
+           path: that.data.goodsDetail.pdd_mini_url,
+           extraData: {
+             userId: wx.getStorageSync('member_id')
+           },
+           // envVersion: 'develop',
+           success(res) {
+             // 打开成功,记录领券信息
+             if (that.data.isShare) {
+               var share_member = that.data.shareMember
+             } else {
+               var share_member = 0;
+             }
+             var condition = {
+               goods_id: that.data.goodsDetail.id,
+               share_member: share_member
+             }
+             http.httpPost('recordCouponNotePdd', condition, wx.getStorageSync('token'), function (res) {
+
+             });
+           }
+         })
+       }
+
+
+
+
+
+
+
+
+
+
+     }else{
+       
+     }
+    })
+
+  },
+  rewardAgain:function(e){
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+      
   },
 
   /**
