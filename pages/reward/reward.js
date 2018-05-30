@@ -62,10 +62,7 @@ Page({
   // 砍价打赏团列表
   getMemberList: function (id) {
     var that = this
-    console.log(id);
     http.httpGet("bargainInfoMemberList", { id: id }, wx.getStorageSync('token'), function (res) {
-      console.log('memberList');
-      console.log(res.data);
       that.setData({
         memberList: res.data
       });

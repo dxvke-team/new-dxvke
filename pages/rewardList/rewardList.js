@@ -30,25 +30,13 @@ Page({
         type: 1
       }
     ],
-     infoList:[
-       {
-         info:'哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈或或或或或或或哈奥奥奥奥哈哈哈哈哈哈哈'
-       }
-     ],
-    //  goods:[
-    //      {
-    //   id: 1,
-    //   pict_url: '../../images/empty_img.png',
-    //   title: '商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称',
-    //   price:'',
-    // }
-    //  ],
+    infoList:[],
     goods1:[],
     goods2:[],
-     winHeight: '',
-     scrollTop: 0,
-     showModel:true,
-     isShen:false,
+    winHeight: '',
+    scrollTop: 0,
+    showModel:true,
+    isShen:false,
   },
   swichTab:function(e){
     var that = this
@@ -154,10 +142,11 @@ Page({
         });
       }
     });
-    this.countDown(1200)
-    this.getBanner()
-    this.getGoods1()
-    this.getGoods2()
+    that.countDown(1200)
+    that.getBanner()
+    that.getGoods1()
+    that.getGoods2()
+    that.bargainMsg();
     http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
       if (res.data.status) {
         that.setData({
@@ -175,6 +164,19 @@ Page({
       });
     });
   },
+
+  //砍价消息列表
+  bargainMsg: function(){
+    var that = this;
+    http.httpGet('bargainMsg',{},wx.getStorageSync('token'),function(res){
+      if(res.code == 200){
+        that.setData({
+          infoList : res.data
+        });
+      }
+    })
+  },
+
   //打赏商品 
   getGoods1: function () {
       var that=this
