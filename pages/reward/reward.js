@@ -18,18 +18,7 @@ Page({
       id:'',
       page:1,
       limit:20,
-      goods: [
-        //   {
-        //   id: 1,
-        //   pict_url: '../../images/empty_img.png',
-        //   title: '商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品名称商品',
-        //   coupon_number: '100',
-        //   zk_final_price: {
-        //     rmb: '99',
-        //     corner: '99'
-        //   },
-        // }
-      ],
+      goods: [],
       detail:{},
       loadingShow:false,
       noData:false,
@@ -60,7 +49,6 @@ Page({
   getDetail: function (id) {
     var that = this
     http.httpGet("bargainProductInfo", {id:id}, wx.getStorageSync('token'), function (res) {
-      console.log(res)
       var progress = res.data.bargain_count * 10
       that.setData({
         detail: res.data,
@@ -74,7 +62,10 @@ Page({
   // 砍价打赏团列表
   getMemberList: function (id) {
     var that = this
+    console.log(id);
     http.httpGet("bargainInfoMemberList", { id: id }, wx.getStorageSync('token'), function (res) {
+      console.log('memberList');
+      console.log(res.data);
       that.setData({
         memberList: res.data
       });
@@ -109,7 +100,6 @@ Page({
     var that = this
     // type=1为自己砍价，type=2为别人砍价
     http.httpPost("bargainDoBargain", { id: that.data.id,type:type}, wx.getStorageSync('token'), function (res) {
-      console.log(res)
       typeof cb == "function" && cb(res.data);
     });
   },
@@ -165,7 +155,7 @@ Page({
     var that=this
     if(options.status==0){
       // 第一次砍价 显示弹框
-      this.setData({
+      that.setData({
         showModel:false,
         money:options.money,
         id: options.id
@@ -175,7 +165,7 @@ Page({
       this.getMemberList(options.id)
     }else if(options.status==1){
     //  查看详情 不显示弹框
-      this.setData({
+      that.setData({
         showModel: true,
         id: options.id
       })
@@ -189,7 +179,11 @@ Page({
       })
       this.getDetail(options.id)
       this.getMemberList(options.id)
-      this.getGoods()
+      this.getGoods();
+
+      if (options.is_share) {
+        var pid = options.share_member;
+      } 
       // 授权登录
       login.login(options, function (res) {
         if (res) {
@@ -203,7 +197,6 @@ Page({
                 // 已经授权，可以直接调用 getUserInfo 获取头像昵称
                 wx.getUserInfo({
                   success: function (res) {
-                    console.log('获取用户信息')
                     that.setData({
                       avatarUrl: res.userInfo.avatarUrl,
                       name: res.userInfo.nickName
@@ -269,7 +262,6 @@ Page({
 
           
         } else {
-          
           that.setData({
             login: false
           });
@@ -423,7 +415,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '洞悉微客',
-      path: 'pages/index/index?share_query=1&id=' + this.data.id + '&type=2&share_member=' + wx.getStorageSync('member_id'),
+      path: 'pages/index/index?&share_query=1&id=' + this.data.id + '&type=2&share_member=' + wx.getStorageSync('member_id'),
       success: function (res) {
         // 转发成功
         wx.showModal({
