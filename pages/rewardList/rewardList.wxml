@@ -56,7 +56,7 @@
 
                   </view>
                   <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==0}}">继续打赏</view>
-                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==2}}" catchtap='rewardAgain'>重新打赏</view>
+                  <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==2}}" catchtap="toReward" data-id='{{item.id}}'>重新打赏</view>
                   <view class='btn' style='font-size:28rpx;' wx:if="{{item.status==1}}" catchtap='toQuan' data-id="{{item.id}}">去领券</view> 
                 </view>
             </view>
