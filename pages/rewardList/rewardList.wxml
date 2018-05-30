@@ -37,7 +37,7 @@
     </swiper-item>
     <swiper-item style="border-top:1rpx solid #e5e5e5;">
       <scroll-view scroll-y="true" class="scoll-h" scroll-top="{{scrollTop}}" bindscrolltolower="lower" lower-threshold="0">
-        <block wx:for="{{goods2}}" wx:key="{{item}}" wx:if="goods2.lenght!==0">
+        <block wx:for="{{goods2}}" wx:key="{{item}}" wx:if="{{goods2.lenght!==0}}">
           <view class="item-ans" catchtap="toGoodsDetail" data-id='{{item.id}}'>
             <view class="avatar">
               <image class="img" src="{{item.pict_url}}"></image>
@@ -46,7 +46,7 @@
             <view class="expertInfo">
               <view>
                 <view class="name">{{item.title}}</view>
-                <view class='time' hidden='{{item.status==2||item.status==1}}'>还剩 {{item.surplus_hour}} : {{item.surplus_minute}} : {{item.surplus_second}}结束 </view>
+                <view class='time' hidden='{{item.status==2||item.status==1}}'>还剩 {{item.surplus_hour}} : {{item.surplus_minute}} : {{item.surplus_second}} 结束 </view>
               </view>
                 <view class='des'>
                   <view>
@@ -61,7 +61,7 @@
             </view>
           </view>
         </block>
-        <view style='text-align: center;margin-top:40rpx;' wx:if="goods2.lenght==0" > 
+        <view style='text-align: center;margin-top:40rpx;' wx:if="{{goods2.lenght==0}}" > 
             <image src='../../images/nothing.png' style='width:250rpx;height:140rpx;'></image>
             <view class='no-more'>暂无数据</view>
         </view>

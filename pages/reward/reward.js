@@ -414,10 +414,14 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var self =this
     return {
       title: '洞悉微客',
       path: 'pages/index/index?&share_query=1&id=' + this.data.id + '&type=2&share_member=' + wx.getStorageSync('member_id') + '&photo=' + this.data.detail.head_image,
       success: function (res) {
+        self.setData({
+          showModel: true,
+        })
         // 转发成功
         wx.showModal({
           content: '转发成功',
