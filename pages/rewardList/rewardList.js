@@ -210,14 +210,15 @@ Page({
     var that = this
     http.httpGet('myBargainList', { page: that.data.page2, limit: that.data.limit }, wx.getStorageSync('token'), function (res) {
       if (res.data.list.length !== 0) {
-        var goods2 = that.data.goods2.concat(res.data.list)
+        var goods2 = res.data.list
         that.setData({
           goods2: goods2,
           loading: true,
         });
         var timer = setInterval(function () { 
-          for (var i = 0; i < goods2.length; i++) {
-            if(goods2[i].surplus_time > 0){
+        
+          for (var i in goods2) {
+            if (goods2[i].surplus_time > 0){
               that.doTiming(goods2[i].surplus_time,function(hour,minute,second){
                 var surplusHour = 'goods2['+i+'].surplus_hour';
                 var surplusMinute = 'goods2['+i+'].surplus_minute';
@@ -227,10 +228,10 @@ Page({
                   [surplusMinute]: minute,
                   [surplusSecond]: second
                 });
-                goods2[i].surplus_time -- ;
+                
               });
             }
-           
+            goods2[i].surplus_time--;
           }
         }, 1000);
       } 
