@@ -55,7 +55,7 @@
       <view>0人</view>
       <view>10人</view>
     </view>
-    <view style='margin:30rpx 0 30rpx;'>
+    <view style='margin:15rpx 0 15rpx;'>
       <image src='../../images/find/btn_icon1.png' class='btn' wx:if="{{detail.bargain_count!==10}}"></image>
       <view style='position:relative;' wx:if="{{detail.bargain_count>=10}}">
         <image src='../../images/find/btn_icon3.gif' class='btn'></image>

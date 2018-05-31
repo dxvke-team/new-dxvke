@@ -46,11 +46,13 @@ Page({
     }
     else {
       this.setData({
-        currentTab: cur,
-        page2:1,
-        goods2: [],
+        currentTab: cur
       });
       if(cur==1){
+        this.setData({
+          page2: 1,
+          goods2: [],
+        })
         this.getGoods2()
       }
     }
@@ -109,32 +111,6 @@ Page({
       url: '../reward/reward?id=' + this.data.bargain_id + '&money=' + this.data.money + '&status=' +this.data.status,
     })
   },
-  //带天数的倒计时
-  countDown:function(times,arr,i,cb){
-    var timer= null,
-        self=this
-    timer=setInterval(function () {
-      var day = 0,
-        hour = 0,
-        minute = 0,
-        second = 0;//时间默认值
-      if (times > 0) {
-        day = Math.floor(times / (60 * 60 * 24));
-        hour = Math.floor(times / (60 * 60)) - (day * 24);
-        minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
-        second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
-      }
-      if (hour <= 9) hour = '0' + hour;
-      if (minute <= 9) minute = '0' + minute;
-      if (second <= 9) second = '0' + second;
-      typeof cb == "function" && cb(hour, minute, second,arr,i);
-      times--;
-    }, 1000);
-    if(times<=0) {
-      clearInterval(timer);
-    }
-  },
-  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -152,7 +128,6 @@ Page({
       }
     });
     that.bargainMsg();
-    that.countDown(1200)
     that.getBanner()
     that.getGoods1()
     // this.getGoods2()
@@ -206,6 +181,7 @@ Page({
   // 我的打赏商品列表
   getGoods2: function () {
     var that = this
+   
     http.httpGet('myBargainList', { page: that.data.page2, limit: that.data.limit }, wx.getStorageSync('token'), function (res) {
       if (res.data.list.length !== 0) {
         var goods2 = that.data.goods2.concat(res.data.list)
@@ -243,11 +219,6 @@ Page({
            }
          }, 1000);
          
-
-
-
-
-
       } 
       // wx.hideLoading();
     })
@@ -255,7 +226,7 @@ Page({
   },
   lower: function (e) {
     var cur = this.data.currentTab
-    // console.log(typeof cur)  判断数据类型
+    console.log(typeof cur)  //判断数据类型
     var that = this
     switch (cur) {
       case 0:
@@ -302,6 +273,11 @@ Page({
          })
        }
      }
+    })
+  },
+  toTop: function () {
+    this.setData({
+      scrollTop: 0
     })
   },
   rewardAgain:function(e){

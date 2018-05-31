@@ -23,7 +23,7 @@ Page({
       loadingShow:false,
       noData:false,
       scrollTop:0,
-
+      animationData: {}
   },
   closeModel:function(){
       this.setData({
@@ -71,7 +71,7 @@ Page({
   //商品列表
   getGoods: function () {
     var that = this
-    http.httpGet('bargainProductList', {id:that.data.id, page: that.data.page, limit: that.data.limit }, wx.getStorageSync('token'), function (res) {
+    http.httpGet('bargainInfoProductList', {id:that.data.id, page: that.data.page, limit: that.data.limit }, wx.getStorageSync('token'), function (res) {
       var goods = that.data.goods.concat(res.data.list)
       if (res.data.list.length < that.data.limit) {
         that.setData({
@@ -101,7 +101,7 @@ Page({
     });
   },
   bindDownLoad:function(){
-    if(this.noData){
+    if(this.data.noData){
       return false
     }else{
       var page = this.data.page + 1
@@ -274,17 +274,24 @@ Page({
       id : id
     });
     that.doBargain(1, function (res) {
-      if (res.status == 1) {
+      if (res.status == 0) {
         that.setData({
           showModel: false,
-          bargain_id: res.bargain_id,
+          id: res.bargain_id,
           money: res.money,
-          status: res.status
+          scrollTop: 0
         })
-      } else if (res.status == 0) {
-        wx.navigateTo({
-          url: '../reward/reward?id=' + res.bargain_id + '&money=' + res.money + '&status=' + res.status,
+        that.getDetail(res.bargain_id)
+        that.getGoods()
+        that.getMemberList(res.bargain_id)
+
+      } else if (res.status == 1) {
+        this.setData({
+          scrollTop: 0
         })
+        that.getDetail(res.bargain_id)
+        that.getGoods()
+        that.getMemberList(res.bargain_id)
       } else if (res.status == 2) {
         // 打赏失败
         wx.showModal({
@@ -416,7 +423,11 @@ Page({
       }
     })
   },
-
+  toTop: function () {
+    this.setData({
+      scrollTop: 0
+    })
+  },
 
   /**
    * 用户点击右上角分享
@@ -445,5 +456,10 @@ Page({
       }
     }
  
+  },
+  cancelInfo:function(){
+    wx.reLaunch({
+      url: '../index/index',
+    })
   }
 })
