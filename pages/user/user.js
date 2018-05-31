@@ -16,23 +16,16 @@ Page({
   onLoad: function () {
     var that = this;
     //获取用户信息
-    login.getInfo(function(res){
-      that.setData({
-        userInfo:res
-      });
-    });
-    this.getUserInfo()
   },
 
   onShow:function(){
     var that = this;
-    wx.getUserInfo({
-      success: function (res) {
-       that.setData({
-         userInfo:res.userInfo
-       })
-      },
-    })
+    login.getInfo(function (res) {
+      that.setData({
+        userInfo: res
+      });
+    });
+    this.getUserInfo()
   },
 
 getUserInfo:function(){
