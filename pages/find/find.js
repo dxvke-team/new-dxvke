@@ -14,6 +14,7 @@ Page({
     marginRight:"30rpx",
     marginLeft:"48rpx",
     num:3,
+    bargain: true,
     goods1: [], //商品列表
     goods2: [], //商品列表
     goods3: [], //商品列表
@@ -105,6 +106,16 @@ Page({
         });
       }
     })
+
+    http.httpGet('checkMiniShen',{},wx.getStorageSync('token'),function(res){
+      console.log(res);
+      if(!res.data.status){
+        that.setData({
+          bargain:false
+        });
+      }
+    });
+
     that.getBanner()
     that.getGoods1()
     that.getGoods2()
