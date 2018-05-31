@@ -47,10 +47,12 @@ Page({
     else {
       this.setData({
         currentTab: cur,
-        page2:1,
-        goods2: [],
       });
       if(cur==1){
+        that.setData({
+          page2: 1,
+          goods2: [],
+        })
         this.getGoods2()
       }
     }
@@ -213,46 +215,54 @@ Page({
           goods2: goods2,
           loading: true,
         });
-         var timer = null,
-           self = this
-         timer = setInterval(function () {
-           var day = 0,
-             hour = 0,
-             minute = 0,
-             second = 0;//时间默认值
-           for (var i = 0; i < goods2.length; i++) {
-             if (goods2[i].surplus_time > 0) {
-               day = Math.floor(goods2[i].surplus_time / (60 * 60 * 24));
-               hour = Math.floor(goods2[i].surplus_time / (60 * 60)) - (day * 24);
-               minute = Math.floor(goods2[i].surplus_time / 60) - (day * 24 * 60) - (hour * 60);
-               second = Math.floor(goods2[i].surplus_time) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
-             }
-             if (hour <= 9) hour = '0' + hour;
-             if (minute <= 9) minute = '0' + minute;
-             if (second <= 9) second = '0' + second;
-             goods2[i].surplus_hour = hour
-             goods2[i].surplus_minute = minute
-             goods2[i].surplus_second = second
-             goods2[i].surplus_time--;
-             that.setData({
-               goods2: goods2
-             });
-             if (goods2[i].surplus_time <= 0) {
-               clearInterval(timer);
-             }
-           }
-         }, 1000);
-         
-
-
-
-
-
+        var timer = setInterval(function () { 
+          for (var i = 0; i < goods2.length; i++) {
+            if(goods2[i].surplus_time > 0){
+              that.doTiming(goods2[i].surplus_time,function(hour,minute,second){
+                var surplusHour = 'goods2['+i+'].surplus_hour';
+                var surplusMinute = 'goods2['+i+'].surplus_minute';
+                var surplusSecond = 'goods2['+i+'].surplus_second';
+                that.setData({
+                  [surplusHour]: hour,
+                  [surplusMinute]: minute,
+                  [surplusSecond]: second
+                });
+                goods2[i].surplus_time -- ;
+              });
+            }
+           
+          }
+        }, 1000);
       } 
       // wx.hideLoading();
     })
 
   },
+
+  doTiming: function (surplus_time,cb)
+  {
+    self = this;
+      var day = 0,
+        hour = 0,
+        minute = 0,
+        second = 0;//时间默认值
+      
+          day = Math.floor(surplus_time / (60 * 60 * 24));
+          hour = Math.floor(surplus_time / (60 * 60)) - (day * 24);
+          minute = Math.floor(surplus_time / 60) - (day * 24 * 60) - (hour * 60);
+          second = Math.floor(surplus_time) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+      
+        if (hour <= 9) hour = '0' + hour;
+        if (minute <= 9) minute = '0' + minute;
+        if (second <= 9) second = '0' + second;
+       
+        if (surplus_time <= 0) {
+          clearInterval(timer);
+        }
+        typeof cb == 'function' && cb(hour,minute,second);
+
+  },
+
   lower: function (e) {
     var cur = this.data.currentTab
     // console.log(typeof cur)  判断数据类型

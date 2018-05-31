@@ -26,9 +26,11 @@
       <view class='type'>为您推荐</view>
     </navigator>
   </view>
-   <navigator url="../rewardList/rewardList" style=' text-align: center;' hover-class="none">
+  <view hidden='{{bargain}}'>
+    <navigator url="../rewardList/rewardList" style=' text-align: center;' hover-class="none">
        <image src='../../images/find/reward.png' class='reward'></image>
-   </navigator>
+    </navigator>
+  </view>
   <view class='main'>
     <view class='title'>
       <image src='../../images/find/icon.png' class='main-icon'></image>淘宝9.9

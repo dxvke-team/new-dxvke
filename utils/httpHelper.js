@@ -1,5 +1,6 @@
 var config = require('../config.js') 
 function Get (url, data, token='', cb ){
+  data.version = '2.5';
 	wx.showNavigationBarLoading();
 	wx.request({
     method:'GET',
@@ -26,6 +27,7 @@ function Get (url, data, token='', cb ){
 };
 
 function Post (url,data, token='', cb ){
+  data.version = '2.5';
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID  
 	wx.request({
     method:'POST',
