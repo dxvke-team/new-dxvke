@@ -109,6 +109,10 @@ function userInfoHandler(userInfo,pid,cb)
             url: '../index/index'
           })
         }
+      },
+      fail : function (requestData){
+        console.log('error:');
+        console.log(requestData);
       }
     });
   } else {

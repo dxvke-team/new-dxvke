@@ -13,17 +13,18 @@ Page({
     showRule:true,
     login:true,
     selfShow:false,
-      time:"",
-      precent:'',
-      id:'',
-      page:1,
-      limit:20,
-      goods: [],
-      detail:{},
-      loadingShow:false,
-      noData:false,
-      scrollTop:0,
-      animationData: {}
+    time:"",
+    precent:'',
+    id:'',
+    page:1,
+    limit:20,
+    goods: [],
+    detail:{},
+    loadingShow:false,
+    noData:false,
+    scrollTop:0,
+    animationData: {},
+    pid : ''
   },
   closeModel:function(){
       this.setData({
@@ -179,9 +180,10 @@ Page({
       this.getDetail(options.id)
       this.getMemberList(options.id)
       this.getGoods();
-
       if (options.is_share) {
-        var pid = options.share_member;
+        that.setData({
+          pid: options.share_member
+        });
       } 
       // 授权登录
       login.login(options, function (res) {
@@ -309,7 +311,7 @@ Page({
   userInfoHandler: function (res) {
     var that = this;
     var userInfo = res.detail;
-    login.userInfoHandler(userInfo,that.data.id,function(res){
+    login.userInfoHandler(userInfo,that.data.pid,function(res){
       if(res == undefined){
         return false;
       }else{
