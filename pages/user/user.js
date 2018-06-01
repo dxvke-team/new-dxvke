@@ -11,6 +11,7 @@ Page({
     userInfoApi: {},
     hasUserInfo: false,
     showModel:true,
+    login:true
   },
 
   onLoad: function () {
@@ -18,15 +19,22 @@ Page({
     //获取用户信息
   },
 
-  onShow:function(){
-    var that = this;
-    login.getInfo(function (res) {
+onShow:function(){
+  var that = this;
+  login.getInfo(function (res) {
+    if (res){
       that.setData({
         userInfo: res
       });
-    });
-    this.getUserInfo()
-  },
+      that.getUserInfo()
+    }else{
+      that.setData({
+        login:false
+      });
+    }
+  });
+  
+},
 
 getUserInfo:function(){
   //请求用户信息接口
@@ -38,12 +46,14 @@ getUserInfo:function(){
     wx.stopPullDownRefresh()
   });
 },
-toOrderList:function(e){
-  var type = e.currentTarget.dataset.type
-  wx.navigateTo({
-    url: '../orderList/orderList?type='+type,
-  })
-},
+
+  toOrderList:function(e){
+    var type = e.currentTarget.dataset.type
+    wx.navigateTo({
+      url: '../orderList/orderList?type='+type,
+    })
+  },
+
   onPullDownRefresh: function () {
     this.getUserInfo()
   },
@@ -56,5 +66,32 @@ toOrderList:function(e){
     this.setData({
       showModel: true,
     })
+  },
+
+  cancelInfo : function()
+  {
+    wx.reLaunch({
+      url: '../index/index',
+    })
+  },
+
+  userInfoHandler: function (res) {
+    var that = this;
+    var userInfo = res.detail;
+    login.userInfoHandler(userInfo, that.data.pid, function (res) {
+      if (res == undefined) {
+        return false;
+      } else {
+        wx.getUserInfo({
+          success: function (res) {
+            that.setData({
+              login: true,
+              userInfo : res.userInfo
+            });
+            that.getUserInfo();
+          }
+        })
+      }
+    });
   }
 })

@@ -317,45 +317,26 @@ Page({
     that.getGoods() 
   },
 
-  /**
+/**
  * 用户点击授权信息
  */
   userInfoHandler: function (res) {
     var that = this;
     var userInfo = res.detail;
-    if (userInfo.userInfo) {
-      wx.request({
-        method: 'POST',
-        url: config.HTTP_BASE_URL + 'doRegister',
-        data: {
-          encryptedData: userInfo.encryptedData,
-          iv: userInfo.iv,
-          session_key: wx.getStorageSync('LoginSessionKey'),
-          pid: that.data.pid
-        },
-        success: function (requestData) {
-          if (requestData.data.code == 200) { //成功
-            wx.setStorageSync('token', requestData.data.data.token);
-            wx.setStorageSync('member_id', requestData.data.data.user_id);
-            that.setData({
-              login : true,
-              token: requestData.data.data.token
-            });
-            that.getBanner()
-            that.getGoodsType()
-            that.getGoods() 
-          } else {
-            wx.switchTab({
-              url: '../index/index'
-            })
-          }
-        }
-      });
-    } else {
-      wx.switchTab({
-        url: '../index/index'
-      })
-    }
+    that.data.pid = 304;
+    login.userInfoHandler(userInfo, that.data.pid,function(res){
+      if(res == undefined){
+        return false;
+      }else{
+        that.setData({
+          login: true,
+          token: res
+        });
+        that.getBanner()
+        that.getGoodsType()
+        that.getGoods()
+      }
+    });
   }
 })
 

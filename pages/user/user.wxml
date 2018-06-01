@@ -3,16 +3,16 @@
 
     <view style='position:relative; margin:0 30rpx;'>
       <image class='head_image' src='{{userInfo.avatarUrl}}'></image>
-       <image src='../../images/user/level0_icon.png' class='level-icon' wx:if="{{userInfoApi.level_id=='1'}}"></image> 
-       <image src='../../images/user/level1.png' class='level-icon' wx:if="{{userInfoApi.level_id=='2'}}"></image> 
-       <image src='../../images/user/level2.png' class='level-icon' wx:if="{{userInfoApi.level_id=='3'}}"></image> 
+      <image src='../../images/user/level0_icon.png' class='level-icon' wx:if="{{userInfoApi.level_id=='1'}}"></image>
+      <image src='../../images/user/level1.png' class='level-icon' wx:if="{{userInfoApi.level_id=='2'}}"></image>
+      <image src='../../images/user/level2.png' class='level-icon' wx:if="{{userInfoApi.level_id=='3'}}"></image>
     </view>
     <view>
       <view class='nickname'>{{userInfo.nickName}}</view>
       <view style='height:60rpx;'>
-          <view class='level' wx:if="{{userInfoApi.level_id=='1'}}">帮众</view>
-          <view class='level' wx:if="{{userInfoApi.level_id=='2'}}">长老</view>
-          <view class='level' wx:if="{{userInfoApi.level_id=='3'}}">帮主</view> 
+        <view class='level' wx:if="{{userInfoApi.level_id=='1'}}">帮众</view>
+        <view class='level' wx:if="{{userInfoApi.level_id=='2'}}">长老</view>
+        <view class='level' wx:if="{{userInfoApi.level_id=='3'}}">帮主</view>
       </view>
 
     </view>
@@ -27,7 +27,7 @@
       <text style='font-size:28rpx;color:#666;'>累计收入</text>
     </view>
     <image src='../../images/user/right_icon.png' class='icon'></image>
-   </navigator>
+  </navigator>
   <navigator url='../estimate/estimate' class='income-item' hover-class="none">
     <view>
       <view style='font-size:40rpx;color:#333;'>{{userInfoApi.transport_money}}
@@ -39,44 +39,59 @@
   </navigator>
 </view>
 <view class='main'>
-<navigator url='../update/update' class='main-item' hover-class="none">
-       <view>
-          <image src='../../images/user/king.png' class='item-icon'></image>
-          我要升级
-       </view>
-       <image src='../../images/user/right_icon.png' class='icon'></image>
-    </navigator>
-    <navigator url='../myfans/myfans' class='main-item' hover-class="none">
-       <view>
-          <image src='../../images/user/fans.png' class='item-icon'></image>
-          我的粉丝
-       </view>
-       <image src='../../images/user/right_icon.png' class='icon'></image>
-    </navigator>
-    <navigator url='../invite/invite' class='main-item' hover-class="none">
-       <view>
-          <image src='../../images/user/invite.png' class='item-icon'></image>
-         邀请好友
-       </view>
-       <image src='../../images/user/right_icon.png' class='icon'></image>
-    </navigator>
-    <view class='main-item' catchtap="toContact">
-       <view>
-          <image src='../../images/user/server.png' class='item-icon'></image>
-          联系客服
-       </view>
-       <image src='../../images/user/right_icon.png' class='icon'></image>
+  <navigator url='../update/update' class='main-item' hover-class="none">
+    <view>
+      <image src='../../images/user/king.png' class='item-icon'></image>
+      我要升级
     </view>
-   
+    <image src='../../images/user/right_icon.png' class='icon'></image>
+  </navigator>
+  <navigator url='../myfans/myfans' class='main-item' hover-class="none">
+    <view>
+      <image src='../../images/user/fans.png' class='item-icon'></image>
+      我的粉丝
+    </view>
+    <image src='../../images/user/right_icon.png' class='icon'></image>
+  </navigator>
+  <navigator url='../invite/invite' class='main-item' hover-class="none">
+    <view>
+      <image src='../../images/user/invite.png' class='item-icon'></image>
+      邀请好友
+    </view>
+    <image src='../../images/user/right_icon.png' class='icon'></image>
+  </navigator>
+  <view class='main-item' catchtap="toContact">
+    <view>
+      <image src='../../images/user/server.png' class='item-icon'></image>
+      联系客服
+    </view>
+    <image src='../../images/user/right_icon.png' class='icon'></image>
+  </view>
+
 </view>
- <view class="model" hidden='{{showModel}}'>
-    <view class="model_bd">
+<view class="model" hidden='{{showModel}}'>
+  <view class="model_bd">
+  </view>
+  <view class="model_main">
+    <view class="model_main_des">
+      <image src='../../images/qr.jpg' class='qr'></image>
+      <view class='words'>请关注微信公众号：DXXX5S</view>
     </view>
-    <view class="model_main">
-      <view class="model_main_des">
-         <image src='../../images/qr.jpg' class='qr'></image>
-         <view class='words'>请关注微信公众号：DXXX5S</view>
+    <image src="../../images/close.png" alt="" catchtap='closeModel' class='cancel'></image>
+  </view>
+</view>
+
+<view class="model" hidden='{{login}}'>
+  <view class="model_bd">
+  </view>
+  <view class="model_main">
+    <view class="model_main_des">
+      <view class='model-title'>是否进行页面授权</view>
+      <view class="model-des">需要获取您的公开信息(昵称、头像等)，请到小程序的设置中打开用户信息授权</view>
+      <view class='footer flex'>
+        <button class='model-close' bindtap='cancelInfo' plain='true'>取消</button>
+        <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class='model-set' plain='true'>去设置</button>
       </view>
-      <image src="../../images/close.png" alt="" catchtap='closeModel' class='cancel'></image>
     </view>
   </view>
+</view>
