@@ -14,9 +14,12 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    that.setData({
-      pid : options.pid
-    });
+    if(options.is_share){
+      that.setData({
+        pid: options.pid
+      });
+    }
+    
   },
 
   /**

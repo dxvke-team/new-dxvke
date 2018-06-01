@@ -50,9 +50,11 @@ function login(options,cb=''){
                                 wx.setStorageSync('member_id', requestData.data.data.user_id);
                                 typeof cb == "function" && cb(requestData.data.data.token);
                               } else {
-                                wx.switchTab({
-                                  url: '../index/index'
-                                })
+                                console.log('error:');
+                                console.log(res);return false;
+                                // wx.switchTab({
+                                //   url: '../index/index'
+                                // })
                               }
                             }
                           });

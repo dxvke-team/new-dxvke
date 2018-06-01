@@ -9,7 +9,7 @@ App({
     wx.setStorageSync('logs', logs)
     wx.setStorageSync('PHPSESSID',null);
     wx.setEnableDebug({
-      enableDebug: false
+      enableDebug: true
     });
   },
 

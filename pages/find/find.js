@@ -98,17 +98,11 @@ Page({
       mask: true
     })
     var that = this;
-    wx.getStorage({
-      key: 'token',
-      success: function (res) {
-        that.setData({
-         token:res.data
-        });
-      }
-    })
+    that.setData({
+      token : wx.getStorageSync('token')
+    });
 
     http.httpGet('checkMiniShen',{},wx.getStorageSync('token'),function(res){
-      console.log(res);
       if(!res.data.status){
         that.setData({
           bargain:false

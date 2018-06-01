@@ -126,13 +126,6 @@ Page({
           content: '转发成功',
           showCancel: false,
         })
-      },
-      fail: function (res) {
-        // 转发失败
-        wx.showModal({
-          content: '转发失败',
-          showCancel: false,
-        })
       }
     }
   },

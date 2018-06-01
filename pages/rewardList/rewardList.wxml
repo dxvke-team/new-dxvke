@@ -51,7 +51,7 @@
                 <view class='des'>
                   <view>
                       <view style='font-size:24rpx;color:#666;text-decoration: line-through;' hidden='{{item.status==2}}'>价格:￥{{item.price}}</view>
-                     <view style='font-size:28rpx;color:#f51d46; font-weight: bold;' hidden='{{item.status==2}}'>已打赏9.9元</view> 
+                     <view style='font-size:28rpx;color:#f51d46; font-weight: bold;' hidden='{{item.status==2}}'>已打赏{{item.bargain_money}}元</view> 
                       <view style='font-size:28rpx;color:#f51d46;' wx:if="{{item.status==2}}">打赏失败</view> 
                   </view>
                   <view class='btn' style='font-size:28rpx;'  wx:if="{{item.status==0}}" catchtap="toBargainInfo" data-id='{{item.id}}'>继续打赏</view>
