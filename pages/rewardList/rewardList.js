@@ -9,7 +9,7 @@ Page({
     page1:1,
     page2:1,
     limit:20,
-    loadingShow:true,
+    loadingShow:false,
     banner:{
       image:'',
       click_url:''
@@ -170,6 +170,7 @@ Page({
         that.setData({
           goods1: goods1,
           loading: true,
+          loadingShow : true
         });
       } else {
 
@@ -188,6 +189,7 @@ Page({
         that.setData({
           goods2: goods2,
           loading: true,
+          loadingShow : true
         });
         var timer = setInterval(function () { 
         
@@ -240,7 +242,6 @@ Page({
 
   lower: function (e) {
     var cur = this.data.currentTab
-    console.log(typeof cur)  //判断数据类型
     var that = this
     switch (cur) {
       case 0:
@@ -271,10 +272,12 @@ Page({
   },
   toQuan:function(e){
     var that = this
+    if (that.data.isShen){
+      return false;
+    }
     var id = e.currentTarget.dataset.id
     http.httpGet('bargainSuccessGetCoupon', {id:id}, wx.getStorageSync('token'), function (res) {
      if(res.code==200){
-        if (!that.data.isShen) {
          wx.navigateToMiniProgram({
            appId: res.data.pdd_app_id,
            path: res.data.pdd_mini_url,
@@ -285,7 +288,6 @@ Page({
            success(res) {
            }
          })
-       }
      }
     })
   },

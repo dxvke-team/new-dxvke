@@ -50,9 +50,11 @@ function login(options,cb=''){
                                 wx.setStorageSync('member_id', requestData.data.data.user_id);
                                 typeof cb == "function" && cb(requestData.data.data.token);
                               } else {
-                                wx.switchTab({
-                                  url: '../index/index'
-                                })
+                                console.log('error:');
+                                console.log(res);return false;
+                                // wx.switchTab({
+                                //   url: '../index/index'
+                                // })
                               }
                             }
                           });
@@ -80,15 +82,48 @@ function getInfo(cb)
        typeof cb == "function" && cb(res.userInfo);
      },
      fail:function(res){
-       //跳转到登录页面
-       wx.navigateTo({
-         url: '../login/login',
-       })
+       typeof cb == 'function' && cb(false);
      }
    })
 }
 
+function userInfoHandler(userInfo,pid,cb)
+{
+  if (userInfo.userInfo) {
+    wx.request({
+      method: 'POST',
+      url: config.HTTP_BASE_URL + 'doRegister',
+      data: {
+        encryptedData: userInfo.encryptedData,
+        iv: userInfo.iv,
+        session_key: wx.getStorageSync('LoginSessionKey'),
+        pid: pid
+      },
+      success: function (requestData) {
+        if (requestData.data.code == 200) { //成功
+          wx.setStorageSync('token', requestData.data.data.token);
+          wx.setStorageSync('member_id', requestData.data.data.user_id);
+          typeof cb == 'function' && cb(requestData.data.data.token);
+        } else {
+          wx.switchTab({
+            url: '../index/index'
+          })
+        }
+      },
+      fail : function (requestData){
+        console.log('error:');
+        console.log(requestData);
+      }
+    });
+  } else {
+    wx.switchTab({
+      url: '../index/index'
+    })
+  }
+}
+
 module.exports = {
   login: login,
-  getInfo: getInfo
+  getInfo: getInfo,
+  userInfoHandler: userInfoHandler
 };

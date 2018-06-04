@@ -13,17 +13,18 @@ Page({
     showRule:true,
     login:true,
     selfShow:false,
-      time:"",
-      precent:'',
-      id:'',
-      page:1,
-      limit:20,
-      goods: [],
-      detail:{},
-      loadingShow:false,
-      noData:false,
-      scrollTop:0,
-      animationData: {}
+    time:"",
+    precent:'',
+    id:'',
+    page:1,
+    limit:20,
+    goods: [],
+    detail:{},
+    loadingShow:false,
+    noData:false,
+    scrollTop:0,
+    animationData: {},
+    pid : ''
   },
   closeModel:function(){
       this.setData({
@@ -49,6 +50,7 @@ Page({
   getDetail: function (id) {
     var that = this
     http.httpGet("bargainProductInfo", {id:id}, wx.getStorageSync('token'), function (res) {
+      console.log(res);
       var progress = res.data.bargain_count * 10
       that.setData({
         detail: res.data,
@@ -178,9 +180,10 @@ Page({
       this.getDetail(options.id)
       this.getMemberList(options.id)
       this.getGoods();
-
       if (options.is_share) {
-        var pid = options.share_member;
+        that.setData({
+          pid: options.share_member
+        });
       } 
       // 授权登录
       login.login(options, function (res) {
@@ -200,7 +203,7 @@ Page({
                       name: res.userInfo.nickName
                     })
                     that.doBargain(2, function (res) {
-                      console.log(res);return false;
+                      console.log(res);
                        //打赏成功
                       if (res.status == 0) {
                         that.setData({
@@ -302,102 +305,68 @@ Page({
     })
   },
 
-  /**
+/**
 * 用户点击授权信息
 */
   userInfoHandler: function (res) {
     var that = this;
     var userInfo = res.detail;
-    if (userInfo.userInfo) {
-      wx.request({
-        method: 'POST',
-        url: config.HTTP_BASE_URL + 'doRegister',
-        data: {
-          encryptedData: userInfo.encryptedData,
-          iv: userInfo.iv,
-          session_key: wx.getStorageSync('LoginSessionKey'),
-          pid: that.data.pid
-        },
-        success: function (requestData) {
-          if (requestData.data.code == 200) { //成功
-            wx.setStorageSync('token', requestData.data.data.token);
-            wx.setStorageSync('member_id', requestData.data.data.user_id);
+    login.userInfoHandler(userInfo,that.data.pid,function(res){
+      if(res == undefined){
+        return false;
+      }else{
+        that.setData({
+          login: true,
+          token: res,
+          avatarUrl: userInfo.avatarUrl,
+          name: userInfo.nickName
+        });
+        that.doBargain(2, function (res) {
+          if (res.status == 0) {
+            //打赏成功
             that.setData({
-              login: true,
-              token: requestData.data.data.token
-            });
-            wx.getSetting({
-              success: function (res) {
-                if (res.authSetting['scope.userInfo']) {
-                  // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-                  wx.getUserInfo({
-                    success: function (res) {
-                      that.setData({
-                        avatarUrl: res.userInfo.avatarUrl,
-                        name: res.userInfo.nickName
-                      })
-                      that.doBargain(2, function (res) {
-                        if (res.status == 0) {
-                          //打赏成功
-                          that.setData({
-                            id: res.num_iid,
-                          })
-
-                          that.doBargain(1, function (res) {
-                            if (res.status == 0) {
-                              that.setData({
-                                id: res.bargain_id,
-                                money: res.money,
-                                showReward: false,
-                              })
-                              that.getDetail(res.bargain_id)
-                              that.getGoods()
-                              that.getMemberList(res.bargain_id)
-                            } else {
-
-                            }
-
-                          })
-                        } else if (res.status == 1) {
-                          //已经打赏
-                          that.setData({
-                            showReward: true,
-                            id: res.bargain_id,
-                            selfShow: true,
-                            status: res.status
-                          })
-                          that.getDetail(res.bargain_id)
-                          that.getGoods()
-                          that.getMemberList(res.bargain_id)
-                        } else if (res.status == 4) {
-                          //打赏次数达上限
-                          // 转发失败
-                          wx.showModal({
-                            content: '您今日的助力打赏次数已达到上限',
-                            showCancel: false,
-                          })
-                        }else{
-                          that.setData({
-                            showReward: true,
-                            selfShow: true,
-                            status: res.status
-                          })
-                        }
-                      })
-                    }
-                  })
-                }
+              id: res.num_iid,
+            })
+            that.doBargain(1, function (res) {
+              if (res.status == 0) {
+                that.setData({
+                  id: res.bargain_id,
+                  money: res.money,
+                  showReward: false,
+                })
+                that.getDetail(res.bargain_id)
+                that.getGoods()
+                that.getMemberList(res.bargain_id)
               }
             })
-
+          } else if (res.status == 1) {
+            //已经打赏
+            that.setData({
+              showReward: true,
+              id: res.bargain_id,
+              selfShow: true,
+              status: res.status
+            })
+            that.getDetail(res.bargain_id)
+            that.getGoods()
+            that.getMemberList(res.bargain_id)
+          } else if (res.status == 4) {
+            //打赏次数达上限
+            // 转发失败
+            wx.showModal({
+              content: '您今日的助力打赏次数已达到上限',
+              showCancel: false,
+            })
           } else {
-            
+            that.setData({
+              showReward: true,
+              selfShow: true,
+              status: res.status
+            })
           }
-        }
-      });
-    } else {
-     
-    }
+        })
+      }
+    });
   },
 
   /**
@@ -405,10 +374,12 @@ Page({
    */
   getCoupon : function(e){
     var that = this
+    if (that.data.isShen) {
+      return false;
+    }
     var id = e.currentTarget.dataset.id
     http.httpGet('bargainSuccessGetCoupon', { id: id }, wx.getStorageSync('token'), function (res) {
       if (res.code == 200) {
-        if (!that.data.isShen) {
           wx.navigateToMiniProgram({
             appId: res.data.pdd_app_id,
             path: res.data.pdd_mini_url,
@@ -419,7 +390,6 @@ Page({
             success(res) {
             }
           })
-        }
       }
     })
   },
@@ -434,8 +404,9 @@ Page({
    */
   onShareAppMessage: function () {
     var self =this
+
     return {
-      title: '洞悉微客',
+      title: '【'+self.data.detail.nickname+'@我】你打赏他免单',
       path: 'pages/index/index?&share_query=1&id=' + this.data.id + '&type=2&share_member=' + wx.getStorageSync('member_id') + '&photo=' + this.data.detail.head_image,
       success: function (res) {
         self.setData({
@@ -444,13 +415,6 @@ Page({
         // 转发成功
         wx.showModal({
           content: '转发成功',
-          showCancel: false,
-        })
-      },
-      fail: function (res) {
-        // 转发失败
-        wx.showModal({
-          content: '转发失败',
           showCancel: false,
         })
       }
