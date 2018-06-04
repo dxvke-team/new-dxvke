@@ -19,6 +19,7 @@ Page({
     //获取用户信息
   },
 
+
 onShow:function(){
   var that = this;
   login.getInfo(function (res) {
@@ -35,7 +36,6 @@ onShow:function(){
   });
   
 },
-
 getUserInfo:function(){
   //请求用户信息接口
   var that = this;

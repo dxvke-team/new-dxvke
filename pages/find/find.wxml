@@ -67,9 +67,10 @@
         </view>
       </block>
     </view>
-     <view class='seek-all' catchtap='toTaobao'>查看全部
+     <navigator url='../taobao/taobao' class='seek-all' hover-class="none">
+        查看全部
         <image src='../../images/user/right_icon.png' class='right-icon'></image>
-      </view>
+      </navigator>
   </view>
   <view class='main'>
     <view class='title'>
@@ -107,9 +108,10 @@
         </view>
       </block>
     </view>
-     <view class='seek-all' catchtap='toSeckill'>查看全部
+    <navigator url='../seckill/seckill' class='seek-all' hover-class="none">
+     查看全部
         <image src='../../images/user/right_icon.png' class='right-icon'></image>
-      </view>
+      </navigator>
   </view>
   <view style='margin-bottom:20rpx;'>
     <view class='title' style='background:white;border:none;'>
@@ -137,9 +139,10 @@
         </view>
       </block>
     </view>
-    <view class='seek-all' catchtap='toOverflow'>查看全部
+     <navigator url='../overflow/overflow' class='seek-all' hover-class="none">
+        查看全部
         <image src='../../images/user/right_icon.png' class='right-icon'></image>
-    </view>
+    </navigator>
   </view>
   <view style='margin-bottom:20rpx;'>
     <view class='title' style='background:white;border:none;'>
@@ -167,9 +170,9 @@
         </view>
       </block>
     </view>
-    <view class='seek-all' catchtap='toRecommend'>查看全部
+   <navigator url='../recommend/recommend' class='seek-all' hover-class="none">查看全部
         <image src='../../images/user/right_icon.png' class='right-icon'></image>
-    </view>
+    </navigator>
   </view>
   <view class='goTop' catchtap='toTop'>
     <image src='../../images/goTop.png'></image>

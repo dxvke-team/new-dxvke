@@ -56,6 +56,7 @@ Page({
   //   })
   // },
   onLoad: function (options) {
+    
     if(options.share_query==1){
       setTimeout(function () {
         wx.hideLoading()
