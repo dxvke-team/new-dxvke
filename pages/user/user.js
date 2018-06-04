@@ -26,13 +26,13 @@ Page({
 
   onShow:function(){
     var that = this;
-    wx.getUserInfo({
-      success: function (res) {
-       that.setData({
-         userInfo:res.userInfo
-       })
-      },
-    })
+    //获取用户信息
+    login.getInfo(function (res) {
+      that.setData({
+        userInfo: res
+      });
+    });
+    this.getUserInfo()
   },
 
 getUserInfo:function(){
