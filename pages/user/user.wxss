@@ -235,20 +235,12 @@
 }
 
 button[plain] {
-<<<<<<< HEAD
- color: #9a7bff;
-=======
   color: #9a7bff;
->>>>>>> e935cba069fb36c225ba761ec14904811bf923dc
   border: none;
   background-color: transparent;
 }
 
 button[plain]:nth-child(1) {
-<<<<<<< HEAD
-   color: #353535;
-=======
   color: #353535;
->>>>>>> e935cba069fb36c225ba761ec14904811bf923dc
   border-right: 1rpx solid #e5e5e5;
 }
