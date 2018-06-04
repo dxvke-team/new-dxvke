@@ -72,8 +72,8 @@
 <view class="model" hidden='{{showModel}}'>
   <view class="model_bd">
   </view>
-  <view class="model_main">
-    <view class="model_main_des">
+  <view class="model_main1">
+    <view class="model_main_des1">
       <image src='../../images/qr.jpg' class='qr'></image>
       <view class='words'>请关注微信公众号：DXXX5S</view>
     </view>
