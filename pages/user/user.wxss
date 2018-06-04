@@ -241,16 +241,17 @@
 }
 
 .model-set {
-  color: #9a7bff;
+  
   border-left: 1rpx solid #d2d3d5;
 }
 
 button[plain] {
-  color: #353535;
+ color: #9a7bff;
   border: none;
   background-color: transparent;
 }
 
 button[plain]:nth-child(1) {
+   color: #353535;
   border-right: 1rpx solid #e5e5e5;
 }
