@@ -187,7 +187,7 @@ page{
     left: 0;
     width: 598rpx;
     height:414rpx;
-    margin: 250rpx calc((100% - 598rpx) / 2);
+    margin: 340rpx calc((100% - 598rpx) / 2);
     background-color: white;
     border-radius: 15rpx;
     box-sizing: border-box;
