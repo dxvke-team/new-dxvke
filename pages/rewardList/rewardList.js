@@ -272,10 +272,12 @@ Page({
   },
   toQuan:function(e){
     var that = this
+    if (that.data.isShen){
+      return false;
+    }
     var id = e.currentTarget.dataset.id
     http.httpGet('bargainSuccessGetCoupon', {id:id}, wx.getStorageSync('token'), function (res) {
      if(res.code==200){
-        if (!that.data.isShen) {
          wx.navigateToMiniProgram({
            appId: res.data.pdd_app_id,
            path: res.data.pdd_mini_url,
@@ -286,7 +288,6 @@ Page({
            success(res) {
            }
          })
-       }
      }
     })
   },

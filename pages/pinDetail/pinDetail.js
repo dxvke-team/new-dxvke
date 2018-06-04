@@ -17,11 +17,11 @@ Page({
     goodsDetail: {}, // 商品详情 - LQ
     command: "234325", //淘口令
     goodsType: '', //商品类型
-    isShare : '',
+    isShare: '',
     interval: 5000,
     duration: 1000,
-    contact:false,
-    isShen:false
+    contact: false,
+    isShen: false
   },
 
   onShareAppMessage: function (res) {
@@ -67,7 +67,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   toHome: function (e) {
@@ -76,7 +76,7 @@ Page({
     })
   },
   service: function () {
-  
+
   },
   close: function (e) {
     this.setData({
@@ -93,7 +93,7 @@ Page({
       showJuan: true
     })
   },
-  toUpdate:function(){
+  toUpdate: function () {
     wx.navigateTo({
       url: '../update/update',
     })
@@ -131,46 +131,46 @@ Page({
       success: function (res) {
         //复制成功,记录领券信息
         that.setData({
-          contact:true
+          contact: true
         })
       }
     })
   },
 
   //跳转拼多多小程序
-  jumpToPddMini : function()
-  {
+  jumpToPddMini: function () {
     var that = this;
-
-    if(!that.data.isShen){
-      if (that.data.isShare) {
-        var share_member = that.data.shareMember
-      } else {
-        var share_member = 0;
-      }
-      wx.navigateToMiniProgram({
-        appId: that.data.goodsDetail.pdd_app_id,
-        path: that.data.goodsDetail.pdd_mini_url,
-        extraData: {
-          userId: wx.getStorageSync('member_id')
-        },
-        // envVersion: 'develop',
-        success(res) {
-          // 打开成功,记录领券信息
-          if (that.data.isShare) {
-            var share_member = that.data.shareMember
-          } else {
-            var share_member = 0;
-          }
-          var condition = {
-            goods_id: that.data.goodsDetail.id,
-            share_member: share_member
-          }
-          http.httpPost('recordCouponNotePdd', condition, wx.getStorageSync('token'), function (res) {
-
-          });
-        }
-      })
+    if (that.data.isShen) {
+      return false;
     }
+    console.log('into the pddCoupon');
+    if (that.data.isShare) {
+      var share_member = that.data.shareMember
+    } else {
+      var share_member = 0;
+    }
+    wx.navigateToMiniProgram({
+      appId: that.data.goodsDetail.pdd_app_id,
+      path: that.data.goodsDetail.pdd_mini_url,
+      extraData: {
+        userId: wx.getStorageSync('member_id')
+      },
+      // envVersion: 'develop',
+      success(res) {
+        // 打开成功,记录领券信息
+        if (that.data.isShare) {
+          var share_member = that.data.shareMember
+        } else {
+          var share_member = 0;
+        }
+        var condition = {
+          goods_id: that.data.goodsDetail.id,
+          share_member: share_member
+        }
+        http.httpPost('recordCouponNotePdd', condition, wx.getStorageSync('token'), function (res) {
+
+        });
+      }
+    })
   }
 })
