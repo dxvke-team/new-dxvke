@@ -11,12 +11,20 @@ Page({
     userInfoApi: {},
     hasUserInfo: false,
     showModel:true,
-    login:true
+    login:true,
+    isShen : true
   },
 
   onLoad: function () {
     var that = this;
     //获取用户信息
+    http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
+      if (!res.data.status) {
+        that.setData({
+          isShen: false
+        });
+      }
+    });
   },
 
 

@@ -36,7 +36,7 @@
                   <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
                   <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
                 </view>
-                <view class='btn' wx:if="{{item.status!==0}}">马上抢 ></view>
+                <view class='btn' wx:if="{{item.status!==0}}">查看详情</view>
                 <view class='btn' style='background:#bfbfbf' wx:if="{{item.status==0}}">待开抢 ></view>
               </view>
             </view>
@@ -71,7 +71,7 @@
                   <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
                   <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
                 </view>
-                <view class='btn' wx:if="{{item.status!=0}}">马上抢 ></view>
+                <view class='btn' wx:if="{{item.status!=0}}">查看详情</view>
                 <view class='btn' style='background:#bfbfbf' wx:if="{{item.status==0}}">待开抢 ></view>
               </view>
             </view>
@@ -106,7 +106,7 @@
                   <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
                   <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
                 </view>
-                <view class='btn' wx:if="{{item.status!=0}}">马上抢 ></view>
+                <view class='btn' wx:if="{{item.status!=0}}">查看详情</view>
                 <view class='btn' style='background:#bfbfbf' wx:if="{{item.status==0}}">待开抢 ></view>
               </view>
             </view>
@@ -141,7 +141,7 @@
                   <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
                   <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
                 </view>
-                <view class='btn' wx:if="{{item.status!=0}}">马上抢 ></view>
+                <view class='btn' wx:if="{{item.status!=0}}">查看详情</view>
                 <view class='btn' style='background:#bfbfbf' wx:if="{{item.status==0}}">待开抢 ></view>
               </view>
             </view>

@@ -1,6 +1,7 @@
 // pages/allIncome/allIncome.js
 var http = require('../../utils/httpHelper.js')
 var config = require('../../config.js');
+var app = getApp();
 Page({
 
   /**
@@ -10,11 +11,12 @@ Page({
      show:true,
      noData:false,
      loadingShow: true,
-     command: config.HTTP_BASE_URL,
+     command: config.DOWNLOAD_APP_URL,
      page:1,
      limit:20,
      list:[],
-     total_amount:0
+     total_amount:0,
+     isShen : false
   },
   // 获取收入列表
   getlist: function () {
@@ -84,6 +86,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       loadingShow: false,
+      isShen : app.globalData.isShen
     })
     this.getlist()
   },

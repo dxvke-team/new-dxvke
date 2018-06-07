@@ -20,7 +20,8 @@ Page({
      goodsType:'', //商品类型,
      isShare : false,
      shareMember : '',
-     isShen : false
+     isShen : false,
+     quanTitle : '领券'
   },
 
   onShareAppMessage: function () {
@@ -60,21 +61,26 @@ Page({
       }
     });
     that.getProductDetail(options);
-
-    http.httpPost('checkMiniShen',{},wx.getStorageSync('token'),function(res){
-      if(res.data.status){
-        that.setData({
-          isShen:true
-        });
-      }
+    console.log(app.globalData.isShen);
+    that.setData({
+      isShen : app.globalData.isShen
     });
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    var that = this;
+    http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
+      if (res.data.status) {
+        that.setData({
+          isShen: true,
+          quanTitle: '返回'
+        });
+      }
+    });
   },
   toHome:function(e){
     wx.switchTab({
@@ -92,6 +98,7 @@ Page({
   showJuan:function(e){
     var that = this;
     if(that.data.isShen){
+      wx.navigateBack({})
       return false;
     }
     var condition = {

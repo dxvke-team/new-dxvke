@@ -19,7 +19,7 @@
             </text>
           </view>
         </view>
-        <view style='font-size:28rpx;color:#d51816;'>预计赚: {{goodsDetail.share_commission}}元</view>
+        <view hidden='{{isShen}}' style='font-size:28rpx;color:#d51816;'>预计赚: {{goodsDetail.share_commission}}元</view>
       </view>
       <view style="font-size:28rpx; color:#999;height:56rpx;line-height:56rpx;">
         <text wx:if='{{goodsDetail.reserve_price.corner == 00}}'>价格<text style='text-decoration: line-through;margin-right:30rpx;'>￥{{goodsDetail.reserve_price.rmb}}</text></text>
@@ -27,7 +27,7 @@
         <text wx:else>价格<text style='text-decoration: line-through;margin-right:30rpx;'>￥{{goodsDetail.reserve_price.rmb}}.{{goodsDetail.reserve_price.corner}}</text></text>
       </view>
     </view>
-    <view class='des_title flex des' catchtap='toUpdate'>
+    <view hidden='{{isShen}}' class='des_title flex des' catchtap='toUpdate'>
         <view>
            最高分享赚: <text style='color:#d51816;'>{{goodsDetail.max_commission}}元</text>
         </view>
@@ -43,16 +43,23 @@
   </view>
   <view style='height:98rpx;'></view>
   <view class='footer'>
-    <view class='tab1 tab' catchtap='toHome'>
+    <view class='tab1 tab' wx:if='{{isShen}}' catchtap='toHome' style='width:50%;'>
       <image src='../../images/index_icon.png'></image>
       <view>首页</view>
     </view>
-    <view class='tab2 tab'>
+     <view class='tab1 tab' hidden='{{isShen}}' catchtap='toHome'>
+      <image src='../../images/index_icon.png'></image>
+      <view>首页</view>
+    </view>
+    <view class='tab2 tab' hidden='{{isShen}}'>
       <image src='../../images/share.png' class='share-icon'></image>
       <button open-type='share' class='btn' plain="true">分享</button>
     </view>
-    <view class='tab tab4' catchtap='showJuan'>
-      <view>京东领券</view>
+    <view class='tab tab4' catchtap='showJuan' wx:if='{{isShen}}' style='width:50%;'>
+      <view>{{juanTitle}}</view>
+    </view>
+    <view class='tab tab4' catchtap='showJuan' hidden='{{isShen}}' style='width:50%;'>
+      <view>{{juanTitle}}</view>
     </view>
   </view>
   <view class="model" hidden='{{showJuan}}'>
