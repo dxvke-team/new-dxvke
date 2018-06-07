@@ -16,7 +16,7 @@ Page({
     currentType: 0,
     cate_type_id: '',
     tabList: [],//淘宝，京东，拼多多
-    currentTab: 0,//选中的
+    currentTab: 2,//选中的
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
@@ -40,22 +40,22 @@ Page({
   onReady: function () {
     this.setData({
       tabList: [
-        {
-          img: '../../images/index/taobao.png',
-          img2: '../../images/index/taobao_active.png',
-          name: '淘',
-          product_type: 0
-        },
+        // {
+        //   img: '../../images/index/taobao.png',
+        //   img2: '../../images/index/taobao_active.png',
+        //   name: '淘',
+        //   product_type: 0
+        // },
         {
           img: '../../images/index/JD.png',
           img2: '../../images/index/JD_active.png',
-          name: '京',
+          name: '京东',
           product_type: 2
         },
         {
           img: '../../images/index/pin.png',
           img2: '../../images/index/pin_active.png',
-          name: '拼',
+          name: '拼多多',
           product_type: 1
         }]
     });
