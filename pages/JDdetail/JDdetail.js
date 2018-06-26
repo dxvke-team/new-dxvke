@@ -21,7 +21,8 @@ Page({
     isShare : false,
     shareMember : '',
     contact:false,
-    isShen : false
+    isShen : false,
+    juanTitle: '领券'
   },
 
   onShareAppMessage: function (res) {
@@ -54,19 +55,32 @@ Page({
     }
     login.login(options);
     that.getProductDetail(options);
-    http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
-      if (res.data.status) {
-        that.setData({
-          isShen: true
-        });
-      }
+
+    that.setData({
+      isShen: app.globalData.isShen,
+      juanTitle: app.globalData.juanTitle
     });
+  },
+
+  toTop: function () {
+    this.setData({
+      scrollTop: 0
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
+    http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
+      if (res.data.status) {
+        that.setData({
+          isShen: true,
+          juanTitle: '返回'
+        });
+      }
+    });
   },
   toHome: function (e) {
     wx.switchTab({
@@ -80,12 +94,14 @@ Page({
   },
   showJuan: function (e) {
     var that = this;
-    if(!that.data.isShen){
-      that.setData({
-        showJuan: false
-      })
+    if (that.data.isShen){
+      wx.navigateBack({})
+      return false;
     }
-    
+  
+    that.setData({
+      showJuan: false
+    })
   },
   closeJuan: function (e) {
     this.setData({

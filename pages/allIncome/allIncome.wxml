@@ -4,7 +4,7 @@
       <view class='num'>{{total_amount}}</view>
       <view class='title'>可提现金额(元)</view>
    </view>
-   <view class='withdraw' catchtap='toshow'>
+   <view hidden='{{isShen}}' class='withdraw' catchtap='toshow'>
        <view>
           <image src='../../images/user/withdraw.png' class='item-icon'></image>
           提现

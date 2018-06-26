@@ -1,5 +1,7 @@
 // pages/find/find.js
 var http = require('../../utils/httpHelper.js')
+var login = require('../../utils/login.js');
+var app = getApp();
 Page({
 
   /**
@@ -19,6 +21,8 @@ Page({
     goods2: [], //商品列表
     goods3: [], //商品列表
     goods4: [], //商品列表
+    login : true,
+    token : ''
   },
    //banner
   getBanner: function () {
@@ -33,7 +37,7 @@ Page({
   //淘宝9.9商品
   getGoods1: function () {
     var that = this
-    http.httpPost('tbNineProductTen', {}, wx.getStorageSync('token'), function (res) {
+    http.httpGet('tbNineProductTen', {}, wx.getStorageSync('token'), function (res) {
       that.setData({
         goods1: res.data,
       });
@@ -121,6 +125,7 @@ Page({
       scrollTop: 0
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -128,11 +133,7 @@ Page({
   
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
   },
 
   /**
@@ -165,4 +166,33 @@ Page({
     that.getGoods4()
     wx.stopPullDownRefresh()
   },
+
+  cancelInfo: function () {
+    wx.reLaunch({
+      url: '../index/index',
+    })
+  },
+
+  userInfoHandler: function (res) {
+    var that = this;
+    var userInfo = res.detail;
+    login.userInfoHandler(userInfo, that.data.pid, function (res) {
+      if (res == undefined) {
+        return false;
+      } else {
+        wx.getUserInfo({
+          success: function (res) {
+            that.setData({
+              login: true,
+            });
+            that.getBanner()
+            that.getGoods1()
+            that.getGoods2()
+            that.getGoods3()
+            that.getGoods4()
+          }
+        })
+      }
+    });
+  }
 })

@@ -53,14 +53,14 @@
     </view>
     <image src='../../images/user/right_icon.png' class='icon'></image>
   </navigator>
-  <navigator url='../invite/invite' class='main-item' hover-class="none">
+  <navigator hidden='{{isShen}}' url='../invite/invite' class='main-item' hover-class="none">
     <view>
       <image src='../../images/user/invite.png' class='item-icon'></image>
       邀请好友
     </view>
     <image src='../../images/user/right_icon.png' class='icon'></image>
   </navigator>
-  <view class='main-item' catchtap="toContact">
+  <view class='main-item' hidden='{{isShen}}' catchtap="toContact">
     <view>
       <image src='../../images/user/server.png' class='item-icon'></image>
       联系客服

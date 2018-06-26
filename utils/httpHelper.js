@@ -1,6 +1,7 @@
 var config = require('../config.js') 
-function Get (url, data, token='', cb ){
+function Get (url, data, token='', cb){
   data.version = '2.5';
+ 
 	wx.showNavigationBarLoading();
 	wx.request({
     method:'GET',

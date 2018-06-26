@@ -9,10 +9,10 @@
     </block>
   </swiper>
   <view class='nav'>
-    <navigator url='../taobao/taobao' class='nav-item' hover-class="none">
+    <!-- <navigator url='../taobao/taobao' class='nav-item' hover-class="none">
       <image src='../../images/find/tao.png' class='icon'></image>
-      <view class='type'>淘宝9.9</view>
-    </navigator>
+      <view class='type'>淘9.9</view>
+    </navigator> -->
     <navigator url='../seckill/seckill' class='nav-item' hover-class="none">
       <image src='../../images/find/pin.png' class='icon'></image>
       <view class='type'>急速秒杀</view>
@@ -31,9 +31,9 @@
        <image src='../../images/find/reward.png' class='reward'></image>
     </navigator>
   </view>
-  <view class='main'>
+  <!-- <view class='main'>
     <view class='title'>
-      <image src='../../images/find/icon.png' class='main-icon'></image>淘宝9.9
+      <image src='../../images/find/icon.png' class='main-icon'></image>淘9.9
     </view>
     <view style='background:white;'>
       <block wx:for="{{goods1}}" wx:key="{{item}}">
@@ -60,7 +60,7 @@
                   <text style='font-size:24rpx;' wx:if="{{item.zk_final_price.corner !=='00'}}">.{{item.zk_final_price.corner}}</text>
                   <text class='old_price'>￥{{item.reserve_price.rmb}}<text wx:if="{{item.reserve_price.corner !=='00'}}">.{{item.reserve_price.corner}}</text></text>
                 </view>
-                <view class='btn'>马上抢 ></view>
+                <view class='btn'>查看详情</view>
               </view>
             </view>
           </view>
@@ -71,7 +71,7 @@
         查看全部
         <image src='../../images/user/right_icon.png' class='right-icon'></image>
       </navigator>
-  </view>
+  </view> -->
   <view class='main'>
     <view class='title'>
       <image src='../../images/find/icon2.png' class='main-icon'></image>急速秒杀

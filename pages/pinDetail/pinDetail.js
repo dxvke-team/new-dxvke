@@ -21,7 +21,8 @@ Page({
     interval: 5000,
     duration: 1000,
     contact: false,
-    isShen: false
+    isShen: false,
+    juanTitle: '领券'
   },
 
   onShareAppMessage: function (res) {
@@ -54,20 +55,26 @@ Page({
     }
     login.login(options);
     that.getProductDetail(options);
-    http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
-      if (res.data.status) {
-        that.setData({
-          isShen: true
-        });
-      }
+    that.setData({
+      isShen: app.globalData.isShen,
+      juanTitle : app.globalData.juanTitle
     });
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    http.httpPost('checkMiniShen', {}, wx.getStorageSync('token'), function (res) {
+      if (res.data.status) {
+        that.setData({
+          isShen: true,
+          juanTitle: '返回'
+        });
+      }
+    });
   },
 
   toHome: function (e) {
@@ -141,14 +148,16 @@ Page({
   jumpToPddMini: function () {
     var that = this;
     if (that.data.isShen) {
+     wx.navigateBack({})
       return false;
     }
-    console.log('into the pddCoupon');
+    // console.log('into the pddCoupon');
     if (that.data.isShare) {
       var share_member = that.data.shareMember
     } else {
       var share_member = 0;
     }
+    console.log(that.data.goodsDetail);
     wx.navigateToMiniProgram({
       appId: that.data.goodsDetail.pdd_app_id,
       path: that.data.goodsDetail.pdd_mini_url,
